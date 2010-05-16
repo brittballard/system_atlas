@@ -9,13 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100508231258) do
+ActiveRecord::Schema.define(:version => 20100516191026) do
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description", :limit => 250
     t.string   "name"
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",             :limit => 100
+    t.string   "address_line_one"
+    t.string   "address_line_two"
+    t.string   "city",             :limit => 100
+    t.string   "state",            :limit => 50
+    t.string   "postal_code",      :limit => 10
   end
 
   create_table "users", :force => true do |t|
@@ -36,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20100508231258) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.string   "openid_identifier"
+    t.integer  "organization_id"
   end
 
 end
