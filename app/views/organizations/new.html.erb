@@ -1,0 +1,5 @@
+<% form_for @organization do |form| %>
+  <%= form.error_messages %>
+  <%= render :partial => "form", :object => form %>
+  <%= form.submit "Create" %>
+<% end %>

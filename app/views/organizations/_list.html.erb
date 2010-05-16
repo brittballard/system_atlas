@@ -1,0 +1,44 @@
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Address Line One
+    </th>
+    <th>
+      Address Line Two
+    </th>
+    <th>
+      City
+    </th>
+    <th>
+      State
+    </th>
+    <th>
+      Postal Code
+    </th>
+  <tr>
+  <% organizations.each do |organization| %>
+    <tr>
+      <td>
+        <%= organization.name %>
+      </td>
+      <td>
+        <%= organization.address_line_one %>
+      </td>
+      <td>
+        <%= organization.address_line_two %>
+      </td>
+      <td>
+        <%= organization.city %>
+      </td>
+      <td>
+        <%= organization.state %>
+      </td>
+      <td>
+        <%= organization.postal_code %>
+      </td>
+    </tr>
+  <% end %>
+</table>
