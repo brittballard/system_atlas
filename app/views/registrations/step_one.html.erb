@@ -1,1 +1,24 @@
-The first step of your registration is creating or identifying your organization.
+<h1>Does your organization already exist?</h1>
+<% form_tag(step_two_registrations_path) do %>
+  <%= label_tag('Organization registration code') %>
+  <%= text_field_tag(:registration_code) %>
+  <%= submit_tag('Continue') %>
+<% end %>
+<br />
+<h1>Note sure, check...</h1>
+<% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+<% form_for(:organization, @search_organization, :url => search_organizations_registrations_path) do |form| %>
+  <%= render(:partial => 'organizations/form', :locals => { :form => form }) %>
+  <%= form.submit('Search') %>
+<% end %>
+<% if @organizations.present? %>
+  <%= render(:partial => 'organizations/list', :locals => { :select => true, :url_method => 'step_two_registrations_path', :organizations => @organizations }) %>
+<% end %>
+<br />
+<h1>Still no luck! Create it.</h1>
+<% form_for(:organization, :url => register_organization_registrations_path) do |form| %>
+  <%= render(:partial => 'organizations/form', :locals => { :form => form }) %>
+  <%= form.submit('Register') %>
+<% end %>

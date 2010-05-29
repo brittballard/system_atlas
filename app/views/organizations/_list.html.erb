@@ -18,6 +18,11 @@
     <th>
       Postal Code
     </th>
+    <% if select %>
+    <th>
+      Actions
+    </th>
+    <% end %>
   <tr>
   <% organizations.each do |organization| %>
     <tr>
@@ -39,6 +44,11 @@
       <td>
         <%= organization.postal_code %>
       </td>
+      <% if select %>
+      <td>
+        <%= link_to('Select', send(url_method, :registration_code => organization.registration_code)) %>
+      </td>
+      <% end %>
     </tr>
   <% end %>
 </table>
