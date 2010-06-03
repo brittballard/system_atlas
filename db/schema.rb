@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100524174417) do
+ActiveRecord::Schema.define(:version => 20100603032045) do
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20100524174417) do
     t.string   "last_login_ip"
     t.string   "openid_identifier"
     t.integer  "organization_id"
+    t.integer  "roles_mask"
   end
 
 end

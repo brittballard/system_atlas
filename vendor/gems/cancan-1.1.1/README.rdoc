@@ -1,0 +1,147 @@
+= CanCan
+
+Wiki[http://wiki.github.com/ryanb/cancan] | RDocs[http://rdoc.info/projects/ryanb/cancan] | Screencast[http://railscasts.com/episodes/192-authorization-with-cancan] | Metrics[http://getcaliper.com/caliper/project?repo=git%3A%2F%2Fgithub.com%2Fryanb%2Fcancan.git]
+
+CanCan is an authorization solution for Ruby on Rails. This restricts what a given user is allowed to access throughout the application. It is completely decoupled from any role based implementation and focusses on keeping permission logic in a single location (the +Ability+ class) so it is not duplicated across controllers, views, and database queries.
+
+This assumes you already have authentication (such as Authlogic[http://github.com/binarylogic/authlogic] or Devise[http://github.com/plataformatec/devise]) that provides a +current_user+ method which CanCan relies on. See {Changing Defaults}[http://wiki.github.com/ryanb/cancan/changing-defaults] if you need different behavior.
+
+
+== Installation
+
+CanCan is provided as a gem. Simply include it in your environment.rb or Gemfile.
+
+  config.gem "cancan"
+
+Alternatively it can be installed as a plugin.
+
+  script/plugin install git://github.com/ryanb/cancan.git
+
+
+== Getting Started
+
+First, define a class called +Ability+ in "models/ability.rb". It should look something like this.
+
+  class Ability
+    include CanCan::Ability
+  
+    def initialize(user)
+      if user.admin?
+        can :manage, :all
+      else
+        can :read, :all
+      end
+    end
+  end
+
+This is where all permissions will go. See the "Defining Abilities" section below for more information.
+
+The current user's permissions can be accessed using the "can?" and "cannot?" methods in the view and controller.
+
+  <% if can? :update, @article %>
+    <%= link_to "Edit", edit_article_path(@article) %>
+  <% end %>
+
+See {Checking Abilities}[http://wiki.github.com/ryanb/cancan/checking-abilities] for more information
+
+The "authorize!" method in the controller will raise an exception if the user is not able to perform the given action.
+
+  def show
+    @article = Article.find(params[:id])
+    authorize! :read, @article
+  end
+
+Setting this for every action can be tedious, therefore the +load_and_authorize_resource+ method is provided to automatically authorize all actions in a RESTful style resource controller. It will use a before filter to load the resource into an instance variable and authorize it for each action.
+
+  class ArticlesController < ApplicationController
+    load_and_authorize_resource
+    
+    def show
+      # @article is already loaded and authorized
+    end
+  end
+
+See {Authorizing Controller Actions}[http://wiki.github.com/ryanb/cancan/authorizing-controller-actions] for more information
+
+If the user authorization fails, a CanCan::AccessDenied exception will be raised. You can catch this and modify its behavior in the +ApplicationController+.
+
+  class ApplicationController < ActionController::Base
+    rescue_from CanCan::AccessDenied do |exception|
+      flash[:error] = exception.message
+      redirect_to root_url
+    end
+  end
+
+See {Exception Handling}[http://wiki.github.com/ryanb/cancan/exception-handling] for more information.
+
+
+== Defining Abilities
+
+As shown above, the +Ability+ class is where all user permissions are defined. The user model is passed into the initialize method so the permissions can be modified based on any user attributes. CanCan makes no assumptions about how roles are handled in your application. See {Role Based Authorization}[http://wiki.github.com/ryanb/cancan/role-based-authorization] for an example.
+
+The +can+ method is used to define permissions and requires two arguments. The first one is the action you're setting the permission for, the second one is the class of object you're setting it on.
+
+  can :update, Article
+
+You can pass an array for either of these parameters to match any one. In this case the user will have the ability to update or destroy both articles and comments.
+
+  can [:update, :destroy], [Article, Comment]
+
+Use :+manage+ to represent any action and :+all+ to represent any class. Here are some examples.
+
+  can :manage, Article   # has permissions to do anything to articles
+  can :read, :all        # has permission to read any model
+  can :manage, :all      # has permission to do anything to any model
+
+You can pass a hash of conditions as the third argument to further restrict what the user is able to access. Here the user will only have permission to read active projects which he owns.
+
+  can :read, Project, :active => true, :user_id => user.id
+
+See {Defining Abilities with Hashes}[http://wiki.github.com/ryanb/cancan/defining-abilities-with-hashes] for more information.
+
+Blocks can also be used if you need more control.
+
+  can :update, Project do |project|
+    project && project.groups.include?(user.group)
+  end
+
+If the block returns true then the user has that :+update+ ability for that project, otherwise he will be denied access. See {Defining Abilities with Blocks}[http://wiki.github.com/ryanb/cancan/defining-abilities-with-blocks] for more information.
+
+
+== Aliasing Actions
+
+You will usually be working with four actions when defining and checking permissions: :+read+, :+create+, :+update+, :+destroy+. These aren't the same as the 7 RESTful actions in Rails. CanCan automatically adds some default aliases for mapping those actions.
+
+  alias_action :index, :show, :to => :read
+  alias_action :new, :to => :create
+  alias_action :edit, :to => :update
+
+Notice the +edit+ action is aliased to +update+. If the user is able to update a record he also has permission to edit it. You can define your own aliases in the +Ability+ class
+
+  alias_action :update, :destroy, :to => :modify
+  can :modify, Comment
+  can? :update, Comment # => true
+
+See {Custom Actions}[http://wiki.github.com/ryanb/cancan/custom-actions] for information on adding other actions.
+
+
+== Fetching Records
+
+In the controller +index+ action you may want to fetch only the records which the user has permission to read. You can do this with the +accessible_by+ scope.
+
+  @articles = Article.accessible_by(current_ability)
+
+See {Fetching Records}[http://wiki.github.com/ryanb/cancan/fetching-records] for more information.
+
+
+== Additional Docs
+
+* {Upgrading to 1.1}[http://wiki.github.com/ryanb/cancan/upgrading-to-11]
+* {Testing Abilities}[http://wiki.github.com/ryanb/cancan/testing-abilities]
+* {Accessing Request Data}[http://wiki.github.com/ryanb/cancan/accessing-request-data]
+* {Admin Namespace}[http://wiki.github.com/ryanb/cancan/admin-namespace]
+* {See more}[http://wiki.github.com/ryanb/cancan/]
+
+== Special Thanks
+
+CanCan was inspired by declarative_authorization[http://github.com/stffn/declarative_authorization/] and aegis[http://github.com/makandra/aegis]. Many thanks to the authors and contributors.

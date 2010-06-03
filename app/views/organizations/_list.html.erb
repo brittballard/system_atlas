@@ -46,7 +46,7 @@
       </td>
       <% if select %>
       <td>
-        <%= link_to('Select', send(url_method, :registration_code => organization.registration_code)) %>
+        <%= link_to('Select', send(url_method, :registration_code => organization.registration_code), :method => :post) %>
       </td>
       <% end %>
     </tr>

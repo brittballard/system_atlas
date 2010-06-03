@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
   end
   
   def step_two
-    
+    setup_step_two(Organization.find_by_registration_code(params[:registration_code]))
   end
   
   def search_organizations
@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
     
     respond_to do |wants|
       wants.html do
-        unless @organization.present? && @organization.any?
+        unless @organizations.present? && @organizations.any?
           flash[:notice] = 'No organizations found matching your query.'
         end
 
@@ -25,15 +25,23 @@ class RegistrationsController < ApplicationController
   
   def register_organization
     @search_organization = Organization.new
-    @organizatio = Organization.new(params[:organization])
+    @organization = Organization.new(params[:organization])
     
     respond_to do |wants|
       wants.html do
-        if @organizatio.save
+        if @organization.save
+          setup_step_two(@organization)
           render(:action => 'step_two')
         end
       end
     end
   end
+  
+  private
+  
+    def setup_step_two(organization)
+      @user = User.new
+      @user.organization = organization
+    end
   
 end
