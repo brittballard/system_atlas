@@ -1,0 +1,25 @@
+<ul>
+  <% if current_user %>
+    <li>
+      <%= link_to "Edit Profile", edit_user_path(:id => current_user.id) %>
+    </li>
+    <li>
+      <%= link_to "Logout", logout_path %>
+    </li>
+    <% if can?(:edit, current_user.organization) %>
+    <li>
+      <%= link_to('Edit organization', edit_organization_path(current_user.organization)) %>
+    </li>
+    <li>
+      <%= link_to('Manage users', organization_users_path(current_user.organization)) %>
+    </li>
+    <% end %>
+  <% else %>
+    <li>
+      <%= link_to "Register", step_one_registrations_path %>
+    </li>
+    <li>
+      <%= link_to "Login", new_user_session_path %>
+    </li>
+  <% end %>
+</ul>

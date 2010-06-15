@@ -7,7 +7,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :account, :controller => "users"
   map.resources :users
-  
+  map.resources :organizations do |organization|
+    organization.resources :users
+  end
   map.resource :registrations, :member => { :step_one => :get, :step_two => :post, :search_organizations => :post, :register_organization => :post }
   map.resource :dashboard, :member => { :home => :get }
 end
