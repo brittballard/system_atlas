@@ -14,13 +14,14 @@ ActiveRecord::Schema.define(:version => 20100620165854) do
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description",       :limit => 250
+    t.string   "description",            :limit => 250
     t.string   "name"
-    t.string   "entity_type",       :limit => 50
-    t.integer  "entity_id"
+    t.string   "entity_definition_type", :limit => 50
+    t.integer  "entity_definition_id"
     t.integer  "it_owner_id"
     t.integer  "business_owner_id"
-    t.string   "system_identifier", :limit => 45
+    t.string   "system_identifier",      :limit => 45
+    t.integer  "organization_id"
   end
 
   create_table "organizations", :force => true do |t|
