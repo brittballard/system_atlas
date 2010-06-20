@@ -9,13 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100603032045) do
+ActiveRecord::Schema.define(:version => 20100620165854) do
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description", :limit => 250
+    t.string   "description",       :limit => 250
     t.string   "name"
+    t.string   "entity_type",       :limit => 50
+    t.integer  "entity_id"
+    t.integer  "it_owner_id"
+    t.integer  "business_owner_id"
+    t.string   "system_identifier", :limit => 45
   end
 
   create_table "organizations", :force => true do |t|
