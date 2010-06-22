@@ -8,7 +8,7 @@ Factory.define(:organization) do |organization|
 end
 
 Factory.define(:entity) do |entity|
-  entity.name('The big entity')
+  entity.sequence(:name){ |n| "The big entity #{n}" }
   entity.description('The big entity description.')
   entity.it_owner_id(1)
   entity.business_owner_id(1)

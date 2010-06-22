@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100620165854) do
+ActiveRecord::Schema.define(:version => 20100622021000) do
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20100620165854) do
     t.string   "system_identifier",      :limit => 45
     t.integer  "organization_id"
   end
+
+  create_table "entity_relationships", :id => false, :force => true do |t|
+    t.integer "parent_id"
+    t.integer "child_id"
+  end
+
+  add_index "entity_relationships", ["parent_id", "child_id"], :name => "index_entity_relationships_on_parent_id_and_child_id", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.datetime "created_at"
