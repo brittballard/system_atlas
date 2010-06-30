@@ -14,24 +14,22 @@ class Ability
     
     can(:create, User)
     can(:create, Organization)
-    
+    can(:create, Entity)
   end
   
   private
   
     def define_admin(user)
       can(:manage, User, :organization_id => user.organization_id)
-      
-      can(:manage, Organization) do |action, organization|
-        user.organization == organization
-      end
+      can(:manage, Organization, :id => user.organization_id)
+      can(:manage, Entity, :organization_id => user.organization_id)
     end
     
     def define_user(user)
-      can(:manage, User) do |action, authorize_user|
-        debugger
-        user == authorize_user
-      end
+      debugger
+      can(:manage, User, :id => user.id)
+      can(:manage, Entity, :it_owner_id => user.id)
+      can(:read, Entity, :organization_id => user.organization_id)
     end
     
 end
