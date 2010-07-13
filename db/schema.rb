@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100622021000) do
+ActiveRecord::Schema.define(:version => 20100622032044) do
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(:version => 20100622021000) do
   end
 
   add_index "entity_relationships", ["parent_id", "child_id"], :name => "index_entity_relationships_on_parent_id_and_child_id", :unique => true
+
+  create_table "hardwares", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organizations", :force => true do |t|
     t.datetime "created_at"
