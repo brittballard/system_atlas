@@ -5,7 +5,7 @@
 <%= form.text_field :description %><br />
 <br />
 <%= form.label :it_owner %><br />
-<%= form.select 'entity', 'it_owner', User.find_all_by_organization_id(current_user.organization.id).map { |user| [user.login, user.id] } %><br />
+<%= select 'entity', 'it_owner_id', User.find_all_by_organization_id(current_user.organization.id).collect { |user| [user.login, user.id] } %><br />
 <br />
 <%= form.label :business_owner %><br />
-<%= form.select 'entity', 'business_owner', User.find_all_by_organization_id(current_user.organization.id).map { |user| [user.login, user.id] } %><br />
+<%= select 'entity', 'business_owner_id', User.find_all_by_organization_id(current_user.organization.id).collect { |user| [user.login, user.id] } %><br />

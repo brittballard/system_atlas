@@ -6,7 +6,13 @@ class EntitiesController < ApplicationController
   end
   
   def create
-    
+    if @entity.save
+      flash[:notice] = 'Good work!'
+      render :index
+    else
+      flash[:error] = 'ERROR! ' + @entity.errors.full_messages.join('<br />')
+      render :new
+    end
   end
   
   def new

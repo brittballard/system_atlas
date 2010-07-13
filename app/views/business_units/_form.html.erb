@@ -1,0 +1,7 @@
+<% form_for(@business_unit) do |form| %>
+  <% form.fields_for(:entity, @entity) do |entity_fields| %>
+    <%= render :partial => 'entities/form' %>
+  <% end %>
+  <%= render(:partial => form, :locals => { :form => form })%>
+  <%= form.submit :create %>
+<% end %>
