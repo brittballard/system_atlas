@@ -1,3 +1,3 @@
-class Server < ActiveRecord::Base
+class System < ActiveRecord::Base
   has_one :entity, :as => :entity_definition
 end

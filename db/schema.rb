@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100622032044) do
+ActiveRecord::Schema.define(:version => 20100713024649) do
+
+  create_table "application_servers", :force => true do |t|
+    t.integer  "web_server_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "business_units", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "database_servers", :force => true do |t|
+    t.integer  "database_software_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
@@ -49,6 +66,30 @@ ActiveRecord::Schema.define(:version => 20100622032044) do
   end
 
   add_index "organizations", ["registration_code"], :name => "organizations_registration_code", :unique => true
+
+  create_table "servers", :force => true do |t|
+    t.integer  "operating_system_software_id"
+    t.string   "ip_address",                   :limit => 100
+    t.float    "ram"
+    t.float    "hard_disk_space"
+    t.float    "cpu_speed"
+    t.integer  "cpu_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "softwares", :force => true do |t|
+    t.string   "version",    :limit => 10
+    t.string   "licenses",   :limit => 10
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "systems", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"
