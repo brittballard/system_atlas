@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100713024649) do
+ActiveRecord::Schema.define(:version => 20100717191751) do
 
   create_table "application_servers", :force => true do |t|
     t.integer  "web_server_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20100713024649) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",       :limit => 100
   end
 
   create_table "systems", :force => true do |t|

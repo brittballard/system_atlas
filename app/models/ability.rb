@@ -15,6 +15,7 @@ class Ability
     can(:create, User)
     can(:create, Organization)
     can(:create, Entity)
+    can(:create, DatabaseServer)
   end
   
   private
@@ -26,10 +27,12 @@ class Ability
     end
     
     def define_user(user)
-      debugger
       can(:manage, User, :id => user.id)
       can(:manage, Entity, :it_owner_id => user.id)
       can(:read, Entity, :organization_id => user.organization_id)
+      
+      can(:manage, DatabaseServer) do |database_server|
+        database_server.organization.id == user.organization_id
+      end
     end
-    
 end

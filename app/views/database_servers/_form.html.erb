@@ -1,0 +1,2 @@
+<%= form.label :database_software %><br />
+<%= select 'database_server', 'database_software_id', Software.all.map{ |software| [software.name, software.id] } %><br />
