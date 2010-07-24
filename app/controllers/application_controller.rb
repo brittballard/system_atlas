@@ -11,6 +11,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
+  def load_entity_for_save(entity_definition)
+    entity = @database_server.entity
+    @database_server.entity = nil
+    @database_server.save
+    entity.entity_definition = @database_server
+    
+    entity
+  end
+  
   private
 
     def current_user_session
