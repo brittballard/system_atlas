@@ -2,7 +2,7 @@ class EntitiesController < ApplicationController
   load_and_authorize_resource :except => [:index]
   
   def index
-    @entities = User.accessible_by(current_ability, :read)
+    @entities = Entity.accessible_by(current_ability, :read)
   end
   
   def create

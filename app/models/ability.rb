@@ -19,6 +19,17 @@ class Ability
     can(:create, ApplicationServer)
     can(:create, BusinessUnit)
     
+    can(:read, Entity, :organization_id => user.organization_id)
+    can(:read, DatabaseServer) do |database_server|
+      database_server.entity.organization_id = user.organization_id
+    end
+    can(:read, ApplicationServer) do |application_server|
+      application_server.entity.organization_id = user.organization_id
+    end
+    can(:read, BusinessUnit) do |business_unit|
+      business_unit.entity.organization_id = user.organization_id
+    end
+
   end
   
   private
