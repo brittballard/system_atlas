@@ -13,6 +13,15 @@
     <li>
       <%= link_to('Manage users', organization_users_path(current_user.organization)) %>
     </li>
+    <li>
+      <%= link_to('Create new database server', new_database_server_path) %>
+    </li>
+    <li>
+      <%= link_to('Create new application server', new_application_server_path) %>
+    </li>
+    <li>
+      <%= link_to('Create new business unit', new_business_unit_path) %>
+    </li>
     <% end %>
   <% else %>
     <li>

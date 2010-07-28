@@ -12,10 +12,12 @@ class ApplicationController < ActionController::Base
   end
   
   def load_entity_for_save(entity_definition)
-    entity = @database_server.entity
-    @database_server.entity = nil
-    @database_server.save
-    entity.entity_definition = @database_server
+    entity = entity_definition.entity
+    entity_definition.entity = nil
+    entity_definition.save
+    entity.entity_definition = entity_definition
+    entity.organization = current_user.organization
+    entity.system_identifier = "replace me with a quickness."
     
     entity
   end

@@ -16,6 +16,9 @@ class Ability
     can(:create, Organization)
     can(:create, Entity)
     can(:create, DatabaseServer)
+    can(:create, ApplicationServer)
+    can(:create, BusinessUnit)
+    
   end
   
   private
@@ -23,16 +26,10 @@ class Ability
     def define_admin(user)
       can(:manage, User, :organization_id => user.organization_id)
       can(:manage, Organization, :id => user.organization_id)
-      can(:manage, Entity, :organization_id => user.organization_id)
     end
     
     def define_user(user)
       can(:manage, User, :id => user.id)
       can(:manage, Entity, :it_owner_id => user.id)
-      can(:read, Entity, :organization_id => user.organization_id)
-      
-      can(:manage, DatabaseServer) do |database_server|
-        database_server.organization.id == user.organization_id
-      end
     end
 end

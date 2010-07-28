@@ -2,12 +2,13 @@ class ApplicationServersController < ApplicationController
   load_and_authorize_resource :except => [:index]
 
   def index
-    @database_servers = ApplicationServer.accessible_by(current_ability, :read)
+    @application_servers = ApplicationServer.accessible_by(current_ability, :read)
   end
 
   def create
     entity = load_entity_for_save(@application_server)
-
+    
+    debugger
     if entity.entity_definition.valid? && entity.save
       flash[:notice] = 'Good work!'
       render :index
