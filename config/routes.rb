@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :business_units
   map.resources :servers
   map.resources :relationships
-  
+
   map.resources :organizations do |organization|
     organization.resources :users
   end

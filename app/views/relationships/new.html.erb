@@ -1,0 +1,5 @@
+<% form_tag(relationships_path) do %>
+  <%= select_tag("parent", options_from_collection_for_select(@entities, :id, :name)) %><br />
+  <%= select_tag("child", options_from_collection_for_select(@entities, :id, :name)) %><br />
+  <%= submit_tag("Create") %>
+<% end %>
