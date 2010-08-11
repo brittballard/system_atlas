@@ -10,9 +10,9 @@ class RelationshipsController < ApplicationController
     parent.children << child
 
     if parent.save
-      
+      flash[:notice] = 'Good work!'
     else
-      
+      flash[:error] = 'ERROR!'
     end
   end
 
