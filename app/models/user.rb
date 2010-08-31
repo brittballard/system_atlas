@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   ROLES = %w[admin user]
   
   def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+    self.roles_mask = (roles & User::ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
 
   def roles
