@@ -5,6 +5,5 @@ Feature: User logs in
 
   Scenario: Successful login
     Given I go to the login page
-    Then I should see "Login"
-    # Given I am logged in as an "Admin"
-    # Then I should see "Login successful!"
+    And I am logged in as an "Admin"
+    Then I should see "Login successful!"
