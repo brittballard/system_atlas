@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>System Atlas</title>
+        <link href="/Users/britton/source/system_atlas/public/stylesheets/system_atlas.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="/Users/britton/source/system_atlas/public/javascripts/jquery.js?1274041061" type="text/javascript"></script>
+<script src="/Users/britton/source/system_atlas/public/javascripts/application.js?1273715494" type="text/javascript"></script>
+        
+        </script>
+    </head>
+    <body>
+        <div id="container" style="margin-top: 25px;">
+            <div id="header">
+                <div id="navigation">
+                  <ul>
+  
+    <li>
+      <a href="/Users/britton/source/system_atlas/public/registrations/step_one">Register</a>
+    </li>
+    <li>
+      <a href="/Users/britton/source/system_atlas/public/user_session/new">Login</a>
+    </li>
+  
+</ul>
+                </div>
+            </div>
+            <div id="body">
+                <form action="/Users/britton/source/system_atlas/public/users" class="new_user" id="new_user" method="post">
+  
+  <label for="user_login">Login</label><br />
+<input id="user_login" name="user[login]" size="30" type="text" /><br />
+<br />
+<label for="user_email">Email</label><br />
+<input id="user_email" name="user[email]" size="30" type="text" /><br />
+<br />
+<label for="user_password">Password</label><br />
+<input id="user_password" name="user[password]" size="30" type="password" /><br />
+<br />
+<label for="user_password_confirmation">Password confirmation</label><br />
+<input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" /><br />
+
+  <input id="user_roles_" name="user[roles][]" type="checkbox" value="admin" />
+  Admin<br />
+
+  <input id="user_roles_" name="user[roles][]" type="checkbox" value="user" />
+  User<br />
+
+<input id="user_roles_" name="user[roles][]" type="hidden" value="" />
+  <input id="user_organization_id" name="user[organization_id]" type="hidden" value="8" />
+  <input id="user_submit" name="commit" type="submit" value="Register" />
+</form>
+            </div>
+            <div id="footer">
+                footer
+            </div>
+        </div>
+    </body>
+</html>

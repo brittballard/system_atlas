@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>System Atlas</title>
+        <link href="/Users/britton/source/system_atlas/public/stylesheets/system_atlas.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="/Users/britton/source/system_atlas/public/javascripts/jquery.js?1274041061" type="text/javascript"></script>
+<script src="/Users/britton/source/system_atlas/public/javascripts/application.js?1273715494" type="text/javascript"></script>
+        
+        </script>
+    </head>
+    <body>
+        <div id="container" style="margin-top: 25px;">
+            <div id="header">
+                <div id="navigation">
+                  <ul>
+  
+    <li>
+      <a href="/Users/britton/source/system_atlas/public/registrations/step_one">Register</a>
+    </li>
+    <li>
+      <a href="/Users/britton/source/system_atlas/public/user_session/new">Login</a>
+    </li>
+  
+</ul>
+                </div>
+            </div>
+            <div id="body">
+                <h1>Login</h1>
+
+<form action="/Users/britton/source/system_atlas/public/user_session" class="new_user_session" id="new_user_session" method="post">
+  
+  <label for="user_session_login">Login</label><br />
+  <input id="user_session_login" name="user_session[login]" size="30" type="text" /><br />
+  <br />
+  <label for="user_session_password">Password</label><br />
+  <input id="user_session_password" name="user_session[password]" size="30" type="password" /><br />
+  <br />
+  <input name="user_session[remember_me]" type="hidden" value="0" /><input id="user_session_remember_me" name="user_session[remember_me]" type="checkbox" value="1" /><label for="user_session_remember_me">Remember me</label><br />
+  <br />
+  <input id="user_session_submit" name="commit" type="submit" value="Login" />
+</form>
+            </div>
+            <div id="footer">
+                footer
+            </div>
+        </div>
+    </body>
+</html>
