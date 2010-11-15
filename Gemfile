@@ -5,7 +5,7 @@ gem 'rails', '3.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql', '2.8.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -32,7 +32,11 @@ gem 'mysql2'
 gem "authlogic"
 gem "authlogic-oid", :require => "authlogic_openid"
 gem "thoughtbot-shoulda", :require => "shoulda"
-gem "factory_girl"
 gem "cancan"
-gem "rspec", ">= 1.2.0", :require => false
-gem "rspec-rails", ">= 1.2.0", :require => false
+
+group :development, :test do
+  gem "test-unit", "1.2.3"
+  gem "factory_girl_rails"
+  gem "rspec", ">= 2.0.0", :require => false
+  gem "rspec-rails", ">= 2.0.0", :require => false
+end

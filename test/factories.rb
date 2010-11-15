@@ -1,4 +1,4 @@
-Factory.define(:organization) do |organization|
+Factory.define(:organization_test) do |organization|
   organization.name('britton\'s organization')
   organization.address_line_one('3800 Commerce')
   organization.address_line_two('203')
@@ -7,7 +7,7 @@ Factory.define(:organization) do |organization|
   organization.postal_code('75226')
 end
 
-Factory.define(:entity) do |entity|
+Factory.define(:entity_test) do |entity|
   entity.sequence(:name){ |n| "The big entity #{n}" }
   entity.description('The big entity description.')
   entity.it_owner_id(1)
