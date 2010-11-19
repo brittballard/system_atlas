@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
   end
   
   def step_two
-    setup_step_two(Organization.find_by_registration_code(params[:registration_code]))
+    @user = User.new
   end
   
   def search_organizations
