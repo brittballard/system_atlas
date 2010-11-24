@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
-  load_and_authorize_resource :except => [:index]
+  before_filter :load_user, :except => [:index]
 
   def index
     @users = User.accessible_by(current_ability, :manage)
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user if @user.nil?
+    
   end
 
   def update
@@ -33,5 +33,9 @@ class UsersController < ApplicationController
     else
       render :action => :edit
     end
+  end
+  
+  def load_user
+    @user = current_user if @user.nil?
   end
 end
