@@ -33,11 +33,11 @@ gem "authlogic"
 gem "authlogic-oid", :require => "authlogic_openid"
 gem "thoughtbot-shoulda", :require => "shoulda"
 gem "cancan"
-gem "ruby-debug19"
 
 group :development, :test do
   gem "test-unit", "1.2.3"
   gem "factory_girl_rails"
   gem "rspec", ">= 2.0.0", :require => false
   gem "rspec-rails", ">= 2.0.0", :require => false
+  gem "ruby-debug19"
 end
