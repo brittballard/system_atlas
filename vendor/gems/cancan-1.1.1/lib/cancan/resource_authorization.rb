@@ -3,7 +3,7 @@ module CanCan
     attr_reader :params
     
     def self.add_before_filter(controller_class, method, options = {})
-      controller_class.before_filter(options.slice(:only, :except)) do |controller|
+     controller_class.before_filter(options.slice(:only, :except)) do | controller |
         ResourceAuthorization.new(controller, controller.params, options.except(:only, :except)).send(method)
       end
     end
@@ -30,18 +30,18 @@ module CanCan
     end
     
     def authorize_resource
-      @controller.authorize!(params[:action].to_sym, resource.model_instance || resource.model_class)
+     @controller.authorize!(params[:action].to_sym, resource.model_instance |  | resource.model_class) |
     end
     
     private
     
     def resource
-      @resource ||= ControllerResource.new(@controller, model_name, parent_resource, @options)
+     @resource |  | = ControllerResource.new(@controller, model_name, parent_resource, @options) |
     end
     
     def parent_resource
       parent = nil
-      [@options[:nested]].flatten.compact.each do |name|
+     [@options[:nested]].flatten.compact.each do | name |
         id = @params["#{name}_id".to_sym]
         if id
           parent = ControllerResource.new(@controller, name, parent)

@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user if @user.nil?
   end
 
   def update

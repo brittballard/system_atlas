@@ -33,6 +33,7 @@ gem "authlogic"
 gem "authlogic-oid", :require => "authlogic_openid"
 gem "thoughtbot-shoulda", :require => "shoulda"
 gem "cancan"
+gem "ruby-debug19"
 
 group :development, :test do
   gem "test-unit", "1.2.3"
