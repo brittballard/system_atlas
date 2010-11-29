@@ -39,5 +39,5 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec", ">= 2.0.0", :require => false
   gem "rspec-rails", ">= 2.0.0", :require => false
-  # gem "ruby-debug19"
+  gem "ruby-debug19"
 end

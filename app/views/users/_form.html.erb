@@ -9,6 +9,9 @@
 <br />
 <%= form.label :password_confirmation %><br />
 <%= form.password_field :password_confirmation %><br />
+<br />
+<%= form.label :organization %><br />
+<%= select 'user', 'organization_id', Organization.all.map{ |software| [software.name, software.id] } %><br />
 <% for role in User::ROLES %>
   <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
   <%=h role.humanize %><br />

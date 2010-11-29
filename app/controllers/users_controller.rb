@@ -36,6 +36,11 @@ class UsersController < ApplicationController
   end
   
   def load_user
-    @user = current_user if @user.nil?
+    if current_user.present?
+      @user = current_user if @user.nil?
+    else
+      debugger
+      @user = User.new(params[:user])
+    end
   end
 end

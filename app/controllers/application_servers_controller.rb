@@ -8,7 +8,6 @@ class ApplicationServersController < ApplicationController
   def create
     entity = load_entity_for_save(@application_server)
     
-    debugger
     if entity.entity_definition.valid? && entity.save
       flash[:notice] = 'Good work!'
       render :index
