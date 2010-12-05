@@ -1,6 +1,5 @@
 <% form_for(@user) do |form| %>
   <%= form.error_messages %>
   <%= render :partial => "users/form", :object => form %>
-  <%= form.hidden_field :organization_id %>
   <%= form.submit "Register" %>
 <% end %>
