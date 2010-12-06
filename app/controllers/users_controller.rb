@@ -4,17 +4,31 @@ class UsersController < ApplicationController
   before_filter :load_user, :except => [:index]
 
   def index
-    @users = User.accessible_by(current_ability, :manage)
+    unless params.has_key?(:organization_id)
+      @users = User.accessible_by(current_ability, :manage)
+    else
+      @users = User.where('organization_id = ?', params[:organization_id])
+    end
   end
 
   def new
+    
   end
 
   def create
-    if @user.save
-      flash[:notice] = "Account registered!"
-      redirect_back_or_default account_url
+    organization = Organization.where('registration_code = ?', params[:registration_code]).first
+    
+    if organization.present?
+      @user.organization = organization
+      
+      if @user.save
+        flash[:notice] = "Account registered!"
+        redirect_back_or_default account_url
+      else
+        render :action => :new
+      end
     else
+      flash[:error] = 'Incorrect organization code.'
       render :action => :new
     end
   end
@@ -39,7 +53,6 @@ class UsersController < ApplicationController
     if current_user.present?
       @user = current_user if @user.nil?
     else
-      debugger
       @user = User.new(params[:user])
     end
   end

@@ -10,8 +10,9 @@
 <%= form.label :password_confirmation %><br />
 <%= form.password_field :password_confirmation %><br />
 <br />
-<%= form.label :organization %><br />
-<%= select 'user', 'organization_id', Organization.all.map{ |organization| [organization.name, organization.id] } %><br />
+<%= form.label :organization_code %><br />
+<%= text_field_tag 'registration_code' %><br />
+<br />
 <% for role in User::ROLES %>
   <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
   <%=h role.humanize %><br />

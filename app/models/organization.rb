@@ -6,7 +6,7 @@ class Organization < ActiveRecord::Base
   validates_presence_of :state
   validates_presence_of :postal_code
 
-  before_save :assign_registration_code
+  before_create :assign_registration_code
   
   def self.filter(params)
     conditions = ['1 = 1 ']
@@ -43,10 +43,14 @@ class Organization < ActiveRecord::Base
     find(:all, :conditions => conditions)
   end
   
+  def address
+    "#{self.address_line_one} #{self.address_line_two} #{self.city}, #{self.state} #{self.postal_code}"
+  end
+  
   private
   
-    def assign_registration_code    
-      registration_code = Organization.maximum(:registration_code) || 0 + 1 
+    def assign_registration_code
+      self.registration_code = (Organization.maximum(:registration_code) + 1) || 1
     end
   
 end

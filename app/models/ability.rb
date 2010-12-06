@@ -4,6 +4,10 @@ class Ability
   def initialize(user)
     user ||= User.new # Guest user
     
+    if user.is?(:operator)
+      define_operator(user)
+    end
+    
     if user.is?(:admin)
       define_admin(user)
     end
@@ -13,19 +17,21 @@ class Ability
     end
     
     can(:create, User)
-    can(:create, Organization)
     can(:create, Entity)
     can(:create, DatabaseServer)
     can(:create, ApplicationServer)
     can(:create, BusinessUnit)
     
     can(:read, Entity, :organization_id => user.organization_id)
+    
     can(:read, DatabaseServer) do |database_server|
       database_server.entity.organization_id = user.organization_id
     end
+    
     can(:read, ApplicationServer) do |application_server|
       application_server.entity.organization_id = user.organization_id
     end
+    
     can(:read, BusinessUnit) do |business_unit|
       business_unit.entity.organization_id = user.organization_id
     end
@@ -34,9 +40,14 @@ class Ability
   
   private
   
+    def define_operator(user)
+      can(:manage, Organization)
+      can(:manage, User)
+    end
+  
     def define_admin(user)
       can(:manage, User, :organization_id => user.organization_id)
-      can(:manage, Organization, :id => user.organization_id)
+      can(:manage, user.organization)
     end
     
     def define_user(user)

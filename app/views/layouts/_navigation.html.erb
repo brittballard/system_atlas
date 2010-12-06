@@ -6,25 +6,36 @@
     <li>
       <%= link_to "Logout", logout_path %>
     </li>
-    <% if can?(:edit, current_user.organization) %>
-    <li>
-      <%= link_to('Edit organization', edit_organization_path(current_user.organization)) %>
-    </li>
-    <li>
-      <%= link_to('Manage users', organization_users_path(current_user.organization)) %>
-    </li>
-    <li>
-      <%= link_to('Create new database server', new_database_server_path) %>
-    </li>
-    <li>
-      <%= link_to('Create new application server', new_application_server_path) %>
-    </li>
-    <li>
-      <%= link_to('Create new business unit', new_business_unit_path) %>
-    </li>
-    <li>
-      <%= link_to('Manage relationships', new_relationship_path) %>
-    </li>
+    <% if can?(:create, Organization) %>
+      <li>
+        <%= link_to('Create organization', new_organization_path) %>
+      </li>
+      <li>
+        <%= link_to('Manage organizations', organizations_path) %>
+      </li>
+    <% end %>
+    <% if can?(:create, DatabaseServer) %>
+      <li>
+        <%= link_to('Create new database server', new_database_server_path) %>
+      </li>
+    <% end %>
+    <% if can?(:create, ApplicationServer) %>
+      <li>
+        <%= link_to('Create new application server', new_application_server_path) %>
+      </li>
+    <% end %>
+    <% if can?(:create, BusinessUnit) %>
+      <li>
+        <%= link_to('Create new business unit', new_business_unit_path) %>
+      </li>
+    <% end %>
+    <% if current_user.is?(:admin) %>
+      <li>
+        <%= link_to('Manage relationships', new_relationship_path) %>
+      </li>
+      <li>
+        <%= link_to('Edit organization', edit_organization_path(current_user.organization)) %>
+      </li>
     <% end %>
   <% else %>
     <li>

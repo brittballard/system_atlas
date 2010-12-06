@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Actions</th>
+  </tr>
+  <% @organizations.each do |organization| %>
+    <tr>
+      <td>
+        <%= organization.name %>
+      </td>
+      <td>
+        <%= organization.address %>
+      </td>
+      <td>
+        <%= link_to('Manage users', organization_users_path(organization)) %>
+        <%= link_to('Edit organization', edit_organization_path(organization)) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

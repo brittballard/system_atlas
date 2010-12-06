@@ -2,7 +2,7 @@ class OrganizationsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    
+    @organizations = Organization.accessible_by(current_ability, :manage)
   end
   
   def new
@@ -10,11 +10,24 @@ class OrganizationsController < ApplicationController
   end
   
   def create
+    @organization = Organization.new(params[:organization])
     
+    respond_to do |wants|
+      wants.html do
+        if @organization.save
+          redirect_to organization_path(@organization)
+        else
+          render(:new)
+        end
+      end
+    end
   end
   
   def edit
     
+  end
+  
+  def show
   end
   
   def update

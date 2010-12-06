@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   acts_as_authentic
   
-  ROLES = %w[admin user]
+  ROLES = %w[admin user operator]
   
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
