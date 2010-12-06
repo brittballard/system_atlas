@@ -2,6 +2,7 @@
   <tr>
     <th>Name</th>
     <th>Code</th>
+    <th>Registration Code</th>
     <th>Actions</th>
   </tr>
   <% @organizations.each do |organization| %>
@@ -11,6 +12,9 @@
       </td>
       <td>
         <%= organization.address %>
+      </td>
+      <td>
+        <%= organization.registration_code %>
       </td>
       <td>
         <%= link_to('Manage users', organization_users_path(organization)) %>
