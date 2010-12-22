@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :organization
+  merge_validates_length_of_login_field_options :message => 'is too short. Minimum 3 characters required'
   
   acts_as_authentic
   

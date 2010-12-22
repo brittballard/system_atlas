@@ -3,7 +3,7 @@
     <head>
         <title><%= h(yield(:title) || "System Atlas") %></title>
         <%= stylesheet_link_tag('system_atlas', :media => 'all') %>
-        <%= javascript_include_tag('jquery', 'application') %>
+        <%= javascript_include_tag(:all, 'jquery', 'application') %>
         <%= yield :javascript_includes %>
         </script>
     </head>

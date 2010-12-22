@@ -1,9 +1,6 @@
 <table>
   <tr>
     <th>
-      Login
-    <th>
-    <th>
       Email
     <th>
     <th>
@@ -13,14 +10,11 @@
   <% users.each do |user| %>
     <tr>
       <td>
-        <%= user.login %>
-      </td>
-      <td>
         <%= user.email %>
       </td>
       <td>
         <%= link_to("Edit", edit_user_path(user)) %>
-        <%= link_to("Delete", edit_user_path(user, user_path(user)), :method => :delete) %>
+        <%= button_to("Delete", user_path(user), :method => :delete, :confirm => "Are you sure you want to delete #{user.email}?") %>
       </td>
     </tr>
   <% end %>

@@ -19,6 +19,7 @@
       <td>
         <%= link_to('Manage users', organization_users_path(organization)) %>
         <%= link_to('Edit organization', edit_organization_path(organization)) %>
+        <%= button_to("Delete", organization_path(organization), :method => :delete) %>
       </td>
     </tr>
   <% end %>

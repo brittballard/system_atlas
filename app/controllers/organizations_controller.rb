@@ -38,4 +38,9 @@ class OrganizationsController < ApplicationController
     end
   end
   
+  def destroy
+    Organization.destroy(params[:id])
+    redirect_to account_url
+  end
+  
 end

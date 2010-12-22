@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
-  before_filter :load_user, :except => [:index]
+  before_filter :load_user, :except => [:index, :edit, :update]
 
   def index
     unless params.has_key?(:organization_id)
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def create
     organization = Organization.where('registration_code = ?', params[:registration_code]).first
+    @user.roles = ['user'] unless @user.roles.present?
     
     if organization.present?
       @user.organization = organization
@@ -34,19 +35,26 @@ class UsersController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
     
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to account_url
     else
       render :action => :edit
     end
+  end
+  
+  def destroy
+    User.destroy(params[:id])
+    redirect_to account_url
   end
   
   def load_user

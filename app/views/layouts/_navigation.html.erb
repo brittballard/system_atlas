@@ -36,6 +36,9 @@
       <li>
         <%= link_to('Edit organization', edit_organization_path(current_user.organization)) %>
       </li>
+      <li>
+        <%= link_to('Manage users', organization_users_path(current_user.organization)) %>
+      </li>
     <% end %>
   <% else %>
     <li>

@@ -19,4 +19,6 @@ SystemAtlas::Application.routes.draw do |map|
   map.resources :organizations do |organization|
     organization.resources :users
   end
+  
+  resources :users
 end
