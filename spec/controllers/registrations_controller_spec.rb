@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 describe RegistrationsController do
-  describe 'on Get to :step_one' do
-    before do
-      get(:step_one)
-    end
-
-    it { assigns[:search_organization].should be_present }
-    it { response.should be_success }
-    it { response.should render_template("step_one") }
-  end
-  
   describe 'on POST to :step_two' do
     before do
       @organization = Factory.create(:organization)

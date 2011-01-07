@@ -40,5 +40,5 @@ group :development, :test do
   gem "rspec", ">= 2.4"
   gem "rspec-rails", ">= 2.4"
   gem "rcov"
-  # gem "ruby-debug19"
+  gem "ruby-debug19"
 end
