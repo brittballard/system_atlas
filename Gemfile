@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -31,13 +31,14 @@ gem 'mysql', '2.8.1'
 
 gem "authlogic"
 gem "authlogic-oid", :require => "authlogic_openid"
-gem "thoughtbot-shoulda", :require => "shoulda"
 gem "cancan"
 
 group :development, :test do
   gem "test-unit", "1.2.3"
+  gem "thoughtbot-shoulda", :require => "shoulda"
   gem "factory_girl_rails"
-  gem "rspec", ">= 2.0.0", :require => false
-  gem "rspec-rails", ">= 2.0.0", :require => false
+  gem "rspec", ">= 2.4"
+  gem "rspec-rails", ">= 2.4"
+  gem "rcov"
   # gem "ruby-debug19"
 end
