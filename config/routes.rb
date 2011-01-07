@@ -11,7 +11,7 @@ SystemAtlas::Application.routes.draw do
   
   resource :registrations do
      get :step_two
-     post :search_organizations
+     post :search_organizations, :register_organization
    end
    
   resources :dashboard do

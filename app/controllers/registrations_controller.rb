@@ -15,24 +15,10 @@ class RegistrationsController < ApplicationController
     respond_to do |wants|
       wants.html do
         unless @organizations.present? && @organizations.any?
-          flash[:notice] = 'No organizations found matching your query.'
+          flash[:errors] = 'No organizations found matching your query.'
         end
 
         render(:action => 'step_one')
-      end
-    end
-  end
-  
-  def register_organization
-    @search_organization = Organization.new
-    @organization = Organization.new(params[:organization])
-    
-    respond_to do |wants|
-      wants.html do
-        if @organization.save
-          setup_step_two(@organization)
-          render(:action => 'step_two')
-        end
       end
     end
   end
