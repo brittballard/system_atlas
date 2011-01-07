@@ -50,7 +50,7 @@ class Organization < ActiveRecord::Base
   private
   
     def assign_registration_code
-      self.registration_code = (Organization.maximum(:registration_code).try(:x, 1)) || 1
+      self.registration_code = (Organization.maximum(:registration_code).try(:+, 1)) || 1
     end
   
 end
