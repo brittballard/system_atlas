@@ -40,6 +40,9 @@
         <%= link_to('Manage users', organization_users_path(current_user.organization)) %>
       </li>
     <% end %>
+    <li>
+      <%= link_to('Entities', entities_url) %>
+    </li>
   <% else %>
     <li>
       <%= link_to "Register", step_two_registrations_path %>

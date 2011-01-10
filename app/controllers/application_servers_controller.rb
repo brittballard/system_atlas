@@ -25,4 +25,12 @@ class ApplicationServersController < ApplicationController
 
   end
 
+  def edit
+    @application_server = ApplicationServer.find(params[:id])
+  end
+
+  def update
+
+  end
+
 end

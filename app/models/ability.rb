@@ -43,15 +43,43 @@ class Ability
     def define_operator(user)
       can(:manage, Organization)
       can(:manage, User)
+      can(:manage, DatabaseServer)
+      can(:manage, ApplicationServer)
+      can(:manage, BusinessUnit)
     end
   
     def define_admin(user)
       can(:manage, User, :organization_id => user.organization_id)
+      can(:manage, Entity, :organization_id => user.organization_id)
       can(:manage, user.organization)
+      
+      can(:manage, DatabaseServer) do |database_server|
+        database_server.entity.organization_id = user.organization_id
+      end
+
+      can(:manage, ApplicationServer) do |application_server|
+        application_server.entity.organization_id = user.organization_id
+      end
+
+      can(:manage, BusinessUnit) do |business_unit|
+        business_unit.entity.organization_id = user.organization_id
+      end
     end
     
     def define_user(user)
       can(:manage, User, :id => user.id)
       can(:manage, Entity, :it_owner_id => user.id)
+      
+      can(:manage, DatabaseServer) do |database_server|
+        database_server.entity.it_owner_id = user.id
+      end
+      
+      can(:manage, ApplicationServer) do |application_server|
+        application_server.entity.it_owner_id = user.id
+      end
+      
+      can(:manage, BusinessUnit) do |business_unit|
+        business_unit.entity.it_owner_id = user.id
+      end
     end
 end

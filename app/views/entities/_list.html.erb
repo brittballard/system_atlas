@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Entity Type
+    </th>
+    <th>
+      Actions
+    </th>
+  <tr>
+  <% entities.each do |entity| %>
+    <tr>
+      <td>
+        <%= entity.name %>
+      </td>
+      <td>
+        <%= entity.description %>
+      </td>
+      <td>
+        <%= entity.entity_definition_type %>
+      </td>
+      <td>
+        <%= link_to('edit', send("edit_#{entity.entity_definition_type.underscore}_url", entity.entity_definition)) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

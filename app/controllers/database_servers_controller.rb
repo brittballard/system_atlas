@@ -25,4 +25,12 @@ class DatabaseServersController < ApplicationController
     
   end
   
+  def edit
+    @database_server = DatabaseServer.find(params[:id])
+  end
+  
+  def update
+    
+  end
+  
 end

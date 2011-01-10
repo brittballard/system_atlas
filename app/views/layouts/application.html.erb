@@ -17,6 +17,9 @@
             <%- flash.each do |name, msg| -%>
             <%= content_tag :div, msg, :id => "flash_#{name}" %>
             <%- end -%>
+            <div>
+              Organization: <%= current_user.organization.name %>
+            </div>
             <div id="body">
                 <%= yield %>
             </div>

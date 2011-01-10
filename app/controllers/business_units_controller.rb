@@ -25,4 +25,12 @@ class BusinessUnitsController < ApplicationController
 
   end
 
+  def edit
+    @business_unit = BusinessUnit.find(params[:id])
+  end
+
+  def update
+    
+  end
+
 end
