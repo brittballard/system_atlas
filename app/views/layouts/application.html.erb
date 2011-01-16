@@ -18,7 +18,9 @@
             <%= content_tag :div, msg, :id => "flash_#{name}" %>
             <%- end -%>
             <div>
-              Organization: <%= current_user.organization.name %>
+              <% if current_user.present? %>
+                Organization: <%= current_user.organization.name  %>
+              <% end %>
             </div>
             <div id="body">
                 <%= yield %>
