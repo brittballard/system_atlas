@@ -1,5 +1,21 @@
+<% content_for :javascript_includes do %>
+  $(function() {
+    systemAtlas.views.relatipnships_new();
+  });
+<% end %>
+
 <% form_tag(relationships_path) do %>
   <%= select_tag("parent", options_from_collection_for_select(@entities, :id, :name)) %><br />
   <%= select_tag("child", options_from_collection_for_select(@entities, :id, :name)) %><br />
   <%= submit_tag("Create") %>
 <% end %>
+
+<div class="demo">
+  <div id="draggable" class="ui-widget-content">
+    <p>Drag me to my target</p>
+  </div>
+
+  <div id="droppable" class="ui-widget-header">
+    <p>Drop here</p>
+  </div>
+</div>
