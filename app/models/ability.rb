@@ -46,11 +46,13 @@ class Ability
       can(:manage, DatabaseServer)
       can(:manage, ApplicationServer)
       can(:manage, BusinessUnit)
+      can(:manage, Application)
     end
   
     def define_admin(user)
       can(:manage, User, :organization_id => user.organization_id)
       can(:manage, Entity, :organization_id => user.organization_id)
+      can(:manage, Application, :organization_id => user.organization_id)
       can(:manage, user.organization)
       
       can(:manage, DatabaseServer) do |database_server|
