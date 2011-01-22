@@ -1,21 +1,27 @@
+<% parent = @entities.pop %>
+
 <% content_for :javascript_includes do %>
-  $(function() {
-    systemAtlas.views.relatipnships_new();
+  jQuery(document).ready(function() {
+    systemAtlas.views.relatipnshipsNew('<%= relationships_url %>', <%= raw(@entities.map { |entity| ["entity-#{entity.id}", entity.id] }) %>, <%= parent.id %>);
   });
 <% end %>
 
-<% form_tag(relationships_path) do %>
-  <%= select_tag("parent", options_from_collection_for_select(@entities, :id, :name)) %><br />
-  <%= select_tag("child", options_from_collection_for_select(@entities, :id, :name)) %><br />
-  <%= submit_tag("Create") %>
+<div class="demo">
+
+<div id='relationships'>
+  <% parent.children.each do |child| %>
+    Existing relationship entity with id <%= child.id %>.<br>
+  <% end %>
+</div>
+
+<% @entities.each do |entity| %>
+  <div id=<%= "entity-#{entity.id}" %> class="ui-widget-content draggable">
+    <%= entity.name %>
+  </div>
 <% end %>
 
-<div class="demo">
-  <div id="draggable" class="ui-widget-content">
-    <p>Drag me to my target</p>
-  </div>
-
-  <div id="droppable" class="ui-widget-header">
+  <div id=<%= "entity-#{parent.id}" %> class="ui-widget-header droppable">
+    <%= parent.name %>
     <p>Drop here</p>
   </div>
 </div>
