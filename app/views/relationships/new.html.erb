@@ -17,11 +17,13 @@
 <% @entities.each do |entity| %>
   <div id=<%= "entity-#{entity.id}" %> class="ui-widget-content draggable">
     <%= entity.name %>
+    Id: <%= entity.id %>
   </div>
 <% end %>
 
   <div id=<%= "entity-#{parent.id}" %> class="ui-widget-header droppable">
     <%= parent.name %>
+    Id: <%= parent.id %>
     <p>Drop here</p>
   </div>
 </div>
