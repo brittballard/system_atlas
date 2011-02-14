@@ -16,4 +16,8 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def delete_relationship
+    Entity.find(params[:parent]).children.delete(Entity.find(params[:child]))
+  end
+
 end

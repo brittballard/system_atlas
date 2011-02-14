@@ -24,7 +24,11 @@ SystemAtlas::Application.routes.draw do
   resources :application_servers
   resources :business_units
   resources :servers
-  resources :relationships
+  resources :relationships do
+    collection do
+      delete :delete_relationship
+    end
+  end
 
   resources :organizations do
     resources :users

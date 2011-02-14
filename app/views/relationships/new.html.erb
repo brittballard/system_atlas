@@ -2,28 +2,42 @@
 
 <% content_for :javascript_includes do %>
   jQuery(document).ready(function() {
-    systemAtlas.views.relatipnshipsNew('<%= relationships_url %>', <%= raw(@entities.map { |entity| ["entity-#{entity.id}", entity.id] }) %>, <%= parent.id %>);
+    systemAtlas.views.relatipnshipsNew('<%= delete_relationship_relationships_url %>', '<%= relationships_url %>', <%= raw(@entities.map { |entity| ["entity-#{entity.id}", entity.id] }) %>, <%= parent.id %>);
   });
 <% end %>
 
-<div class="demo">
-
 <div id='relationships'>
-  <% parent.children.each do |child| %>
-    Existing relationship entity with id <%= child.id %>.<br>
-  <% end %>
+  Hello
 </div>
 
-<% @entities.each do |entity| %>
-  <div id=<%= "entity-#{entity.id}" %> class="ui-widget-content draggable">
-    <%= entity.name %>
-    Id: <%= entity.id %>
-  </div>
-<% end %>
-
-  <div id=<%= "entity-#{parent.id}" %> class="ui-widget-header droppable">
-    <%= parent.name %>
-    Id: <%= parent.id %>
-    <p>Drop here</p>
+<div id=<%= "entity-#{parent.id}" %> class='container ui-widget-header droppable'>
+  Parent: <%= parent.name %>
+  Id: <%= parent.id %>
+  <div>
+    Children
+    <% parent.children.each do |child| %>
+      <div id=<%= "entity-#{child.id}" %> class="ui-widget-content draggable">
+        Child: <%= child.name %>
+        Id: <%= child.id %>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<div id='unassigned-entities' class='container'>
+  Unassigned
+  <div id='entities'>
+    <% (@entities - parent.children).each do |entity| %>
+      <div id=<%= "entity-#{entity.id}" %> class="ui-widget-content draggable">
+        <%= entity.name %>
+        Id: <%= entity.id %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- <div id=<%= "entity-#{parent.id}" %> class="ui-widget-header droppable">
+  <%= parent.name %>
+  Id: <%= parent.id %>
+  <p>Drop here</p>
+</div> -->
