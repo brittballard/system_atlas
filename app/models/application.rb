@@ -1,4 +1,4 @@
 class Application < ActiveRecord::Base
-  belongs_to :organization
-  validates_presence_of :name
+  has_one :entity, :as => :entity_definition
+  accepts_nested_attributes_for :entity
 end

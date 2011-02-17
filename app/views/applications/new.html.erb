@@ -1,5 +1,7 @@
-<h1>New application</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', applications_path %>
+<%= form_for(@application) do |form| %>
+  <%= form.fields_for(:entity, Entity.new) do |entity_fields| %>
+    <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => 'application[entity_attributes]' }) %>
+  <% end %>
+  <%= render(:partial => form, :locals => { :form => form })%>
+  <%= form.submit :create %>
+<% end %>

@@ -26,12 +26,7 @@ class ApplicationsController < ApplicationController
   # GET /applications/new
   # GET /applications/new.xml
   def new
-    @application = Application.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @application }
-    end
   end
 
   # GET /applications/1/edit
@@ -42,17 +37,14 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.xml
   def create
-    @application = Application.new(params[:application])
-    @application.organization = current_user.organization
-
-    respond_to do |format|
-      if @application.save
-        format.html { redirect_to(@application, :notice => 'Application was successfully created.') }
-        format.xml  { render :xml => @application, :status => :created, :location => @application }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @application.errors, :status => :unprocessable_entity }
-      end
+    entity = load_entity_for_save(@application)
+    
+    if entity.entity_definition.valid? && entity.save
+      flash[:notice] = 'Good work!'
+      render :index
+    else
+      flash[:error] = 'ERROR! ' + @application_server.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')
+      render :new
     end
   end
 
@@ -76,7 +68,10 @@ class ApplicationsController < ApplicationController
   # DELETE /applications/1.xml
   def destroy
     @application = Application.find(params[:id])
+    entity = @application.entity
+
     @application.destroy
+    entity.destroy
 
     respond_to do |format|
       format.html { redirect_to(applications_url) }

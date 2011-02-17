@@ -10,7 +10,7 @@
 
 <% @applications.each do |application| %>
   <tr>
-    <td><%= application.name %>
+    <td><%= application.entity.name %>
     <td><%= link_to 'Show', application %></td>
     <td><%= link_to 'Edit', edit_application_path(application) %></td>
     <td><%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
