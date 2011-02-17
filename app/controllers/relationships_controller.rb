@@ -1,7 +1,7 @@
 class RelationshipsController < ApplicationController
 
   def new
-    @entities = Entity.accessible_by(current_ability, :read)
+
   end
 
   def create
@@ -18,6 +18,12 @@ class RelationshipsController < ApplicationController
 
   def delete_relationship
     Entity.find(params[:parent]).children.delete(Entity.find(params[:child]))
+  end
+  
+  def manage_relationship
+    @parent = Entity.find(params[:parent_id])
+    @entities = Entity.accessible_by(current_ability, :read).where("entity_definition_type <> 'Application'")
+    render :new
   end
 
 end

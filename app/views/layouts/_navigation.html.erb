@@ -1,6 +1,9 @@
 <ul>
   <% if current_user %>
     <li>
+      <%= link_to "Home", home_dashboards_path() %>
+    </li>
+    <li>
       <%= link_to "Edit Profile", edit_user_path(:id => current_user.id) %>
     </li>
     <li>
@@ -30,18 +33,19 @@
       </li>
     <% end %>
     <% if current_user.is?(:admin) %>
-      <li>
-        <%= link_to('Manage relationships', new_relationship_path) %>
-      </li>
+      <!-- <li>
+              <%= link_to('Manage relationships', new_relationship_path) %>
+            </li> -->
       <li>
         <%= link_to('Edit organization', edit_organization_path(current_user.organization)) %>
       </li>
       <li>
         <%= link_to('Manage users', organization_users_path(current_user.organization)) %>
       </li>
-      <li>
-        <%= link_to('Manage Applications', applications_path()) %>
-      </li>    <% end %>
+      <!-- <li>
+              <%= link_to('Manage Applications', applications_path()) %>
+            </li>     -->
+    <% end %> 
     <li>
       <%= link_to('Entities', entities_url) %>
     </li>

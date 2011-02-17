@@ -40,6 +40,7 @@ class ApplicationsController < ApplicationController
     entity = load_entity_for_save(@application)
     
     if entity.entity_definition.valid? && entity.save
+      @applications = Application.accessible_by(current_ability, :read)
       flash[:notice] = 'Good work!'
       render :index
     else

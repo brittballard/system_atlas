@@ -16,8 +16,10 @@ SystemAtlas::Application.routes.draw do
      post :search_organizations, :register_organization
    end
    
-  resources :dashboard do
-    get :home
+  resources :dashboards do
+    collection do
+      get :home
+    end
   end
   
   resources :database_servers
@@ -27,6 +29,7 @@ SystemAtlas::Application.routes.draw do
   resources :relationships do
     collection do
       delete :delete_relationship
+      get :manage_relationship
     end
   end
 
