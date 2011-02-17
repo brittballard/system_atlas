@@ -122,5 +122,5 @@ DEPENDENCIES
   rspec (>= 2.4)
   rspec-rails (>= 2.4)
   ruby-debug19
-  test-unit (= 1.2.3)
+  test-unit
   thoughtbot-shoulda

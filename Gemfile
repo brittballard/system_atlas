@@ -34,7 +34,6 @@ gem "authlogic-oid", :require => "authlogic_openid"
 gem "cancan"
 
 group :development, :test do
-  gem "test-unit"
   gem "thoughtbot-shoulda", :require => "shoulda"
   gem "factory_girl_rails"
   gem "rspec", ">= 2.4"
