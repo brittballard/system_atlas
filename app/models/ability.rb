@@ -52,7 +52,8 @@ class Ability
     def define_admin(user)
       can(:manage, User, :organization_id => user.organization_id)
       can(:manage, Entity, :organization_id => user.organization_id)
-      can(:create, Application)
+      # TODO: This is effed up and must be fixed.
+      can(:manage, Application)
       can(:manage, user.organization)
       
       can(:manage, DatabaseServer) do |database_server|
