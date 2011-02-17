@@ -32,9 +32,9 @@ gem 'mysql', '2.8.1'
 gem "authlogic"
 gem "authlogic-oid", :require => "authlogic_openid"
 gem "cancan"
+gem "test-unit"
 
 group :development, :test do
-  gem "test-unit", "1.2.3"
   gem "thoughtbot-shoulda", :require => "shoulda"
   gem "factory_girl_rails"
   gem "rspec", ">= 2.4"
