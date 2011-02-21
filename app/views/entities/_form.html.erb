@@ -3,9 +3,3 @@
 <br />
 <%= form.label :description %><br />
 <%= form.text_field :description %><br />
-<br />
-<%= form.label :it_owner %><br />
-<%= form.select 'it_owner_id', User.find_all_by_organization_id(current_user.organization.id).collect { |user| [user.email, user.id] } %><br />
-<br />
-<%= form.label :business_owner %><br />
-<%= form.select 'business_owner_id', User.find_all_by_organization_id(current_user.organization.id).collect { |user| [user.email, user.id] } %><br />

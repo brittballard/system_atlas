@@ -1,0 +1,7 @@
+<%= form_for(@person) do |form| %>
+  <%= form.fields_for(:entity, @person.entity) do |entity_fields| %>
+    <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => 'people[entity_attributes]' }) %>
+  <% end %>
+  <%= render(:partial => form, :locals => { :form => form })%>
+  <%= form.submit :edit %>
+<% end %>

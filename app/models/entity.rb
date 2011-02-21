@@ -1,7 +1,5 @@
 class Entity < ActiveRecord::Base
   validates_presence_of(:name)
-  validates_presence_of(:it_owner_id)
-  validates_presence_of(:business_owner_id)
   validates_presence_of(:entity_definition_type)
   validates_presence_of(:entity_definition_id)
   validates_presence_of(:system_identifier)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217022153) do
+ActiveRecord::Schema.define(:version => 20110221000554) do
 
   create_table "application_servers", :force => true do |t|
     t.integer  "web_server_id"
@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20110217022153) do
     t.string   "name"
     t.string   "entity_definition_type", :limit => 50
     t.integer  "entity_definition_id"
-    t.integer  "it_owner_id"
-    t.integer  "business_owner_id"
     t.string   "system_identifier",      :limit => 45
     t.integer  "organization_id"
   end

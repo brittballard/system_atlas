@@ -32,5 +32,4 @@ class DatabaseServersController < ApplicationController
   def update
     
   end
-  
 end

@@ -10,6 +10,12 @@ SystemAtlas::Application.routes.draw do
   resources :entities
   resource :account, :controller => "users"
   resources :users
+  resources :database_servers
+  resources :application_servers
+  resources :business_units
+  resources :servers
+  resources :people
+  resources :teams
   
   resource :registrations do
      get :step_two
@@ -21,11 +27,7 @@ SystemAtlas::Application.routes.draw do
       get :home
     end
   end
-  
-  resources :database_servers
-  resources :application_servers
-  resources :business_units
-  resources :servers
+    
   resources :relationships do
     collection do
       delete :delete_relationship

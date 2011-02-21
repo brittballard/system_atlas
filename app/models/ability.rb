@@ -21,6 +21,8 @@ class Ability
     can(:create, DatabaseServer)
     can(:create, ApplicationServer)
     can(:create, BusinessUnit)
+    can(:create, Team)
+    can(:create, Person)
     
     can(:read, Entity, :organization_id => user.organization_id)
     
@@ -67,22 +69,17 @@ class Ability
       can(:manage, BusinessUnit) do |business_unit|
         business_unit.entity.organization_id = user.organization_id
       end
+      
+      can(:manage, Person) do |person|
+        person.entity.organization_id = user.organization_id
+      end
+      
+      can(:manage, Team) do |team|
+        team.entity.organization_id = user.organization_id
+      end
     end
     
     def define_user(user)
       can(:manage, User, :id => user.id)
-      can(:manage, Entity, :it_owner_id => user.id)
-      
-      can(:manage, DatabaseServer) do |database_server|
-        database_server.entity.it_owner_id = user.id
-      end
-      
-      can(:manage, ApplicationServer) do |application_server|
-        application_server.entity.it_owner_id = user.id
-      end
-      
-      can(:manage, BusinessUnit) do |business_unit|
-        business_unit.entity.it_owner_id = user.id
-      end
     end
 end
