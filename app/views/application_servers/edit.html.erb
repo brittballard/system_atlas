@@ -1,7 +1,1 @@
-<%= form_for(@application_server) do |form| %>
-  <%= form.fields_for(:entity, @application_server.entity) do |entity_fields| %>
-    <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => 'application_server[entity_attributes]' }) %>
-  <% end %>
-  <%= render(:partial => form, :locals => { :form => form })%>
-  <%= form.submit :edit %>
-<% end %>
+<%= render(:partial => 'layouts/entity_edit_new_form', :locals => { :form_object => @application_server, :entity_object => @application_server.entity, :entity_object_attributes_string => 'application_server[entity_attributes]'})%>

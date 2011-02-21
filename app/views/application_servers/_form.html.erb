@@ -1,2 +1,8 @@
+<%= form.label :name %><br />
+<%= form.text_field :name %><br />
+<br />
+<%= form.label :description %><br />
+<%= form.text_field :description %><br />
+<br />
 <%= form.label :web_server %><br />
 <%= form.select 'web_server_id', Software.all.map{ |software| [software.name, software.id] } %><br />

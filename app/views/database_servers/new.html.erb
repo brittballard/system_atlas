@@ -1,7 +1,1 @@
-<%= form_for(@database_server) do |form| %>
-  <%= form.fields_for(:entity, Entity.new) do |entity_fields| %>
-    <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => 'database_server[entity_attributes]' }) %>
-  <% end %>
-  <%= render(:partial => form, :locals => { :form => form })%>
-  <%= form.submit :create %>
-<% end %>
+<%= render(:partial => 'layouts/entity_edit_new_form', :locals => { :form_object => @database_server, :entity_object => Entity.new, :entity_object_attributes_string => 'database_server[entity_attributes]' })%>

@@ -10,12 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110221000554) do
+ActiveRecord::Schema.define(:version => 20110221223433) do
 
   create_table "application_servers", :force => true do |t|
     t.integer  "web_server_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",          :limit => 50
+    t.string   "description",   :limit => 250
   end
 
   create_table "applications", :force => true do |t|
@@ -26,19 +28,21 @@ ActiveRecord::Schema.define(:version => 20110221000554) do
   create_table "business_units", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",        :limit => 50
+    t.string   "description", :limit => 250
   end
 
   create_table "database_servers", :force => true do |t|
     t.integer  "database_software_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",                 :limit => 50
+    t.string   "description",          :limit => 250
   end
 
   create_table "entities", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description",            :limit => 250
-    t.string   "name"
     t.string   "entity_definition_type", :limit => 50
     t.integer  "entity_definition_id"
     t.string   "system_identifier",      :limit => 45
@@ -71,6 +75,15 @@ ActiveRecord::Schema.define(:version => 20110221000554) do
 
   add_index "organizations", ["registration_code"], :name => "organizations_registration_code", :unique => true
 
+  create_table "people", :force => true do |t|
+    t.string   "is_owner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "first_name", :limit => 50
+    t.string   "last_name",  :limit => 50
+  end
+
   create_table "servers", :force => true do |t|
     t.integer  "operating_system_software_id"
     t.string   "ip_address",                   :limit => 100
@@ -94,6 +107,13 @@ ActiveRecord::Schema.define(:version => 20110221000554) do
   create_table "systems", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",        :limit => 50
+    t.string   "description", :limit => 250
   end
 
   create_table "users", :force => true do |t|

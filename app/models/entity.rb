@@ -9,8 +9,6 @@ class Entity < ActiveRecord::Base
   
   belongs_to(:organization)
   belongs_to(:entity_definition, :polymorphic => true)
-  has_one(:it_owner, :class_name => :user)
-  has_one(:business_owner, :class_name => :user)
   
   has_and_belongs_to_many :children, :class_name => "Entity", :join_table => "entity_relationships", :foreign_key => "parent_id", :association_foreign_key => "child_id"
 end
