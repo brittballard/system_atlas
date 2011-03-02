@@ -1,7 +1,5 @@
 <table>
   <tr>
-    <th>Name</th>
-    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,10 +7,8 @@
 
 <% @applications.each do |application| %>
   <tr>
-    <td><%= application.entity.name %>
     <td><%= link_to 'Show', application %></td>
     <td><%= link_to 'Edit', edit_application_path(application) %></td>
-    <td><%= link_to 'Manage Relationships', manage_relationship_relationships_path(:parent_id => application.entity.id) %></td>
     <td><%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

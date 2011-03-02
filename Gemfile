@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -32,9 +32,12 @@ gem 'mysql', '2.8.1'
 gem "authlogic"
 gem "authlogic-oid", :require => "authlogic_openid"
 gem "cancan"
+gem "nokogiri"
 
 group :development, :test do
-  gem "thoughtbot-shoulda", :require => "shoulda"
+  gem "cucumber"
+  gem "cucumber-rails"
+  gem "capybara"
   gem "factory_girl_rails"
   gem "rspec", ">= 2.4"
   gem "rspec-rails", ">= 2.4"
