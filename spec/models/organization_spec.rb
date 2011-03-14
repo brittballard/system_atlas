@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe Organization do
-  it { should have_many(:users) }
-  it { should validate_presence_of(:address_line_one) }
-  it { should validate_presence_of(:address_line_one) }
-  it { should validate_presence_of(:city) }
-  it { should validate_presence_of(:state) }
-  it { should validate_presence_of(:postal_code) }
-  
   describe 'The filter method on the organizations model' do
     before do
       @organization = Factory.create(:organization)

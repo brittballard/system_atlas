@@ -5,11 +5,6 @@ describe Entity do
     before(:all) do
       @organization = Factory.create(:entity)
     end
-    
-    it { should validate_presence_of(:entity_definition_type) }
-    it { should validate_presence_of(:entity_definition_id) }
-    it { should validate_presence_of(:system_identifier) }
-    it { should validate_presence_of(:organization_id) }
   end
   
   describe 'parent child relationships between entities' do
