@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe BusinessUnit do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should respond to name, description, organization' do
+    BusinessUnit.new.should respond_to(:name, :description, :organization)
+  end
 end

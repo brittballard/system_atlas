@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe Entity do  
-  describe 'validations and relationshipes' do
-    before(:all) do
-      @organization = Factory.create(:entity)
-    end
+  it 'should respond to system_identifier, organization, entity_definition' do
+    Entity.new.should respond_to(:system_identifier, :organization, :entity_definition)
   end
   
   describe 'parent child relationships between entities' do

@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe DatabaseServer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should respond to name, description, entity, database_software, organization' do
+    DatabaseServer.new.should respond_to(:name, :description, :entity, :database_software, :organization)
+  end
 end
