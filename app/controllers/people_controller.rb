@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class PeopleController < EntityDefinitionController
   load_and_authorize_resource :except => [:index]
   
   def index
@@ -6,15 +6,7 @@ class PeopleController < ApplicationController
   end
   
   def create
-    entity = Entity.load_entity_for_save(@person, current_user)
-    
-    if entity.entity_definition.valid? && entity.save
-      flash[:notice] = 'Successfully Created Person.'
-      render :index
-    else
-      flash[:error] = 'ERROR! ' + @person.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')
-      render :new
-    end
+    create_entity_definition(@person, "Person")
   end
   
   def new

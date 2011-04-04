@@ -1,4 +1,4 @@
-class ApplicationsController < ApplicationController
+class ApplicationsController < EntityDefinitionController
   load_and_authorize_resource :except => [:index]
 
   # GET /applications
@@ -37,16 +37,7 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.xml
   def create
-    entity = Entity.load_entity_for_save(@application, current_user)
-    
-    if entity.entity_definition.valid? && entity.save
-      @applications = Application.accessible_by(current_ability, :read)
-      flash[:notice] = 'Good work!'
-      render :index
-    else
-      flash[:error] = 'ERROR! ' + @application_server.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')
-      render :new
-    end
+    create_entity_definition(@application, "Application")
   end
 
   # PUT /applications/1

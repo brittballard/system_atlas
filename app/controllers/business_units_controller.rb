@@ -1,4 +1,4 @@
-class BusinessUnitsController < ApplicationController
+class BusinessUnitsController < EntityDefinitionController
   load_and_authorize_resource :except => [:index]
 
   def index
@@ -6,15 +6,7 @@ class BusinessUnitsController < ApplicationController
   end
 
   def create
-    entity = Entity.load_entity_for_save(@business_unit, current_user)
-
-    if entity.entity_definition.valid? && entity.save
-      flash[:notice] = 'Good work!'
-      render :index
-    else
-      flash[:error] = 'ERROR! ' + @business_unit.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')
-      render :new
-    end
+    create_entity_definition(@business_unit, "Business Unit")
   end
 
   def new

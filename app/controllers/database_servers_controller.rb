@@ -1,4 +1,4 @@
-class DatabaseServersController < ApplicationController
+class DatabaseServersController < EntityDefinitionController
   load_and_authorize_resource :except => [:index]
   
   def index
@@ -6,15 +6,7 @@ class DatabaseServersController < ApplicationController
   end
   
   def create
-    entity = Entity.load_entity_for_save(@database_server, current_user)
-    
-    if entity.entity_definition.valid? && entity.save
-      flash[:notice] = 'Database Server Successfully Created'
-      render :index
-    else
-      flash[:error] = 'ERROR! ' + @database_server.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')
-      render :new
-    end
+    create_entity_definition(@database_server, "Database Server")
   end
   
   def new

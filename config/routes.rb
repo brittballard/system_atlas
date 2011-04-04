@@ -1,6 +1,4 @@
 SystemAtlas::Application.routes.draw do
-  resources :applications
-
   match "login", :to => "user_sessions#new", :as => "login"
   match "logout", :to => "user_sessions#destroy", :as => "logout"
 
@@ -16,6 +14,7 @@ SystemAtlas::Application.routes.draw do
   resources :servers
   resources :people
   resources :teams
+  resources :applications
   
   resource :registrations do
      get :step_two
