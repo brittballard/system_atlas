@@ -10,7 +10,6 @@ class Entity < ActiveRecord::Base
   has_and_belongs_to_many :children, :class_name => "Entity", :join_table => "entity_relationships", :foreign_key => "parent_id", :association_foreign_key => "child_id"
 
   def self.load_entity_for_save(entity_definition, current_user)
-    debugger
     entity = entity_definition.entity
     entity_definition.entity = nil
     entity_definition.save

@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source "http://gems.github.com"
 
-gem 'rails', '3.0.5'
+gem 'rails', '>= 3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -37,6 +37,7 @@ gem "nokogiri"
 group :development, :test do
   gem "cucumber"
   gem "cucumber-rails"
+  gem 'database_cleaner'
   gem "capybara"
   gem "factory_girl_rails"
   gem "rspec", ">= 2.4"

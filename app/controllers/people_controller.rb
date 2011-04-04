@@ -6,11 +6,10 @@ class PeopleController < ApplicationController
   end
   
   def create
-    debugger
     entity = Entity.load_entity_for_save(@person, current_user)
     
     if entity.entity_definition.valid? && entity.save
-      flash[:notice] = 'Good work!'
+      flash[:notice] = 'Successfully Created Person.'
       render :index
     else
       flash[:error] = 'ERROR! ' + @person.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')

@@ -9,7 +9,7 @@ class DatabaseServersController < ApplicationController
     entity = Entity.load_entity_for_save(@database_server, current_user)
     
     if entity.entity_definition.valid? && entity.save
-      flash[:notice] = 'Good work!'
+      flash[:notice] = 'Database Server Successfully Created'
       render :index
     else
       flash[:error] = 'ERROR! ' + @database_server.errors.full_messages.join('<br />') + entity.errors.full_messages.join('<br />')
