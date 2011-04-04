@@ -6,7 +6,8 @@ class PeopleController < ApplicationController
   end
   
   def create
-    entity = load_entity_for_save(@person)
+    debugger
+    entity = Entity.load_entity_for_save(@person, current_user)
     
     if entity.entity_definition.valid? && entity.save
       flash[:notice] = 'Good work!'

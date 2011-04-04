@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
   end
   
   def create
-    entity = load_entity_for_save(@team)
+    entity = Entity.load_entity_for_save(@team, current_user)
     
     if entity.entity_definition.valid? && entity.save
       flash[:notice] = 'Good work!'

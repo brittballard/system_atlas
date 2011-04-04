@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source "http://gems.github.com"
 
 gem 'rails', '3.0.5'
 
@@ -29,8 +30,7 @@ gem 'mysql', '2.8.1'
 #   gem 'webrat'
 # end
 
-gem "authlogic"
-gem "authlogic-oid", :require => "authlogic_openid"
+gem "authlogic",   ">= 2.1.6"
 gem "cancan"
 gem "nokogiri"
 

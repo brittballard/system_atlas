@@ -21,4 +21,16 @@ describe Entity do
       @entity.children.length.should == 2
     end
   end
+  
+  describe 'load_entity_for_save' do
+    it 'should get an entity prepared to be saved, but to be honest at the moment i don\'t remember why it\'s doing some of the stuff it\'s doing' do
+      person = Factory.build(:person)
+      person.stub!(:save)
+      current_user = Factory.build(:user)
+      entity = Entity.load_entity_for_save(person, current_user)
+      entity.entity_definition.should == person
+      entity.organization.should == current_user.organization
+      entity.system_identifier.should == "O#{Date.today.to_formatted_s(:number)}#{Entity.last.id + 1}"
+    end
+  end
 end

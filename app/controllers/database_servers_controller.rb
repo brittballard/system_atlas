@@ -6,7 +6,7 @@ class DatabaseServersController < ApplicationController
   end
   
   def create
-    entity = load_entity_for_save(@database_server)
+    entity = Entity.load_entity_for_save(@database_server, current_user)
     
     if entity.entity_definition.valid? && entity.save
       flash[:notice] = 'Good work!'
@@ -18,11 +18,9 @@ class DatabaseServersController < ApplicationController
   end
   
   def new
-    
   end
   
   def show
-    
   end
   
   def edit
@@ -30,6 +28,5 @@ class DatabaseServersController < ApplicationController
   end
   
   def update
-    
   end
 end

@@ -37,7 +37,7 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.xml
   def create
-    entity = load_entity_for_save(@application)
+    entity = Entity.load_entity_for_save(@application, current_user)
     
     if entity.entity_definition.valid? && entity.save
       @applications = Application.accessible_by(current_ability, :read)

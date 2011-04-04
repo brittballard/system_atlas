@@ -8,18 +8,7 @@ class ApplicationController < ActionController::Base
     flash[:error] = "Access denied."
     redirect_to root_url
   end
-  
-  def load_entity_for_save(entity_definition)
-    entity = entity_definition.entity
-    entity_definition.entity = nil
-    entity_definition.save
-    entity.entity_definition = entity_definition
-    entity.organization = current_user.organization
-    entity.system_identifier = "replace me with a quickness."
-    
-    entity
-  end
-  
+
   private
 
     def current_user_session
