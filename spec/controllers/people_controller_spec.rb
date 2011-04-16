@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe PeopleController do
   before do
-    activate_authlogic
     @user = Factory(:user)
-    UserSession.create(@user)
+    sign_in @user
   end
   
   describe 'create' do

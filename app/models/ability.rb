@@ -23,21 +23,16 @@ class Ability
     can(:create, BusinessUnit)
     can(:create, Team)
     can(:create, Person)
-    
+    can(:create, Server)
     can(:read, Entity, :organization_id => user.organization_id)
     
-    can(:read, DatabaseServer) do |database_server|
-      database_server.entity.organization_id = user.organization_id
-    end
-    
-    can(:read, ApplicationServer) do |application_server|
-      application_server.entity.organization_id = user.organization_id
-    end
-    
-    can(:read, BusinessUnit) do |business_unit|
-      business_unit.entity.organization_id = user.organization_id
-    end
-
+    set_entity_ability(:read, Application, user)
+    set_entity_ability(:read, DatabaseServer, user)
+    set_entity_ability(:read, ApplicationServer, user)
+    set_entity_ability(:read, BusinessUnit, user)
+    set_entity_ability(:read, Person, user)
+    set_entity_ability(:read, Team, user)
+    set_entity_ability(:read, Server, user)
   end
   
   private
@@ -49,34 +44,21 @@ class Ability
       can(:manage, ApplicationServer)
       can(:manage, BusinessUnit)
       can(:manage, Application)
+      can(:manage, Server)
     end
   
     def define_admin(user)
+      can(:manage, user.organization)
       can(:manage, User, :organization_id => user.organization_id)
       can(:manage, Entity, :organization_id => user.organization_id)
-      # TODO: This is effed up and must be fixed.
-      can(:manage, Application)
-      can(:manage, user.organization)
       
-      can(:manage, DatabaseServer) do |database_server|
-        database_server.entity.organization_id = user.organization_id
-      end
-
-      can(:manage, ApplicationServer) do |application_server|
-        application_server.entity.organization_id = user.organization_id
-      end
-
-      can(:manage, BusinessUnit) do |business_unit|
-        business_unit.entity.organization_id = user.organization_id
-      end
-      
-      can(:manage, Person) do |person|
-        person.entity.organization_id = user.organization_id
-      end
-      
-      can(:manage, Team) do |team|
-        team.entity.organization_id = user.organization_id
-      end
+      set_entity_ability(:manage, Application, user)
+      set_entity_ability(:manage, DatabaseServer, user)
+      set_entity_ability(:manage, ApplicationServer, user)
+      set_entity_ability(:manage, BusinessUnit, user)
+      set_entity_ability(:manage, Person, user)
+      set_entity_ability(:manage, Team, user)
+      set_entity_ability(:manage, Server, user)
     end
     
     def define_user(user)
@@ -95,4 +77,12 @@ class Ability
       #   business_unit.entity.it_owner_id = user.id
       # end
     end
+    
+    private
+      
+      def set_entity_ability(ability, entity_definition, user)
+        can(ability, entity_definition) do |definition|
+          definition.entity.organization_id = user.organization_id
+        end
+      end
 end

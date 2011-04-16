@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe Entity do  
+describe Entity do
+  before do
+    @entity = Factory.create(:entity)
+  end
+  
   it 'should respond to system_identifier, organization, entity_definition' do
     Entity.new.should respond_to(:system_identifier, :organization, :entity_definition)
   end
   
-  describe 'parent child relationships between entities' do
-    before do
-      @entity = Factory.create(:entity)
-    end
-    
+  describe 'parent child relationships between entities' do    
     it 'should allow entities to have child entities' do
       @entity.save
       @entity.children.length.should == 0
@@ -19,6 +19,14 @@ describe Entity do
       
       @entity.children << Factory.create(:entity)
       @entity.children.length.should == 2
+    end
+  end
+  
+  describe 'owners' do
+    it 'should return all people children with the is_owner flag set' do
+      @entity.children << Factory.create(:entity, :entity_definition_type => 'Person', :entity_definition => Factory.create(:person, :is_owner => true, :first_name => 'britton'))
+      @entity.children << Factory.create(:entity, :entity_definition_type => 'Person', :entity_definition => Factory.create(:person, :is_owner => false, :first_name => 'carter'))
+      @entity.owners.count.should == 1
     end
   end
   

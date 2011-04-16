@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe TeamsController do
   before do
-    activate_authlogic
     @user = Factory(:user)
-    UserSession.create(@user)
+    sign_in @user
   end
   
   # Because this method calls a method in it's parent class I'm only testing a simple happy path for this class. To view more indepth testing of the method in the EntityDefinitionController see the people controller spec.

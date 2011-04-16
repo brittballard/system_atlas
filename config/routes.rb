@@ -1,9 +1,11 @@
 SystemAtlas::Application.routes.draw do
+  devise_for :users
+
   match "login", :to => "user_sessions#new", :as => "login"
   match "logout", :to => "user_sessions#destroy", :as => "logout"
 
   resource :user_session
-  root :controller => "dashboards", :action => "home"
+  root :to => "dashboards#home"
   
   resources :entities
   resource :account, :controller => "users"

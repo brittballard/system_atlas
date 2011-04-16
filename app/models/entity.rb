@@ -9,6 +9,12 @@ class Entity < ActiveRecord::Base
   
   has_and_belongs_to_many :children, :class_name => "Entity", :join_table => "entity_relationships", :foreign_key => "parent_id", :association_foreign_key => "child_id"
 
+  scope :people, where(:entity_definition_type => Person.to_s)
+
+  def owners
+    children.people.joins("INNER JOIN people p ON p.id = entity_definition_id").where("p.is_owner = 1")
+  end
+
   def self.load_entity_for_save(entity_definition, current_user)
     entity = entity_definition.entity
     entity_definition.entity = nil
