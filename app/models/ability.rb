@@ -6,13 +6,9 @@ class Ability
     
     if user.is?(:operator)
       define_operator(user)
-    end
-    
-    if user.is?(:admin)
+    elsif user.is?(:admin)
       define_admin(user)
-    end
-    
-    if user.is?(:user)
+    elsif user.is?(:user)
       define_user(user)
     end
     
@@ -65,20 +61,20 @@ class Ability
     def define_user(user)
       can(:manage, User, :id => user.id)
       can(:manage, Person, :user_id => user.id)
-      can(:manage, Entity, Entity.current_users_entities(user)) do |entity|
+      can([:update, :destroy], Entity, Entity.current_users_entities(user)) do |entity|
         entity.children.where(:entity_definition_type => Person.to_s).people.where("p.user_id = #{user.id}")
       end
-      
-      set_user_ability(Application, user)      
-      set_user_ability(DatabaseServer, user)
-      set_user_ability(ApplicationServer, user)
-      set_user_ability(BusinessUnit, user)
-      set_user_ability(Team, user)
-      set_user_ability(Server, user)
+
+      set_user_ability([:update, :destroy], Application, user)
+      set_user_ability([:update, :destroy], DatabaseServer, user)
+      set_user_ability([:update, :destroy], ApplicationServer, user)
+      set_user_ability([:update, :destroy], BusinessUnit, user)
+      set_user_ability([:update, :destroy], Team, user)
+      set_user_ability([:update, :destroy], Server, user)
     end
 
-    def set_user_ability(type, user)
-      can(:manage, type, type.entity_definitions_for_user(user)) do |object|
+    def set_user_ability(actions, type, user)
+      can(actions, type, type.entity_definitions_for_user(user)) do |object|
         is_owner(object, user)
       end
     end

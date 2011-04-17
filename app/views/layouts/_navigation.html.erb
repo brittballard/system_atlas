@@ -7,7 +7,7 @@
       <%= link_to "Edit Profile", edit_user_path(:id => current_user.id) %>
     </li>
     <li>
-      <%= link_to "Logout", logout_path %>
+      <%= link_to "Logout", destroy_user_session_path %>
     </li>
     <% if can?(:create, Organization) %>
       <li>
@@ -51,10 +51,10 @@
     </li>
   <% else %>
     <li>
-      <%= link_to "Register", step_two_registrations_path %>
+      <%= link_to "Register", new_user_registration_path %>
     </li>
     <li>
-      login
+      <%= link_to "Login", new_user_session_path %>
     </li>
   <% end %>
 </ul>

@@ -12,7 +12,7 @@ module NavigationHelpers
       when /the login page/
         '/login'
       when /the registration page/
-        step_two_registrations_path
+        new_user_registration
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

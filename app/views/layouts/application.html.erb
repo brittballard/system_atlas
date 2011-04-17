@@ -17,9 +17,6 @@
             </div>
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
-            <%- flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-            <%- end -%>
             <div>
               <% if current_user.present? %>
                 Organization: <%= current_user.organization.name  %>

@@ -5,9 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :encryptable, :lockable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :organization_id
   belongs_to :organization
   after_create :create_person
+  before_create :set_role
+  
+  validates_presence_of :organization_id
   
   ROLES = %w[admin user operator]
   
@@ -25,9 +28,15 @@ class User < ActiveRecord::Base
     roles.include?(role.to_s)
   end
   
-  def create_person
-    person = Person.new({ :email => self.email, :organization_id => self.organization_id, :user_id => self.id })
-    person.save
-  end
+  private
+    
+    def set_role
+      self.roles = ['user'] unless self.roles.present?
+    end
+  
+    def create_person
+      person = Person.new({ :email => self.email, :organization_id => self.organization_id, :user_id => self.id })
+      person.save
+    end
   
 end

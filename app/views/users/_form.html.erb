@@ -11,7 +11,7 @@
 <% end %>
 <% unless @user.organization.present? %>
   <%= form.label :organization_code %><br />
-  <%= text_field_tag 'registration_code' %><br />
+  <%= form.text_field :organization_id %><br />
 <% end %>
 <br />
 <% if current_user.present? && (current_user.is?(:admin) || current_user.is?(:operator)) %>
