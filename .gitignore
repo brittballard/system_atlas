@@ -2,7 +2,7 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
-
+capybara*
 config/database.yml
 *~
 .project
