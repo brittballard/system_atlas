@@ -30,7 +30,6 @@ gem 'mysql', '2.8.1'
 #   gem 'webrat'
 # end
 
-# gem "authlogic",   ">= 2.1.6"
 gem "devise"
 gem "cancan"
 gem "nokogiri"

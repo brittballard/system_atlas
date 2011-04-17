@@ -10,26 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110416182147) do
+ActiveRecord::Schema.define(:version => 20110416230326) do
 
   create_table "application_servers", :force => true do |t|
     t.integer  "web_server_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",          :limit => 50
-    t.string   "description",   :limit => 250
+    t.string   "name",            :limit => 50
+    t.string   "description",     :limit => 250
+    t.integer  "organization_id"
   end
 
   create_table "applications", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "business_units", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",        :limit => 50
-    t.string   "description", :limit => 250
+    t.string   "name",            :limit => 50
+    t.string   "description",     :limit => 250
+    t.integer  "organization_id"
   end
 
   create_table "database_servers", :force => true do |t|
@@ -38,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20110416182147) do
     t.datetime "updated_at"
     t.string   "name",                 :limit => 50
     t.string   "description",          :limit => 250
+    t.integer  "organization_id"
   end
 
   create_table "entities", :force => true do |t|
@@ -80,8 +84,10 @@ ActiveRecord::Schema.define(:version => 20110416182147) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
-    t.string   "first_name", :limit => 50
-    t.string   "last_name",  :limit => 50
+    t.string   "first_name",      :limit => 50
+    t.string   "last_name",       :limit => 50
+    t.integer  "organization_id"
+    t.integer  "user_id"
   end
 
   create_table "servers", :force => true do |t|
@@ -93,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20110416182147) do
     t.integer  "cpu_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "softwares", :force => true do |t|
@@ -112,8 +119,9 @@ ActiveRecord::Schema.define(:version => 20110416182147) do
   create_table "teams", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",        :limit => 50
-    t.string   "description", :limit => 250
+    t.string   "name",            :limit => 50
+    t.string   "description",     :limit => 250
+    t.integer  "organization_id"
   end
 
   create_table "users", :force => true do |t|

@@ -24,15 +24,15 @@ class Ability
     can(:create, Team)
     can(:create, Person)
     can(:create, Server)
-    can(:read, Entity, :organization_id => user.organization_id)
     
-    set_entity_ability(:read, Application, user)
-    set_entity_ability(:read, DatabaseServer, user)
-    set_entity_ability(:read, ApplicationServer, user)
-    set_entity_ability(:read, BusinessUnit, user)
-    set_entity_ability(:read, Person, user)
-    set_entity_ability(:read, Team, user)
-    set_entity_ability(:read, Server, user)
+    can(:read, Entity, :organization_id => user.organization_id)
+    can(:read, Application, :organization_id => user.organization_id)
+    can(:read, DatabaseServer, :organization_id => user.organization_id)
+    can(:read, ApplicationServer, :organization_id => user.organization_id)
+    can(:read, BusinessUnit, :organization_id => user.organization_id)
+    can(:read, Person, :organization_id => user.organization_id)
+    can(:read, Team, :organization_id => user.organization_id)
+    can(:read, Server, :organization_id => user.organization_id)
   end
   
   private
@@ -52,37 +52,38 @@ class Ability
       can(:manage, User, :organization_id => user.organization_id)
       can(:manage, Entity, :organization_id => user.organization_id)
       
-      set_entity_ability(:manage, Application, user)
-      set_entity_ability(:manage, DatabaseServer, user)
-      set_entity_ability(:manage, ApplicationServer, user)
-      set_entity_ability(:manage, BusinessUnit, user)
-      set_entity_ability(:manage, Person, user)
-      set_entity_ability(:manage, Team, user)
-      set_entity_ability(:manage, Server, user)
+      can(:manage, Entity, :organization_id => user.organization_id)
+      can(:manage, Application, :organization_id => user.organization_id)
+      can(:manage, DatabaseServer, :organization_id => user.organization_id)
+      can(:manage, ApplicationServer, :organization_id => user.organization_id)
+      can(:manage, BusinessUnit, :organization_id => user.organization_id)
+      can(:manage, Person, :organization_id => user.organization_id)
+      can(:manage, Team, :organization_id => user.organization_id)
+      can(:manage, Server, :organization_id => user.organization_id)
     end
     
     def define_user(user)
       can(:manage, User, :id => user.id)
-      # can(:manage, Entity, :it_owner_id => user.id)
-      # 
-      # can(:manage, DatabaseServer) do |database_server|
-      #   database_server.entity.it_owner_id = user.id
-      # end
-      # 
-      # can(:manage, ApplicationServer) do |application_server|
-      #   application_server.entity.it_owner_id = user.id
-      # end
-      # 
-      # can(:manage, BusinessUnit) do |business_unit|
-      #   business_unit.entity.it_owner_id = user.id
-      # end
+      can(:manage, Person, :user_id => user.id)
+      can(:manage, Entity, Entity.current_users_entities(user)) do |entity|
+        entity.children.where(:entity_definition_type => Person.to_s).people.where("p.user_id = #{user.id}")
+      end
+      
+      set_user_ability(Application, user)      
+      set_user_ability(DatabaseServer, user)
+      set_user_ability(ApplicationServer, user)
+      set_user_ability(BusinessUnit, user)
+      set_user_ability(Team, user)
+      set_user_ability(Server, user)
+    end
+
+    def set_user_ability(type, user)
+      can(:manage, type, type.entity_definitions_for_user(user)) do |object|
+        is_owner(object, user)
+      end
     end
     
-    private
-      
-      def set_entity_ability(ability, entity_definition, user)
-        can(ability, entity_definition) do |definition|
-          definition.entity.organization_id = user.organization_id
-        end
-      end
+    def is_owner(object, user)
+      object.entity.children.where(:entity_definition_type => Person.to_s).people.where("p.user_id = #{user.id}")
+    end
 end

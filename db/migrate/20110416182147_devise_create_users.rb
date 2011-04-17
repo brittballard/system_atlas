@@ -67,7 +67,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     end
     change_column(:users, :crypted_password, :string, :null => false)
 
-    User.reset_column_information    
+    User.reset_column_information
     User.all.each do |user|
       user.crypted_password = user.encrypted_password
       user.save!

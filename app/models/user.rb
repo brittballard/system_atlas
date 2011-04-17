@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   belongs_to :organization
-  after_save :create_person
+  after_create :create_person
   
   ROLES = %w[admin user operator]
   
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
   
   def create_person
-    person = Person.new({ :email => self.email })
+    person = Person.new({ :email => self.email, :organization_id => self.organization_id, :user_id => self.id })
     person.save
   end
   
