@@ -26,7 +26,7 @@ describe PeopleController do
       end
       
       it 'should set the flash' do
-        flash[:notice].should == 'Person created succesfully.'
+        flash[:notice].should == 'Person created successfully.'
       end
       
       it 'should render index' do

@@ -23,7 +23,7 @@ describe ApplicationServersController do
     end
     
     it 'should set the flash' do
-      flash[:notice].should == 'Application Server created succesfully.'
+      flash[:notice].should == 'Application Server created successfully.'
     end
     
     it 'should render index' do

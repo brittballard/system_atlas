@@ -23,7 +23,7 @@ describe BusinessUnitsController do
     end
     
     it 'should set the flash' do
-      flash[:notice].should == 'Business Unit created succesfully.'
+      flash[:notice].should == 'Business Unit created successfully.'
     end
     
     it 'should render index' do

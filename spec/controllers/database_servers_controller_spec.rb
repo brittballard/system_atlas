@@ -23,7 +23,7 @@ describe DatabaseServersController do
     end
     
     it 'should set the flash' do
-      flash[:notice].should == 'Database Server created succesfully.'
+      flash[:notice].should == 'Database Server created successfully.'
     end
     
     it 'should render index' do

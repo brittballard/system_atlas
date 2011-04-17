@@ -23,7 +23,7 @@ describe TeamsController do
     end
     
     it 'should set the flash' do
-      flash[:notice].should == 'Team created succesfully.'
+      flash[:notice].should == 'Team created successfully.'
     end
     
     it 'should render index' do

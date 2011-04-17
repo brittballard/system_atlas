@@ -24,7 +24,7 @@ describe ServersController do
     end
     
     it 'should set the flash' do
-      flash[:notice].should == 'Server created succesfully.'
+      flash[:notice].should == 'Server created successfully.'
     end
     
     it 'should render index' do

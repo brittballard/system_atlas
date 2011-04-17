@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   has_many :users
-  has_many :applications
+  has_many :entities
   
   validates_presence_of :name
   validates_presence_of :address_line_one

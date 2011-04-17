@@ -13,6 +13,8 @@ module NavigationHelpers
         new_user_session_path
       when /the registration page/
         new_user_registration_path
+      when /the new "(.+)" page/
+        send("new_#{($1).gsub(/ /, "").underscore}_path")
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

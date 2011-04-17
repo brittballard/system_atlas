@@ -2,7 +2,7 @@ module EntityDefinition
   module ClassMethods
     def act_as_entity_definition
       has_one :entity, :as => :entity_definition
-      has_one :organization
+      belongs_to :organization
 
       accepts_nested_attributes_for :entity
 

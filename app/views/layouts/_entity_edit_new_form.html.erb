@@ -3,5 +3,9 @@
     <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => entity_object_attributes_string }) %>
   <% end %>
   <%= render(:partial => form, :locals => { :form => form })%>
-  <%= form.submit :edit %>
+  <% if entity_object.new_record? %>
+    <%= form.submit :create %>
+  <% else %>
+    <%= form.submit :edit %>
+  <% end %>
 <% end %>

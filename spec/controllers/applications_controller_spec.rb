@@ -27,7 +27,7 @@ describe ApplicationsController do
     end
     
     it 'should set the flash' do
-      flash[:notice].should == 'Application created succesfully.'
+      flash[:notice].should == 'Application created successfully.'
     end
     
     it 'should render index' do
