@@ -3,7 +3,13 @@ Feature: User logs in
   As an authenticated user
   I need to be able to login to the site
 
-  Scenario: Successful login
+  Scenario Outline: Successful login
     Given I go to the login page
-    And I am logged in as an "Admin"
+    And I am logged in as an "<role>"
     Then I should see "Signed in successfully."
+
+  Scenarios: Login as different roles
+    | role     |
+    | operator |
+    | admin    |
+    | user     |

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   before_create :set_role
   
   validates_presence_of :organization_id
+  validate :valid_organization_id
   
   ROLES = %w[admin user operator]
   
@@ -37,6 +38,10 @@ class User < ActiveRecord::Base
     def create_person
       person = Person.new({ :email => self.email, :organization_id => self.organization_id, :user_id => self.id })
       person.save
+    end
+  
+    def valid_organization_id
+      errors.add(:organization_id, "Invalid organization.") unless Organization.where(:id => self.organization_id).count > 0
     end
   
 end

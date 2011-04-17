@@ -9,7 +9,7 @@
   <%= form.password_field :password_confirmation %><br />
   <br />
 <% end %>
-<% unless @user.organization.present? %>
+<% unless !@user.new_record? && @user.organization.present? %>
   <%= form.label :organization_code %><br />
   <%= form.text_field :organization_id %><br />
 <% end %>
