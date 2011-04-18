@@ -4,7 +4,7 @@ Feature: User creates and maintains application servers
   I need to be able to create and maintain my application servers
   
   Scenario: Successful creation of a new application server
-  Given I am logged in as an "Admin"
+  Given I am logged in as an "Admin" for organization_id 1000
   And the following software exists:
   | version | licenses | name    | id  |
   | 1       | 123      | Windows | 100 |

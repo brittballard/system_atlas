@@ -4,7 +4,7 @@ Feature: User creates and maintains database servers
   I need to be able to create and maintain my database servers
   
   Scenario: Successful creation of a new database server
-  Given I am logged in as an "Admin"
+  Given I am logged in as an "Admin" for organization_id 1000
   And the following software exists:
   | version | licenses | name   | id  |
   | 1       | 123      | Oracle | 100 |
@@ -15,7 +15,7 @@ Feature: User creates and maintains database servers
   And I select "Oracle" from "database_server_database_software_id"
   And I press "create"
   Then I should see "Database Server created successfully."
-  And I should have an "Database Server" like
+  And I should have a "Database Server" like
   | name                 | britton's database server        |
   | description          | this is one sexy database server |
   | database_software_id | 100                              |

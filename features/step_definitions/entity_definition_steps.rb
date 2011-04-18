@@ -1,4 +1,4 @@
-Then /^I should have an "([^"]*)" like$/ do |entity_definition_type, table|
+Then /^I should have an? "([^"]*)" like$/ do |entity_definition_type, table|
   entity_definition = entity_definition_type.gsub(/ /,"").constantize.last
   table.rows_hash.each do |name, value|
     entity_definition.send(name).to_s.should == value

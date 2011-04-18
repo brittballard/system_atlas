@@ -15,6 +15,9 @@ module NavigationHelpers
         new_user_registration_path
       when /the new "(.+)" page/
         send("new_#{($1).gsub(/ /, "").underscore}_path")
+      when /the edit "(.+)" page for id (\d+)/
+        edit_entity_definition($1, $2)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -31,6 +34,10 @@ module NavigationHelpers
           "Now, go and add a mapping in #{__FILE__}"
       end
     end
+  end
+  
+  def edit_entity_definition(type, id)
+    send("edit_#{(type).gsub(/ /, "").underscore}_path", id)
   end
 end
 
