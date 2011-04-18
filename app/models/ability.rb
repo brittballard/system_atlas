@@ -40,14 +40,14 @@ class Ability
       can(:manage, ApplicationServer)
       can(:manage, BusinessUnit)
       can(:manage, Application)
+      can(:manage, Person)
+      can(:manage, Team)
       can(:manage, Server)
     end
   
     def define_admin(user)
       can(:manage, user.organization)
       can(:manage, User, :organization_id => user.organization_id)
-      can(:manage, Entity, :organization_id => user.organization_id)
-      
       can(:manage, Entity, :organization_id => user.organization_id)
       can(:manage, Application, :organization_id => user.organization_id)
       can(:manage, DatabaseServer, :organization_id => user.organization_id)

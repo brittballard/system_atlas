@@ -17,6 +17,7 @@
             </div>
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
+            <p class="alert"><%= flash[:error] %></p>
             <div>
               <% if current_user.present? %>
                 Organization: <%= current_user.organization.name  %>

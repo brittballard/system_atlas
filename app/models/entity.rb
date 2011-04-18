@@ -23,9 +23,11 @@ class Entity < ActiveRecord::Base
 
   def self.load_entity_for_save(entity_definition, current_user)
     entity = entity_definition.entity
+
     entity_definition.entity = nil
     entity_definition.organization = current_user.organization
     entity_definition.save
+    
     entity.entity_definition = entity_definition
     entity.organization = current_user.organization
     entity.system_identifier = "O#{Date.today.to_formatted_s(:number)}#{Entity.count > 0 ? Entity.last.id + 1 : 1}"
