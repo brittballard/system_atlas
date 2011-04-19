@@ -23,13 +23,13 @@ class TeamsController < EntityDefinitionController
   end
   
   def edit
-    @team = Team.find(params[:id])
   end
   
   def update
     if @team.update_attributes(params[:team])
       flash[:notice] = "Team updated successfully."
-      redirect_to teams_path
+      @teams = Team.accessible_by(current_ability, :read)
+      render :index
     else
       flash[:error] = "ERROR! #{@team.errors.full_messages}"
     end

@@ -21,5 +21,18 @@ class ServersController < EntityDefinitionController
   def show
 
   end
+  
+  def edit
+  end
+  
+  def update
+    if @server.update_attributes(params[:server])
+      flash[:notice] = "Server updated successfully."
+      @servers = Server.accessible_by(current_ability, :read)
+      render :index
+    else
+      flash[:error] = "ERROR! #{@server.errors.full_messages}"
+    end
+  end
 
 end

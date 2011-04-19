@@ -31,7 +31,6 @@ class ApplicationsController < EntityDefinitionController
 
   # GET /applications/1/edit
   def edit
-    @application = Application.find(params[:id])
   end
 
   # POST /applications
@@ -48,16 +47,12 @@ class ApplicationsController < EntityDefinitionController
   # PUT /applications/1
   # PUT /applications/1.xml
   def update
-    @application = Application.find(params[:id])
-
-    respond_to do |format|
-      if @application.update_attributes(params[:application])
-        format.html { redirect_to(@application, :notice => 'Application was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @application.errors, :status => :unprocessable_entity }
-      end
+    if @application.update_attributes(params[:application])
+      flash[:notice] = "Team updated successfully."
+      @applications = Application.accessible_by(current_ability, :read)
+      render :index
+    else
+      flash[:error] = "ERROR! #{@application.errors.full_messages}"
     end
   end
 

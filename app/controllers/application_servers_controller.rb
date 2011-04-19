@@ -23,11 +23,15 @@ class ApplicationServersController < EntityDefinitionController
   end
 
   def edit
-    @application_server = ApplicationServer.find(params[:id])
   end
 
   def update
-
+    if @application_server.update_attributes(params[:team])
+      flash[:notice] = "Application Server updated successfully."
+      @application_servers = ApplicationServer.accessible_by(current_ability, :read)
+      render :index
+    else
+      flash[:error] = "ERROR! #{@application_server.errors.full_messages}"
+    end
   end
-
 end

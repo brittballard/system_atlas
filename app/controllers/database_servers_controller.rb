@@ -21,9 +21,15 @@ class DatabaseServersController < EntityDefinitionController
   end
   
   def edit
-    @database_server = DatabaseServer.find(params[:id])
   end
   
   def update
+    if @database_server.update_attributes(params[:database_server])
+      flash[:notice] = "Database Server updated successfully."
+      @database_servers = DatabaseServer.accessible_by(current_ability, :read)
+      render :index
+    else
+      flash[:error] = "ERROR! #{@database_server.errors.full_messages}"
+    end
   end
 end

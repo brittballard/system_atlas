@@ -23,11 +23,16 @@ class BusinessUnitsController < EntityDefinitionController
   end
 
   def edit
-    @business_unit = BusinessUnit.find(params[:id])
   end
 
   def update
-    
+    if @business_unit.update_attributes(params[:business_unit])
+      flash[:notice] = "Business unit updated successfully."
+      @business_units = BusinessUnit.accessible_by(current_ability, :read)
+      render :index
+    else
+      flash[:error] = "ERROR! #{@business_unit.errors.full_messages}"
+    end
   end
 
 end
