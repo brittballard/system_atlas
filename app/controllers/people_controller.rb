@@ -6,7 +6,12 @@ class PeopleController < EntityDefinitionController
   end
   
   def create
-    create_entity_definition(@person, "Person")
+    if create_entity_definition(@person, "Person")
+      @people = Person.accessible_by(current_ability, :read)
+      render :index
+    else
+      render :new
+    end
   end
   
   def new

@@ -6,7 +6,12 @@ class DatabaseServersController < EntityDefinitionController
   end
   
   def create
-    create_entity_definition(@database_server, "Database Server")
+    if create_entity_definition(@database_server, "Database Server")
+      @database_servers = DatabaseServer.accessible_by(current_ability, :read)
+      render :index
+    else
+      render :new
+    end
   end
   
   def new

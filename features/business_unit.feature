@@ -15,3 +15,4 @@ Feature: User creates and maintains business units
   | name            | britton's business unit        |
   | description     | this is one sexy business unit |
   | organization_id | 1000                           |
+  And The entity and definition organizations for the "Business Unit" should be the same

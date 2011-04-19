@@ -37,7 +37,12 @@ class ApplicationsController < EntityDefinitionController
   # POST /applications
   # POST /applications.xml
   def create
-    create_entity_definition(@application, "Application")
+    if create_entity_definition(@application, "Application")
+      @applications = Application.accessible_by(current_ability, :read)
+      render :index
+    else
+      render :new
+    end
   end
 
   # PUT /applications/1

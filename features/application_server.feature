@@ -20,3 +20,4 @@ Feature: User creates and maintains application servers
   | description     | this is one sexy application server |
   | web_server_id   | 100                                 |
   | organization_id | 1000                                |
+  And The entity and definition organizations for the "Application Server" should be the same

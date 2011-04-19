@@ -6,7 +6,12 @@ class TeamsController < EntityDefinitionController
   end
   
   def create
-    create_entity_definition(@team, "Team")
+    if create_entity_definition(@team, "Team")
+      @teams = Team.accessible_by(current_ability, :read)
+      render :index
+    else
+      render :new
+    end
   end
   
   def new
@@ -22,5 +27,12 @@ class TeamsController < EntityDefinitionController
   end
   
   def update
+    if @team.update_attributes(params[:team])
+      flash[:notice] = "Team updated successfully."
+      redirect_to teams_path
+    else
+      flash[:error] = "ERROR! #{@team.errors.full_messages}"
+    end
   end
+  
 end

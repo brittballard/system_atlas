@@ -20,3 +20,4 @@ Feature: User creates and maintains database servers
   | description          | this is one sexy database server |
   | database_software_id | 100                              |
   | organization_id      | 1000                             |
+  And The entity and definition organizations for the "Database Server" should be the same

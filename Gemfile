@@ -39,6 +39,7 @@ group :development, :test do
   gem "cucumber-rails"
   gem 'database_cleaner'
   gem "capybara"
+  gem "launchy"
   gem "factory_girl_rails"
   gem "rspec", ">= 2.4"
   gem "rspec-rails", ">= 2.4"

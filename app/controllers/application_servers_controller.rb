@@ -6,7 +6,12 @@ class ApplicationServersController < EntityDefinitionController
   end
 
   def create
-    create_entity_definition(@application_server, "Application Server")
+    if create_entity_definition(@application_server, "Application Server")
+      @application_servers = ApplicationServer.accessible_by(current_ability, :read)
+      render :index
+    else
+      render :new
+    end
   end
 
   def new

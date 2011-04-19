@@ -22,3 +22,4 @@ Feature: User creates and maintains people
   | is_owner        | 1       |
   | organization_id | 1000    |
   | user_id         | 47      |
+  And The entity and definition organizations for the "Person" should be the same

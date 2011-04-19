@@ -8,10 +8,10 @@ class EntityDefinitionController < ApplicationController
 
       if entity.entity_definition.valid? && entity.save
         flash[:notice] = "#{entity_definition_type} created successfully."
-        render :index
+        return true
       else
         flash[:error] = "Error: #{(entity.entity_definition.errors.full_messages + entity.errors.full_messages).join('<br />')}"
-        render :new
+        return false
       end
     end
 

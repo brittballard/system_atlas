@@ -1,0 +1,13 @@
+Teams
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= team.name.to_s %></td>
+    <td><%= team.description.to_s %></td>
+  </tr>
+<% end %>
+</table>

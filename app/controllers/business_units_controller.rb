@@ -6,7 +6,12 @@ class BusinessUnitsController < EntityDefinitionController
   end
 
   def create
-    create_entity_definition(@business_unit, "Business Unit")
+    if create_entity_definition(@business_unit, "Business Unit")
+      @business_unit = BusinessUnit.accessible_by(current_ability, :read)
+      render :index
+    else
+      render :new
+    end
   end
 
   def new

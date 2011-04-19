@@ -35,7 +35,7 @@ class OrganizationsController < ApplicationController
     if @organization.save
       render 'dashboards/home'
     else
-      flash[:error] = "ERROR!"
+      flash[:error] = "ERROR! #{@organization.errors.full_messages}"
     end
   end
   
