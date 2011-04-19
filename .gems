@@ -1,7 +1,0 @@
-rails -v 2.3.8
-mysql
-authlogic
-authlogic-oid
-cancan
-rspec --version '>= 1.2.0'
-rspec-rails --version '>= 1.2.0'
