@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   belongs_to :organization
   after_create :create_person
   before_create :set_role
+  has_one :person
   
   validates_presence_of :organization_id
   validate :valid_organization_id
@@ -36,8 +37,8 @@ class User < ActiveRecord::Base
     end
   
     def create_person
-      person = Person.new({ :email => self.email, :organization_id => self.organization_id, :user_id => self.id })
-      person.save
+      entity = Entity.load_entity_for_save(Person.new({ :email => self.email, :organization_id => self.organization_id, :user_id => self.id, :entity => Entity.new }), self)
+      entity.save!
     end
   
     def valid_organization_id

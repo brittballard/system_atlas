@@ -1,6 +1,5 @@
 class Person < ActiveRecord::Base
   include EntityDefinition
-  act_as_entity_definition
   
   belongs_to :user
   attr_readonly :email

@@ -15,7 +15,12 @@ module EntityDefinition
     end
   end
 
+  def children
+    self.entity.children unless self.entity.nil?
+  end
+
   def self.included(host_class)
     host_class.extend(ClassMethods)
+    host_class.act_as_entity_definition
   end
 end

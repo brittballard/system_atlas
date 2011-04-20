@@ -17,6 +17,9 @@ module NavigationHelpers
         send("new_#{($1).gsub(/ /, "").underscore}_path")
       when /the edit "(.+)" page for id (\d+)/
         edit_entity_definition($1, $2)
+      when /the "(.+)" page/
+        send("#{($1).gsub(/ /, "").underscore}_path")
+
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

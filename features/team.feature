@@ -33,3 +33,20 @@ Feature: User creates and maintains teams
   | description     | edited description |
   | organization_id | 1000               |
   | id              | 43                 |
+
+  Scenario Outline: Admin and operator abilities check
+  Given I am logged in as a "<user>" for organization_id <organization_id>
+  And the following team exists:
+  | name          | organization_id |
+  | viewable team | 1000            |
+  When I am on the "Teams" page
+  Then I should <should_i_see_it> "viewable team"
+  
+  Scenarios:
+  | user     | organization_id | should_i_see_it |
+  | Operator | 1               | see             |
+  | Operator | 1000            | see             |
+  | Admin    | 1000            | see             |
+  | Admin    | 1               | not see         |
+  | User     | 1               | not see         |
+  | User     | 1000            | see             |
