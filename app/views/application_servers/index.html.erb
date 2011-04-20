@@ -1,1 +1,19 @@
 Application Servers
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+<% @application_servers.each do |application_server| %>
+  <tr>
+    <td><%= application_server.name %></td>
+    <td><%= application_server.description %></td>
+    <% if can? :edit, application_server %>
+      <td><%= link_to :edit, edit_application_server_path(application_server) %></td>
+    <% else %>
+      <td>none</td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

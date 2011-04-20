@@ -1,1 +1,19 @@
 Database Servers
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+<% @database_servers.each do |database_server| %>
+  <tr>
+    <td><%= database_server.name %></td>
+    <td><%= database_server.description %></td>
+    <% if can? :edit, database_server %>
+      <td><%= link_to :edit, edit_database_server_path(database_server) %></td>
+    <% else %>
+      <td>none</td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

@@ -26,7 +26,7 @@ class ApplicationServersController < EntityDefinitionController
   end
 
   def update
-    if @application_server.update_attributes(params[:team])
+    if @application_server.update_attributes(params[:application_server])
       flash[:notice] = "Application Server updated successfully."
       @application_servers = ApplicationServer.accessible_by(current_ability, :read)
       render :index

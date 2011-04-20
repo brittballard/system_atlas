@@ -37,19 +37,3 @@ Feature: User creates and maintains people
   | first_name      | edited first name |
   | last_name       | edited last name  |
   | organization_id | 1000              |
-
-  Scenario Outline: Edit abilities check
-  Given I am logged in as a "<user>" for organization_id <organization_id>
-  And the following person exists:
-  | first_name      | organization_id |
-  | viewable person | 1000            |
-  When I am on the "People" page
-  And I should <should_i_see_it> "none"
-  
-  Scenarios:
-  | user     | organization_id | do_i_own_it | should_i_see_it |
-  | User     | 1000            | don't own   | see             |
-  | Admin    | 1000            | own         | not see         |
-  | Admin    | 1000            | don't own   | not see         |
-  | Operator | 1000            | own         | not see         |
-  | Operator | 1000            | don't own   | not see         |
