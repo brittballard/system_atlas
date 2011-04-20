@@ -22,7 +22,8 @@ Feature: User creates and maintains teams
   And the following team exists:
   | name         | description        | id | organization_id |
   | team to edit | my big description | 43 | 1000            |
-  And I am on the edit "Team" page for id 43
+  And I am on the "Teams" page
+  And I follow "edit"
   When I fill in the following:
   | team_name        | edited name        |
   | team_description | edited description |
@@ -51,8 +52,8 @@ Feature: User creates and maintains teams
   | User     | 1               | not see         |
   | User     | 1000            | see             |
 
-  Scenario Outline: User edit abilities check
-  Given I am logged in as a "User" for organization_id <organization_id>
+  Scenario Outline: Edit abilities check
+  Given I am logged in as a "<user>" for organization_id <organization_id>
   And the following team exists:
   | name          | organization_id |
   | viewable team | 1000            |
@@ -61,6 +62,11 @@ Feature: User creates and maintains teams
   And I should <should_i_see_it> "edit"
   
   Scenarios:
-  | organization_id | do_i_own_it | should_i_see_it |
-  | 1000            | own         | see             |
-  | 1000            | don't own   | not see         |
+  | user     | organization_id | do_i_own_it | should_i_see_it |
+  | User     | 1000            | own         | see             |
+  | User     | 1000            | don't own   | not see         |
+  | Admin    | 1000            | own         | see             |
+  | Admin    | 1000            | don't own   | see             |
+  | Operator | 1000            | own         | see             |
+  | Operator | 1000            | don't own   | see             |
+  | Operator | 100             | don't own   | see             |

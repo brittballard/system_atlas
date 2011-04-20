@@ -23,3 +23,33 @@ Feature: User creates and maintains people
   | organization_id | 1000    |
   | user_id         | 47      |
   And The entity and definition organizations for the "Person" should be the same
+
+  Scenario: Successful update of a person
+  Given I am logged in as an "Admin" for organization_id 1000
+  And I am on the "People" page
+  And I follow "edit"
+  When I fill in the following:
+  | person_first_name | edited first name |
+  | person_last_name  | edited last name  |
+  And I press "edit"
+  Then I should see "Person updated successfully."
+  And I should have a "Person" like
+  | first_name      | edited first name |
+  | last_name       | edited last name  |
+  | organization_id | 1000              |
+
+  Scenario Outline: Edit abilities check
+  Given I am logged in as a "<user>" for organization_id <organization_id>
+  And the following person exists:
+  | first_name      | organization_id |
+  | viewable person | 1000            |
+  When I am on the "People" page
+  And I should <should_i_see_it> "none"
+  
+  Scenarios:
+  | user     | organization_id | do_i_own_it | should_i_see_it |
+  | User     | 1000            | don't own   | see             |
+  | Admin    | 1000            | own         | not see         |
+  | Admin    | 1000            | don't own   | not see         |
+  | Operator | 1000            | own         | not see         |
+  | Operator | 1000            | don't own   | not see         |

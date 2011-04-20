@@ -12,7 +12,7 @@ class Person < ActiveRecord::Base
   private
     
     def associate_user
-      user = User.where(:email => self.email, :organization_id => self.organization_id).first unless self.user_id.present?
+      user = User.where(:email => self.email).first unless self.user_id.present?
       self.user_id = user.id unless user.nil?
     end
     

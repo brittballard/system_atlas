@@ -1,0 +1,19 @@
+People
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Actions</th>
+  </tr>
+<% @people.each do |person| %>
+  <tr>
+    <td><%= person.first_name %></td>
+    <td><%= person.last_name %></td>
+    <% if can? :edit, person %>
+      <td><%= link_to :edit, edit_person_path(person) %></td>
+    <% else %>
+      <td>none</td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
