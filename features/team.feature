@@ -34,7 +34,7 @@ Feature: User creates and maintains teams
   | organization_id | 1000               |
   | id              | 43                 |
 
-  Scenario Outline: Admin and operator abilities check
+  Scenario Outline: Admin, operator, and user read abilities check
   Given I am logged in as a "<user>" for organization_id <organization_id>
   And the following team exists:
   | name          | organization_id |
@@ -50,3 +50,17 @@ Feature: User creates and maintains teams
   | Admin    | 1               | not see         |
   | User     | 1               | not see         |
   | User     | 1000            | see             |
+
+  Scenario Outline: User edit abilities check
+  Given I am logged in as a "User" for organization_id <organization_id>
+  And the following team exists:
+  | name          | organization_id |
+  | viewable team | 1000            |
+  And I <do_i_own_it> the "Team"
+  When I am on the "Teams" page
+  And I should <should_i_see_it> "edit"
+  
+  Scenarios:
+  | organization_id | do_i_own_it | should_i_see_it |
+  | 1000            | own         | see             |
+  | 1000            | don't own   | not see         |

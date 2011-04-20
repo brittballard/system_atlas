@@ -3,11 +3,17 @@ Teams
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Actions</th>
   </tr>
 <% @teams.each do |team| %>
   <tr>
     <td><%= team.name.to_s %></td>
     <td><%= team.description.to_s %></td>
+    <% if can? :edit, team %>
+      <td><%= link_to :edit, edit_team_path(team) %></td>
+    <% else %>
+      <td>none</td>
+    <% end %>
   </tr>
 <% end %>
 </table>

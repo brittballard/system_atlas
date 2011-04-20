@@ -64,13 +64,15 @@ class Ability
       can([:update, :destroy], Entity, Entity.current_users_entities(user)) do |entity|
         entity.children.where(:entity_definition_type => Person.to_s).people.where("p.user_id = #{user.id}")
       end
-
-      set_user_ability([:update, :destroy], Application, user)
-      set_user_ability([:update, :destroy], DatabaseServer, user)
-      set_user_ability([:update, :destroy], ApplicationServer, user)
-      set_user_ability([:update, :destroy], BusinessUnit, user)
-      set_user_ability([:update, :destroy], Team, user)
-      set_user_ability([:update, :destroy], Server, user)
+      
+      actions = [:edit, :update, :destroy]
+      
+      set_user_ability(actions, Application, user)
+      set_user_ability(actions, DatabaseServer, user)
+      set_user_ability(actions, ApplicationServer, user)
+      set_user_ability(actions, BusinessUnit, user)
+      set_user_ability(actions, Team, user)
+      set_user_ability(actions, Server, user)
     end
 
     def set_user_ability(actions, type, user)
@@ -80,6 +82,6 @@ class Ability
     end
     
     def is_owner(object, user)
-      object.entity.children.where(:entity_definition_type => Person.to_s).people.where("p.user_id = #{user.id}")
+      object.entity.children.where(:entity_definition_type => Person.to_s).people.count > 0
     end
 end
