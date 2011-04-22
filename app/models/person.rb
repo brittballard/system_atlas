@@ -5,6 +5,8 @@ class Person < ActiveRecord::Base
   attr_readonly :email
   before_create :associate_user
   
+  validates_presence_of(:email)
+  
   def name
     "#{self.first_name} #{self.last_name}"
   end

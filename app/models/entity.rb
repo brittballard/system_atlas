@@ -7,7 +7,13 @@ class Entity < ActiveRecord::Base
   belongs_to(:organization)
   belongs_to(:entity_definition, :polymorphic => true)
   
-  has_and_belongs_to_many :children, :class_name => "Entity", :join_table => "entity_relationships", :foreign_key => "parent_id", :association_foreign_key => "child_id"
+  has_many :entity_relationships, :foreign_key => :parent_id
+  has_many :child_entity_relationships, :class_name => 'EntityRelationship', :foreign_key => :child_id
+
+  has_many :children, :through => :entity_relationships
+  has_one :parent, :through => :child_entity_relationships
+  
+  # has_and_belongs_to_many :children, :class_name => "Entity", :join_table => "entity_relationships", :foreign_key => "parent_id", :association_foreign_key => "child_id"
 
   scope :people, where(:entity_definition_type => Person.to_s)
   

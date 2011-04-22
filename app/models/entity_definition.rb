@@ -1,6 +1,8 @@
 module EntityDefinition
   module ClassMethods
     def act_as_entity_definition
+      validates_presence_of(:organization_id)
+      
       has_one :entity, :as => :entity_definition
       belongs_to :organization
 

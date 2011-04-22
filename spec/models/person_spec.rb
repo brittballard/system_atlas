@@ -13,12 +13,12 @@ describe Person do
     
     describe 'a user exists with the same email' do
       before do
-        person = Factory.create(:person, :email => 'johnny.appleseed@chilis.com')
+        @person = Factory.create(:person, :email => 'johnny.appleseed@chilis.com')
       end
       
       it 'should associate the user with the person' do
-        person.user.should be
-        person.email.should == person.user.email
+        @person.user.should be
+        @person.email.should == @person.user.email
       end
     end
     
