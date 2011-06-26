@@ -24,8 +24,8 @@ describe Entity do
   
   describe 'owners' do
     it 'should return all people children with the is_owner flag set' do
-      @entity.children << Factory.create(:entity, :entity_definition_type => 'Person', :entity_definition => Factory.create(:person, :is_owner => true, :first_name => 'britton'))
-      @entity.children << Factory.create(:entity, :entity_definition_type => 'Person', :entity_definition => Factory.create(:person, :is_owner => false, :first_name => 'carter'))
+      @entity.children << Factory.create(:entity, :entity_definition_type => 'Person', :entity_definition => Factory.create(:person, :first_name => 'britton'))
+      @entity.children << Factory.create(:entity, :entity_definition_type => 'Person', :entity_definition => Factory.create(:person, :first_name => 'carter'))
       @entity.owners.count.should == 1
     end
   end

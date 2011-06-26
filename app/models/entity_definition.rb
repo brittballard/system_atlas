@@ -13,7 +13,7 @@ module EntityDefinition
                                             .joins("INNER JOIN entity_relationships er ON er.parent_id = e.id")
                                             .joins("INNER JOIN entities e2 on e2.id = er.child_id")
                                             .joins("INNER JOIN people p on p.id = e2.entity_definition_id AND e2.entity_definition_type = '#{Person.to_s}'")
-                                            .where("p.user_id = ? AND p.is_owner = 1", user.id) }
+                                            .where("p.user_id = ? AND er.is_owner = 1", user.id) }
     end
   end
 

@@ -6,7 +6,7 @@ gem 'rails', '>= 3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql', '2.8.1'
+gem 'mysql2', '< 0.3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -45,4 +45,10 @@ group :development, :test do
   gem "rspec-rails", ">= 2.4"
   gem "rcov"
   gem "ruby-debug19"
+  gem "rb-fsevent"
+  gem "growl"
+  gem "guard"
+  gem "guard-rspec"
+  gem "guard-cucumber"
+  gem "guard-livereload"
 end

@@ -24,7 +24,7 @@ class Entity < ActiveRecord::Base
                                                   .where("p.user_id = ?", user.id) }
 
   def owners
-    children.people.joins("INNER JOIN people p ON p.id = entity_definition_id").where("p.is_owner = 1")
+    children.people.where("#{EntityRelationship.quoted_table_name}.is_owner = 1")
   end
 
   def self.load_entity_for_save(entity_definition, current_user)

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     end
   
     def create_person
-      entity = Entity.load_entity_for_save(Person.new({ :first_name => 'pending', :last_name => 'pending', :is_owner => true, :email => self.email, :organization_id => self.organization_id, :user_id => self.id, :entity => Entity.new }), self)
+      entity = Entity.load_entity_for_save(Person.new({ :first_name => 'pending', :last_name => 'pending', :email => self.email, :organization_id => self.organization_id, :user_id => self.id, :entity => Entity.new }), self)
       entity.save!
     end
   

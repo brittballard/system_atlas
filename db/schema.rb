@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422013040) do
+ActiveRecord::Schema.define(:version => 20110422051927) do
 
   create_table "application_servers", :force => true do |t|
     t.integer  "web_server_id"
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20110422013040) do
   add_index "organizations", ["registration_code"], :name => "organizations_registration_code", :unique => true
 
   create_table "people", :force => true do |t|
-    t.string   "is_owner"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
@@ -147,27 +146,6 @@ ActiveRecord::Schema.define(:version => 20110422013040) do
     t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-  end
-
-  create_table "users_master_copy", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email",                              :null => false
-    t.string   "crypted_password",                   :null => false
-    t.string   "password_salt",                      :null => false
-    t.string   "persistence_token",                  :null => false
-    t.string   "single_access_token",                :null => false
-    t.string   "perishable_token",                   :null => false
-    t.integer  "login_count",         :default => 0, :null => false
-    t.integer  "failed_login_count",  :default => 0, :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
-    t.string   "openid_identifier"
-    t.integer  "organization_id"
-    t.integer  "roles_mask"
   end
 
 end
