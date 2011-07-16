@@ -13,13 +13,11 @@ Feature: User creates and maintains people
   | person_first_name | britton                        |
   | person_last_name  | ballard                        |
   | person_email      | davidbritton.ballard@gmail.com |
-  And I check "person_is_owner"
   And I press "create"
   Then I should see "Person created successfully."
   And I should have a "Person" like
   | first_name      | britton |
   | last_name       | ballard |
-  | is_owner        | 1       |
   | organization_id | 1000    |
   | user_id         | 47      |
   And The entity and definition organizations for the "Person" should be the same

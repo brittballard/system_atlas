@@ -29,4 +29,25 @@ describe Person do
       end
     end
   end
+
+  describe 'set_as_owner' do
+    it 'should create a relationship and mark the person as the owner of the entity when this method is called and the relationship does not exist yet' do
+      person = Factory(:person)
+      server = Factory(:server)
+      
+      person.make_owner_of(server)
+      EntityRelationship.where({ :child_id => person.entity.id, :parent_id => server.entity.id }).first.is_owner.should == true
+    end
+    
+    it 'should mark the person as the owner of the entity when the relationship already exists' do
+      person = Factory(:person)
+      server = Factory(:server)
+      
+      server.entity.children << person.entity
+      
+      person.make_owner_of(server)
+      EntityRelationship.where({ :child_id => person.entity.id, :parent_id => server.entity.id }).count.should == 1
+      EntityRelationship.where({ :child_id => person.entity.id, :parent_id => server.entity.id }).first.is_owner.should == true
+    end
+  end
 end

@@ -35,6 +35,8 @@ gem "cancan"
 gem "nokogiri"
 
 group :development, :test do
+  gem "autotest-rails"
+  gem "autotest-growl"
   gem "cucumber"
   gem "cucumber-rails"
   gem 'database_cleaner'
@@ -45,10 +47,5 @@ group :development, :test do
   gem "rspec-rails", ">= 2.4"
   gem "rcov"
   gem "ruby-debug19"
-  gem "rb-fsevent"
-  gem "growl"
-  gem "guard"
-  gem "guard-rspec"
-  gem "guard-cucumber"
-  gem "guard-livereload"
+  gem "escape_utils"
 end

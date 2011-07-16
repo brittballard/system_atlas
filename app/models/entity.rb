@@ -11,10 +11,8 @@ class Entity < ActiveRecord::Base
   has_many :child_entity_relationships, :class_name => 'EntityRelationship', :foreign_key => :child_id
 
   has_many :children, :through => :entity_relationships
-  has_one :parent, :through => :child_entity_relationships
+  # has_one :parent, :through => :child_entity_relationships
   
-  # has_and_belongs_to_many :children, :class_name => "Entity", :join_table => "entity_relationships", :foreign_key => "parent_id", :association_foreign_key => "child_id"
-
   scope :people, where(:entity_definition_type => Person.to_s)
   
   scope :current_users_entities, lambda { |user| 
@@ -24,7 +22,7 @@ class Entity < ActiveRecord::Base
                                                   .where("p.user_id = ?", user.id) }
 
   def owners
-    children.people.where("#{EntityRelationship.quoted_table_name}.is_owner = 1")
+    children.people.where("#{EntityRelationship.quoted_table_name}.is_owner = true")
   end
 
   def self.load_entity_for_save(entity_definition, current_user)
