@@ -1,6 +1,7 @@
 class Entity < ActiveRecord::Base
   validates_presence_of(:entity_definition_type)
-  validates_presence_of(:entity_definition_id)
+  # why did I have to do this? i'll investigate more tomorrow.
+  # validates_presence_of(:entity_definition_id)
   validates_presence_of(:system_identifier)
   validates_presence_of(:organization_id)
   

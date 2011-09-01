@@ -1,6 +1,8 @@
-Factory.define(:entity) do |entity|
-  entity.entity_definition_type('test')
-  entity.entity_definition_id(1)
-  entity.system_identifier('test_test_test_test')
-  entity.organization_id(1)
+FactoryGirl.define do
+  factory :entity do
+    entity_definition_type('test')
+    entity_definition_id(1)
+    system_identifier('test_test_test_test')
+    organization_id(1)
+  end
 end

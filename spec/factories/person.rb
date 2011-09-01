@@ -1,7 +1,9 @@
-Factory.define(:person) do |person|
-  person.sequence(:email) { |n| "davidballard#{n}@hotmail.com"}
-  person.first_name("Britt")
-  person.last_name("Ballard")
-  person.association(:entity)
-  person.association(:organization)
+FactoryGirl.define do
+  factory :person do
+    sequence(:email) { |n| "davidballard#{n}@hotmail.com"}
+    first_name("Britt")
+    last_name("Ballard")
+    association(:entity)
+    association(:organization)
+  end
 end
