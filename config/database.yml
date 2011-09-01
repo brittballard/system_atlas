@@ -11,7 +11,7 @@ development:
   adapter: mysql2
   database: system_atlas_development
   username: root
-  password: britton
+  # password: britton
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -21,12 +21,12 @@ test:
   adapter: mysql2
   database: system_atlas_test
   username: root
-  password: britton
+  # password: britton
   socket: /tmp/mysql.sock
 
 cucumber:
   adapter: mysql2
   database: system_atlas_test
   username: root
-  password: britton
+  # password: britton
   socket: /tmp/mysql.sock
