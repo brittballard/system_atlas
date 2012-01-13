@@ -49,3 +49,7 @@ group :development, :test do
   gem "ruby-debug19"
   gem "escape_utils"
 end
+
+group :production do
+  gem "pg"
+end
