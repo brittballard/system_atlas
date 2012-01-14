@@ -9,7 +9,7 @@
 <% if flash[:notice] %>
       <div class="notice"><%= flash[:notice] %></div>
     <% end %>
-<% form_for(:organization, @search_organization, :url => search_organizations_registrations_path) do |form| %>
+<%= form_for(:organization, @search_organization, :url => search_organizations_registrations_path) do |form| %>
   <%= render(:partial => 'organizations/form', :locals => { :form => form }) %>
   <%= form.submit('Search') %>
 <% end %>
@@ -18,7 +18,7 @@
 <% end %>
 <br />
 <h1>Still no luck! Create it.</h1>
-<% form_for(:organization, :url => register_organization_registrations_path) do |form| %>
+<%= form_for(:organization, :url => register_organization_registrations_path) do |form| %>
   <%= render(:partial => 'organizations/form', :locals => { :form => form }) %>
   <%= form.submit('Register') %>
 <% end %>

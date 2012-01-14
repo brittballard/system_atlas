@@ -1,4 +1,4 @@
-<% form_for(@entity) do |form| %>
+<%= form_for(@entity) do |form| %>
   <%= render(:partial => form, :locals => { :form => form })%>
   <%= form.submit :create %>
 <% end %>

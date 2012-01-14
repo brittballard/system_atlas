@@ -9,7 +9,7 @@ SystemAtlas::Application.routes.draw do
   
   resources :entities
   resource :account, :controller => "users"
-  resources :users
+  # resources :users
   resources :database_servers
   resources :application_servers
   resources :business_units
