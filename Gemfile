@@ -48,6 +48,7 @@ group :development, :test do
   gem "rcov"
   gem "ruby-debug19"
   gem "escape_utils"
+  gem "jasmine"
 end
 
 group :production do
