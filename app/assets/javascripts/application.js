@@ -3,6 +3,7 @@
 //
 //= require underscore
 //= require backbone
+//= require backbone.authtokenadapter
 //
 //= require system_atlas
 //= require system_atlas_utility

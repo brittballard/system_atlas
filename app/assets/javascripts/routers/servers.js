@@ -5,6 +5,7 @@ SystemAtlas.Routers.Servers = Backbone.Router.extend(
     },
     
     index: function(){
-      alert('Hello, world! Lay back I\'ve got some money to make.');
+      var view = new SystemAtlas.Views.ServersIndex({ collection: SystemAtlas.servers });
+      $('body').html(view.render().el);
     }
   });

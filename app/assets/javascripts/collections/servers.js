@@ -1,4 +1,4 @@
 SystemAtlas.Collections.Servers = Backbone.Collection.extend({
   model: SystemAtlas.Models.Server,
-  url: '/tasks'
+  url: '/servers'
 })
