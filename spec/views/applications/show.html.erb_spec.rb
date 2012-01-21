@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "applications/show.html.erb" do
+describe "applications/show" do
   before(:each) do
     @application = assign(:application, stub_model(Application))
   end
