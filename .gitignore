@@ -8,3 +8,4 @@ config/database.yml
 .project
 .buildpath
 .loadpath
+.sass-cache/

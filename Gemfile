@@ -33,6 +33,15 @@ gem 'mysql2'
 gem "devise"
 gem "cancan"
 gem "nokogiri"
+gem "ejs"
+gem 'rails-backbone'
+gem 'jquery-rails'
+gem 'backbone-support'
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'uglifier'
+end
 
 group :development, :test do
   gem "autotest-rails"

@@ -1,1 +1,5 @@
-Servers
+<%= content_for :javascript_includes do -%>
+  <%= javascript_tag do %>
+    SystemAtlas.init(<%== @servers.to_json %>);
+  <% end %>
+<% end -%>

@@ -1,0 +1,3 @@
+.ui-widget-content { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; background-color: red; }
+.droppable { width: 150px; padding: 0.5em; float: left; margin: 10px; background-color: yellow; }
+.container { width: 150px; padding: 0.5em; border-style:solid; margin: 10px; border-width:medium; float:left; }

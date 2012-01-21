@@ -1,16 +1,17 @@
 class ServersController < EntityDefinitionController
+  respond_to :html, :json
   load_and_authorize_resource :except => [:index]
 
   def index
-    @servers = Server.accessible_by(current_ability, :read)
+    respond_with(@servers = Server.accessible_by(current_ability, :read))
   end
 
   def create
     if create_entity_definition(@server, "Server")
-      @servers = Server.accessible_by(current_ability, :read)
-      render :index
+      @server = Server.accessible_by(current_ability, :read)
+      respond_with(@server)
     else
-      render :new
+      respond_with(@server, :status => :unprocessable_entity)
     end
   end
 

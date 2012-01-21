@@ -3,10 +3,6 @@
     <head>
         <title><%= h(yield(:title) || "System Atlas") %></title>
         <%= stylesheet_link_tag('system_atlas', :media => 'all') %>
-        <%= javascript_include_tag('jquery', 'jquery.ui', 'application', 'systemAtlas.utility', 'systemAtlas.views') %>
-        <script>
-          <%= yield :javascript_includes %>
-        </script>
     </head>
     <body>
         <div id="container" style="margin-top: 25px;">
@@ -30,5 +26,7 @@
                 footer
             </div>
         </div>
+        <%= javascript_include_tag "application" %>
+        <%= yield :javascript_includes %>
     </body>
 </html>
