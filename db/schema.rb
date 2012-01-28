@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422051927) do
+ActiveRecord::Schema.define(:version => 20120128222527) do
 
   create_table "application_servers", :force => true do |t|
     t.integer  "web_server_id"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20110422051927) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
+    t.string   "name",            :limit => 100
+    t.string   "description"
   end
 
   create_table "business_units", :force => true do |t|

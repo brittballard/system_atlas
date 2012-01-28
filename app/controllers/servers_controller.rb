@@ -3,8 +3,7 @@ class ServersController < EntityDefinitionController
   load_and_authorize_resource :except => [:index]
 
   def index
-    # respond_with(@servers = Server.accessible_by(current_abiklity, :read))
-    respond_with(@servers = Server.all)
+    respond_with(@servers = Server.accessible_by(current_abiklity, :read))
   end
 
   def create

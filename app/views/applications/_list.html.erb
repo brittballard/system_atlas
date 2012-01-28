@@ -1,15 +1,21 @@
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Actions</th>
   </tr>
 
-<% @applications.each do |application| %>
+<% @applications.each do |application| %>    
   <tr>
-    <td><%= link_to 'Show', application %></td>
-    <td><%= link_to 'Edit', edit_application_path(application) %></td>
-    <td><%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <%= application.name %>
+    </td>
+    <td>
+      <%= application.description %>
+    </td>
+    <td><%= link_to 'Show', application %>
+    <%= link_to 'Edit', edit_application_path(application) %>
+    <%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -1,26 +1,17 @@
 class ApplicationsController < EntityDefinitionController
+  respond_to :html, :json
   load_and_authorize_resource :except => [:index]
 
   # GET /applications
   # GET /applications.xml
   def index
-    @applications = Application.accessible_by(current_ability, :read)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @applications }
-    end
+    respond_with(@applications = Application.accessible_by(current_ability, :read))
   end
 
   # GET /applications/1
   # GET /applications/1.xml
   def show
-    @application = Application.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @application }
-    end
+    respond_with(@application = Application.find(params[:id]))
   end
 
   # GET /applications/new
@@ -31,6 +22,7 @@ class ApplicationsController < EntityDefinitionController
 
   # GET /applications/1/edit
   def edit
+
   end
 
   # POST /applications
@@ -48,7 +40,7 @@ class ApplicationsController < EntityDefinitionController
   # PUT /applications/1.xml
   def update
     if @application.update_attributes(params[:application])
-      flash[:notice] = "Team updated successfully."
+      flash[:notice] = "Application updated successfully."
       @applications = Application.accessible_by(current_ability, :read)
       render :index
     else

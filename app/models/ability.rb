@@ -14,6 +14,7 @@ class Ability
     
     can(:create, User)
     can(:create, Entity)
+    can(:create, Application)
     can(:create, DatabaseServer)
     can(:create, ApplicationServer)
     can(:create, BusinessUnit)
