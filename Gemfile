@@ -55,7 +55,6 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec", ">= 2.4"
   gem "rspec-rails", ">= 2.4"
-  gem "rcov"
   gem "ruby-debug19"
   gem "escape_utils"
   gem "jasmine"
