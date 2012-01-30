@@ -37,7 +37,8 @@ gem "ejs"
 gem 'rails-backbone'
 gem 'jquery-rails'
 gem 'backbone-support'
-gem 'therubyracer'
+gem 'execjs'
+gem 'therubyracer-heroku', '0.8.1.pre3'
 
 group :assets do
   gem "sass-rails", '~> 3.2.3'
