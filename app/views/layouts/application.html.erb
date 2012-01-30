@@ -5,28 +5,31 @@
         <%= stylesheet_link_tag('system_atlas', :media => 'all') %>
     </head>
     <body>
-        <div id="container" style="margin-top: 25px;">
-            <div id="header">
-                <div id="navigation">
-                  <%= render(:partial => 'layouts/navigation') %>
-                </div>
-            </div>
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-            <p class="alert"><%= flash[:error] %></p>
-            <div>
-              <% if current_user.present? %>
-                Organization: <%= current_user.organization.name  %>
-              <% end %>
-            </div>
-            <div id="body">
-                <%= yield %>
-            </div>
-            <div id="footer">
-                footer
-            </div>
+      <div class="page">
+        <div class="header">
+          <div class="title">
+          </div>
+          <div id="navigation" class="menu clear hideSkiplink"">
+            <%= render(:partial => 'layouts/navigation') %>
+          </div>
         </div>
-        <%= javascript_include_tag "application" %>
-        <%= yield :javascript_includes %>
-    </body>
+          
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <p class="alert"><%= flash[:error] %></p>
+        <div>
+          <% if current_user.present? %>
+            Organization: <%= current_user.organization.name  %>
+          <% end %>
+        </div>
+        <div id="main">
+            <%= yield %>
+        </div>
+        <div id="footer">
+              footer
+        </div>
+      </div>
+      <%= javascript_include_tag "application" %>
+      <%= yield :javascript_includes %>
+  </body>
 </html>
