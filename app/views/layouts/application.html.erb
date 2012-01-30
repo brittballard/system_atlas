@@ -5,25 +5,29 @@
         <%= stylesheet_link_tag('system_atlas', :media => 'all') %>
     </head>
     <body>
-      <div class="page">
-        <div class="header">
-          <div class="title">
+      <div id="container-outer">
+          <div id="header">
+            <% if current_user.present? %>
+            <div class="utility">
+                <div class="item">Welcome <%= current_user.email %></div>
+                <div class="divider"></div>
+                <div class="item"><%= current_user.organization.name  %></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Logout", destroy_user_session_path %></div>
+            </div>
+            <% end %>
+            <div class="logo">
+                <img src="../Images/Image-Logo.png" alt="System Atlas" />
+            </div>
           </div>
-          <div id="navigation" class="menu clear hideSkiplink"">
+          <div id="nav">
             <%= render(:partial => 'layouts/navigation') %>
-          </div>
-        </div>
-          
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <p class="alert"><%= flash[:error] %></p>
-        <div>
-          <% if current_user.present? %>
-            Organization: <%= current_user.organization.name  %>
-          <% end %>
-        </div>
-        <div id="main">
-            <%= yield %>
+          </div>          
+        <div id="main-content">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <p class="alert"><%= flash[:error] %></p>
+          <%= yield %>
         </div>
         <div id="footer">
               footer

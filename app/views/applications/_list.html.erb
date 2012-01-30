@@ -1,25 +1,25 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Actions</th>
-  </tr>
-
-<% @applications.each do |application| %>    
-  <tr>
-    <td>
-      <%= application.name %>
-    </td>
-    <td>
-      <%= application.description %>
-    </td>
-    <td><%= link_to 'Show', application %>
-    <%= link_to 'Edit', edit_application_path(application) %>
-    <%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+<div class="section-header"><div class="label">Applications</div></div>
+<div class="section-content">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  <% @applications.each do |application| %>
+    <tr>
+      <td>
+        <%= application.name %>
+      </td>
+      <td>
+        <%= application.description %>
+      </td>
+      <td><%= link_to 'Show', application %>
+      <%= link_to 'Edit', edit_application_path(application) %>
+      <%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 
 <%= link_to 'New Application', new_application_path %>
