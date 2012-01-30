@@ -213,6 +213,7 @@ DEPENDENCIES
   devise
   ejs
   escape_utils
+  execjs
   factory_girl_rails
   jasmine
   jquery-rails

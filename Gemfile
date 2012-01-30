@@ -37,6 +37,7 @@ gem "ejs"
 gem 'rails-backbone'
 gem 'jquery-rails'
 gem 'backbone-support'
+gem "execjs"
 
 group :assets do
   gem "sass-rails", '~> 3.2.3'
