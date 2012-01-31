@@ -2,7 +2,3 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run SystemAtlas::Application
-
-use Rack::Static, 
-  :urls => ["/images"],
-  :root => "public"
