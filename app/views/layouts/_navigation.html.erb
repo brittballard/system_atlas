@@ -6,9 +6,6 @@
     <li>
       <%= link_to "Edit Profile", edit_user_path(:id => current_user.id) %>
     </li>
-    <li>
-      <%= link_to "Logout", destroy_user_session_path %>
-    </li>
     <% if can?(:create, Organization) %>
       <li>
         <%= link_to('Create organization', new_organization_path) %>
