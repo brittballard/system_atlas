@@ -34,7 +34,6 @@ SystemAtlas::Application.routes.draw do
   resources :entities do
     resources :relationships
   end
-
   
   resources :users
 end
