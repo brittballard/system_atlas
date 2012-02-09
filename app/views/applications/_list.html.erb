@@ -14,9 +14,12 @@
       <td>
         <%= application.description %>
       </td>
-      <td><%= link_to 'Show', application %>
-      <%= link_to 'Edit', edit_application_path(application) %>
-      <%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <%= link_to 'Show', application %>
+        <%= link_to 'Edit', edit_application_path(application) %>
+        <%= button_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to 'Relationships', entity_relationships_path(application.entity.id) %>
+      </td>
     </tr>
   <% end %>
   </table>

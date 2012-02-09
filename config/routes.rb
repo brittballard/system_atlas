@@ -7,9 +7,7 @@ SystemAtlas::Application.routes.draw do
   resource :user_session
   root :to => "dashboards#home"
   
-  resources :entities
   resource :account, :controller => "users"
-  # resources :users
   resources :database_servers
   resources :application_servers
   resources :business_units
@@ -28,17 +26,15 @@ SystemAtlas::Application.routes.draw do
       get :home
     end
   end
-    
-  resources :relationships do
-    collection do
-      delete :delete_relationship
-      get :manage_relationship
-    end
-  end
 
   resources :organizations do
     resources :users
   end
+  
+  resources :entities do
+    resources :relationships
+  end
+
   
   resources :users
 end

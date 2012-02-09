@@ -1,0 +1,18 @@
+Feature: User creates and maintains applications
+  In order to create system atlases
+  As a customer
+  I need to be able to create and maintain my applications
+  
+  Scenario: Successful creation of a new Applications
+  Given I am logged in as an "Admin" for organization_id 1000
+  And I am on the new "Application" page
+  When I fill in the following:
+  | application_name        | britton's application      |
+  | application_description | this is a nice application |
+  And I press "create"
+  Then I should see "Application created successfully."
+  And I should have an "Application" like
+  | name            | britton's application      |
+  | description     | this is a nice application |
+  | organization_id | 1000                       |
+  And The entity and definition organizations for the "Application" should be the same
