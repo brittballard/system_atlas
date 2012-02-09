@@ -32,7 +32,11 @@ SystemAtlas::Application.routes.draw do
   end
   
   resources :entities do
-    resources :relationships
+    resources :relationships do
+      collection do
+        get 'manage'
+      end
+    end
   end
   
   resources :users

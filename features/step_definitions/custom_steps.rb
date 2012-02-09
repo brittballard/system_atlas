@@ -11,3 +11,14 @@ Given /^I (own|don't own) the "([^"]*)"$/ do |do_i_own_it, entity_definition_typ
     entity_definition.children << user.person.entity
   end
 end
+
+Given /^"([^"]*)" and "([^"]*)" are related$/ do |application_one, application_two|
+  app1 = Application.where("name = ?", application_one).first
+  app2 = Application.where("name = ?", application_two).first
+  
+  relationship = EntityRelationship.new
+  relationship.parent_id = app1.entity.id
+  relationship.child_id = app2.entity.id
+  
+  relationship.save!
+end

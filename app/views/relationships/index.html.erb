@@ -1,1 +1,21 @@
-hello dipesh... how is the sweet ass?
+<div class="section-header"><div class="label">Related Applications</div></div>
+<div class="section-content">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  <% @entity_relationship.each do |entity_relationship| %>
+    <tr>
+      <td>
+        <%= entity_relationship.child.entity_definition.name %>
+      </td>
+      <td>
+        <%= entity_relationship.child.entity_definition.description %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+<%= link_to 'Manage Relationships',  %>

@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    
+    @entity_relationship = Entity.find(params[:entity_id]).entity_relationships
   end
 
   def new
@@ -21,11 +21,11 @@ class RelationshipsController < ApplicationController
     end
   end
 
-  def delete_relationship
+  def delete
     Entity.find(params[:parent]).children.delete(Entity.find(params[:child]))
   end
   
-  def manage_relationship
+  def manage
     @parent = Entity.find(params[:parent_id])
     @entities = Entity.accessible_by(current_ability, :read)
     render :new
