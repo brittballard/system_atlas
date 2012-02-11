@@ -22,3 +22,14 @@ Given /^"([^"]*)" and "([^"]*)" are related$/ do |application_one, application_t
   
   relationship.save!
 end
+
+When /^I drag "([^"]*)" to "([^"]*)"$/ do |parent_app, child_app|
+  parent = Application.where("name = ?", parent_app).first
+  child = Application.where("name = ?", child_app).first
+  
+  parent_element = page.find("#entity-#{parent.id}")
+  child_element = page.find("#entity-#{child.id}")
+  
+  child_element.drag_to(parent_element)
+
+end

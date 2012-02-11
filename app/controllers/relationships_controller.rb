@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+  respond_to :html, :json
   before_filter :authenticate_user!
 
   def index
@@ -10,8 +11,8 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    parent = Entity.find(params[:parent])
-    child = Entity.find(params[:child])
+    parent = Entity.find(params[:parent_id])
+    child = Entity.find(params[:child_id])
     parent.children << child
 
     if parent.save

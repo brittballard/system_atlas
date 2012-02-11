@@ -1,15 +1,17 @@
 <% content_for :javascript_includes do %>
   jQuery(document).ready(function() {
-    SystemAtlas.views.relatipnshipsNew(<%= @parent.id %>);
+    SystemAtlas.views.relatipnshipsManage(<%= @parent.id %>);
   });
 <% end %>
 
-<div id=<%= "entity-#{@parent.id}" %> class='container ui-widget-header droppable'>
+<div id="status" />
+
+<div id=<%= "entity-#{@parent.id}" %> data-id='<%= @parent.id %>' data-create_url='<%= entity_relationships_path(@parent) %>' class='container ui-widget-header droppable'>
   Id: <%= @parent.id %>
   <div>
     Application
     <% @parent.children.each do |child| %>
-      <div id=<%= "entity-#{child.id}" %> class="ui-widget-content draggable">
+      <div id=<%= "entity-#{child.id}" %> data-id='<%= child.id %>' class="ui-widget-content draggable">
         Id: <%= child.id %>
       </div>
     <% end %>

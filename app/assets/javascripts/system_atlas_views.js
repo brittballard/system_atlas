@@ -1,17 +1,18 @@
 SystemAtlas.views = (function($){
   return {
-    relatipnshipsNew : function(parentEntityId){
+    relatipnshipsManage : function(parentEntityId){
       $(".draggable").draggable();
 
       $('#entity-' + parentEntityId).droppable({
         drop: function(event, ui) {
-          alert('drop on parent');
+            $.post($(this).data('create_url'),
+                      { parent_id: $(this).data('id'), child_id: ui.draggable.data('id') });
           }
       });
       
       $('#unassigned-entities').droppable({
         drop: function(event, ui) {
-          alert('drop on palette');
+          
         }
       });
     }
