@@ -5,7 +5,7 @@
       <th>Name</th>
       <th>Description</th>
     </tr>
-  <% @entity_relationship.each do |entity_relationship| %>
+  <% @entity.entity_relationships.each do |entity_relationship| %>
     <tr>
       <td>
         <%= entity_relationship.child.entity_definition.name %>
@@ -18,4 +18,4 @@
   </table>
 </div>
 
-<%= link_to 'Manage Relationships',  %>
+<%= link_to 'Manage Relationships', manage_entity_relationships_path(@entity.id) %>

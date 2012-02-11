@@ -1,1 +1,28 @@
-hello hello hello!
+<% content_for :javascript_includes do %>
+  jQuery(document).ready(function() {
+    SystemAtlas.views.relatipnshipsNew(<%= @parent.id %>);
+  });
+<% end %>
+
+<div id=<%= "entity-#{@parent.id}" %> class='container ui-widget-header droppable'>
+  Id: <%= @parent.id %>
+  <div>
+    Application
+    <% @parent.children.each do |child| %>
+      <div id=<%= "entity-#{child.id}" %> class="ui-widget-content draggable">
+        Id: <%= child.id %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id='unassigned-entities' class='container'>
+  Palette
+  <div id='entities'>
+    <% (@entities - @parent.children).each do |entity| %>
+      <div id=<%= "entity-#{entity.id}" %> class="ui-widget-content draggable">
+        Id: <%= entity.id %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 <% content_for :javascript_includes do %>
   jQuery(document).ready(function() {
-    systemAtlas.views.relatipnshipsNew('<%= delete_relationship_relationships_url %>', '<%= relationships_url %>', <%= raw(@entities.map { |entity| ["entity-#{entity.id}", entity.id] }) %>, <%= @parent.id %>);
+    systemAtlas.views.relatipnshipsNew('<%= delete_relationship_relationships_url %>', 
+                                        '<%= relationships_url %>', 
+                                        <%= raw(@entities.map { |entity| ["entity-#{entity.id}", entity.id] }) %>, 
+                                        <%= @parent.id %>);
   });
 <% end %>
 

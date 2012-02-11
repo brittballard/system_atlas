@@ -41,6 +41,8 @@ Feature: User creates and maintains applications
   | name                 | description   | organization_id |
   | dipesh's application | REAL nice app | 1000            |
   And I am on the home page
-  And "britton's application" and "dipesh's application" are related
   When I follow "Relationships"
-  Then I should see "Manage Relationships"
+  And I follow "Manage Relationships"
+  Then I should see "Application"
+  And I should see "Palette"
+  
