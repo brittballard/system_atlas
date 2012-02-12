@@ -44,5 +44,5 @@ Feature: User creates and maintains applications
   When I follow "Relationships"
   And I follow "Manage Relationships"
   And I drag "dipesh's application" to "britton's application"
-  Then I should see "parent!"
+  Then I should have a new relationship between "dipesh's application" and "britton's application"
   

@@ -4,7 +4,8 @@
   });
 <% end %>
 
-<div id="status" />
+<div id="status">
+</div>
 
 <div id=<%= "entity-#{@parent.id}" %> data-id='<%= @parent.id %>' data-create_url='<%= entity_relationships_path(@parent) %>' class='container ui-widget-header droppable'>
   Id: <%= @parent.id %>
@@ -22,7 +23,7 @@
   Palette
   <div id='entities'>
     <% (@entities - @parent.children).each do |entity| %>
-      <div id=<%= "entity-#{entity.id}" %> class="ui-widget-content draggable">
+      <div id=<%= "entity-#{entity.id}" %> data-id='<%= entity.id %>' class="ui-widget-content draggable">
         Id: <%= entity.id %>
       </div>
     <% end %>

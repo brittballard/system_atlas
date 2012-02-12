@@ -31,5 +31,12 @@ When /^I drag "([^"]*)" to "([^"]*)"$/ do |parent_app, child_app|
   child_element = page.find("#entity-#{child.id}")
   
   child_element.drag_to(parent_element)
+end
 
+Then /^I should have a new relationship between "([^"]*)" and "([^"]*)"$/ do |parent_app, child_app|
+  parent = Application.where("name = ?", parent_app).first
+  child = Application.where("name = ?", child_app).first
+  
+  realtionship = EntityRelationship.where("parent_id = ? AND child_id = ?", parent.id, child.id).first
+  realtionship.should_not be_nil
 end
