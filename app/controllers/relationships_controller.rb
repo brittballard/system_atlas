@@ -11,11 +11,10 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    parent = Entity.find(params[:parent_id])
-    child = Entity.find(params[:child_id])
-    parent.children << child
+    relationship = EntityRelationship.new(:parent_id => params[:parent_id], :child_id => params[:child_id])
 
-    if parent.save
+    if relationship.save
+      breakpoint
       flash[:notice] = 'Good work!'
     else
       flash[:error] = 'ERROR!'
@@ -23,8 +22,7 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    breakpoint
-    Entity.find(params[:parent_id]).children.delete(Entity.find(params[:child_id]))
+    EntityRelationship.destroy(params[:id])
   end
   
   def manage

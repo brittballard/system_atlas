@@ -22,7 +22,7 @@
 <div id='unassigned-entities' class='container' data-parent_id=<%= @parent.id %>>
   Palette
   <div id='entities'>
-    <% (@entities - @parent.children).each do |entity| %>
+    <% @entities.each do |entity| %>
       <div id=<%= "entity-#{entity.id}" %> data-id='<%= entity.id %>' class="ui-widget-content draggable">
         Id: <%= entity.id %>
       </div>

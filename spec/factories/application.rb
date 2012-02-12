@@ -1,5 +1,5 @@
 Factory.define(:application) do |app|
   app.name('test server')
   app.description('my favorite server')
-  app.association(:entity)  
+  app.association(:entity)
 end

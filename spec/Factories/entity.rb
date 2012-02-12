@@ -3,6 +3,6 @@ FactoryGirl.define do
     entity_definition_type('test')
     entity_definition_id(1)
     system_identifier('test_test_test_test')
-    organization_id(1)
+    organization_id(1000)
   end
 end

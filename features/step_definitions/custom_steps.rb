@@ -23,7 +23,7 @@ Given /^"([^"]*)" and "([^"]*)" are related$/ do |application_one, application_t
   relationship.save!
 end
 
-When /^I drag "([^"]*)" to "([^"]*)"$/ do |parent_app, child_app|
+When /^I drag "([^"]*)" to "([^"]*)"$/ do |child_app, parent_app|
   parent = Application.where("name = ?", parent_app).first
   child = Application.where("name = ?", child_app).first
   
@@ -56,4 +56,8 @@ Then /^I should not have a relationship between "([^"]*)" and "([^"]*)"$/ do |pa
 
   realtionship = EntityRelationship.where("parent_id = ? AND child_id = ?", parent.entity.id, child.entity.id).first
   realtionship.should be_nil
+end
+
+When /^I wait (\d+) second$/ do |seconds|
+  sleep(Integer(seconds))
 end
