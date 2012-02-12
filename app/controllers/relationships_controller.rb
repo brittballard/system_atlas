@@ -12,13 +12,7 @@ class RelationshipsController < ApplicationController
 
   def create
     relationship = EntityRelationship.new(:parent_id => params[:parent_id], :child_id => params[:child_id])
-
-    if relationship.save
-      breakpoint
-      flash[:notice] = 'Good work!'
-    else
-      flash[:error] = 'ERROR!'
-    end
+    relationship.save!
   end
 
   def destroy

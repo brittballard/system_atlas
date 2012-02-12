@@ -31,7 +31,7 @@ Feature: User creates and maintains applications
   Then I should see "Related Applications"
   And I should see "dipesh's application"
 
-  @javascript @under_development
+  @javascript
   Scenario: I should be able to view the applications related to an application
   Given I am logged in as an "Admin" for organization_id 1000
   And the following application exists:
@@ -43,8 +43,9 @@ Feature: User creates and maintains applications
   And I am on the home page
   When I follow "Relationships"
   And I follow "Manage Relationships"
-  And I drag "britton's application" to "dipesh's application"
-  Then I should have a new relationship between "dipesh's application" and "britton's application"
+  And I drag "dipesh's application" to "britton's application"
+  Then I should see "Relationship created successfully!"
+  And I should have a new relationship between "britton's application" and "dipesh's application"
   
   @javascript
   Scenario: I should be able to view the applications related to an application
@@ -60,5 +61,6 @@ Feature: User creates and maintains applications
   When I follow "Relationships"
   And I follow "Manage Relationships"
   And I remove "dipesh's application"
-  Then I should not have a relationship between "britton's application" and "dipesh's application"
+  Then I should see "Relationship destroyed successfully."
+  And I should not have a relationship between "britton's application" and "dipesh's application"
   
