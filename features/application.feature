@@ -31,7 +31,7 @@ Feature: User creates and maintains applications
   Then I should see "Related Applications"
   And I should see "dipesh's application"
 
-  @under_development @javascript
+  @javascript
   Scenario: I should be able to view the applications related to an application
   Given I am logged in as an "Admin" for organization_id 1000
   And the following application exists:
@@ -45,4 +45,20 @@ Feature: User creates and maintains applications
   And I follow "Manage Relationships"
   And I drag "dipesh's application" to "britton's application"
   Then I should have a new relationship between "dipesh's application" and "britton's application"
+  
+  @under_development @javascript
+  Scenario: I should be able to view the applications related to an application
+  Given I am logged in as an "Admin" for organization_id 1000
+  And the following application exists:
+  | name                  | description | organization_id |
+  | britton's application | nice app    | 1000            |
+  And the following application exists:
+  | name                 | description   | organization_id |
+  | dipesh's application | REAL nice app | 1000            |
+  And I am on the home page
+  And "britton's application" and "dipesh's application" are related
+  When I follow "Relationships"
+  And I follow "Manage Relationships"
+  And I remove "dipesh's application"
+  Then I should not have a relationship between "britton's application" and "dipesh's application"
   

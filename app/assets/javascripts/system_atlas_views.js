@@ -12,7 +12,8 @@ SystemAtlas.views = (function($){
       
       $('#unassigned-entities').droppable({
         drop: function(event, ui) {
-          
+          $.delete_request(ui.draggable.data("delete_url"),
+                      { parent_id: $(this).data('parent_id'), child_id: ui.draggable.data("id") });          
         }
       });
     }

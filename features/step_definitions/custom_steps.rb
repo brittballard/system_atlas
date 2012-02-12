@@ -27,16 +27,33 @@ When /^I drag "([^"]*)" to "([^"]*)"$/ do |parent_app, child_app|
   parent = Application.where("name = ?", parent_app).first
   child = Application.where("name = ?", child_app).first
   
-  parent_element = page.find("#entity-#{parent.id}")
-  child_element = page.find("#entity-#{child.id}")
+  parent_element = page.find("#entity-#{parent.entity.id}")
+  child_element = page.find("#entity-#{child.entity.id}")
   
   child_element.drag_to(parent_element)
+end
+
+When /^I remove "([^"]*)"$/ do |child_app|
+  child = Application.where("name = ?", child_app).first
+
+  unassign_element = page.find("#unassigned-entities")
+  child_element = page.find("#entity-#{child.entity.id}")
+  
+  child_element.drag_to(unassign_element)
 end
 
 Then /^I should have a new relationship between "([^"]*)" and "([^"]*)"$/ do |parent_app, child_app|
   parent = Application.where("name = ?", parent_app).first
   child = Application.where("name = ?", child_app).first
   
-  realtionship = EntityRelationship.where("parent_id = ? AND child_id = ?", parent.id, child.id).first
+  realtionship = EntityRelationship.where("parent_id = ? AND child_id = ?", parent.entity.id, child.entity.id).first
   realtionship.should_not be_nil
+end
+
+Then /^I should not have a relationship between "([^"]*)" and "([^"]*)"$/ do |parent_app, child_app|
+  parent = Application.where("name = ?", parent_app).first
+  child = Application.where("name = ?", child_app).first
+
+  realtionship = EntityRelationship.where("parent_id = ? AND child_id = ?", parent.entity.id, child.entity.id).first
+  realtionship.should be_nil
 end

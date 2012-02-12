@@ -22,8 +22,9 @@ class RelationshipsController < ApplicationController
     end
   end
 
-  def delete
-    Entity.find(params[:parent]).children.delete(Entity.find(params[:child]))
+  def destroy
+    breakpoint
+    Entity.find(params[:parent_id]).children.delete(Entity.find(params[:child_id]))
   end
   
   def manage

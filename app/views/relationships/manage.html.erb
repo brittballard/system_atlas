@@ -11,15 +11,15 @@
   Id: <%= @parent.id %>
   <div>
     Application
-    <% @parent.children.each do |child| %>
-      <div id=<%= "entity-#{child.id}" %> data-id='<%= child.id %>' class="ui-widget-content draggable">
-        Id: <%= child.id %>
+    <% @parent.entity_relationships.each do |entity_relationship| %>
+      <div id=<%= "entity-#{entity_relationship.child.id}" %> data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>' class="ui-widget-content draggable">
+        Id: <%= entity_relationship.child.id %>
       </div>
     <% end %>
   </div>
 </div>
 
-<div id='unassigned-entities' class='container'>
+<div id='unassigned-entities' class='container' data-parent_id=<%= @parent.id %>>
   Palette
   <div id='entities'>
     <% (@entities - @parent.children).each do |entity| %>
