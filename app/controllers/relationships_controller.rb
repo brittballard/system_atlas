@@ -21,7 +21,7 @@ class RelationshipsController < ApplicationController
   
   def manage
     @parent = Entity.find(params[:entity_id])
-    @entities = Entity.accessible_by(current_ability, :read)
+    @entities = Entity.accessible_by(current_ability, :read).where("entity_definition_type = ? And id != ?", "Application", @parent.id)
   end
 
 end
