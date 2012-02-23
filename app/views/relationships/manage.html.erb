@@ -9,10 +9,12 @@
 
 <div id=<%= "entity-#{@parent.id}" %> data-id='<%= @parent.id %>' data-create_url='<%= entity_relationships_path(@parent) %>' class='container ui-widget-header droppable'>
   Id: <%= @parent.id %>
-  <div>
-    Application
+  <div class="section-header">
+    Related Applications
+  </div>
+  <div class="section-content">
     <% @parent.entity_relationships.each do |entity_relationship| %>
-      <div id=<%= "entity-#{entity_relationship.child.id}" %> data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>' class="ui-widget-content draggable">
+      <div id=<%= "entity-#{entity_relationship.child.id}" %> data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>' class="ui-widget-content draggable entity">
         Id: <%= entity_relationship.child.id %>
       </div>
     <% end %>
@@ -20,12 +22,16 @@
 </div>
 
 <div id='unassigned-entities' class='container' data-parent_id=<%= @parent.id %>>
-  Palette
-  <div id='entities'>
-    <% @entities.each do |entity| %>
-      <div id=<%= "entity-#{entity.id}" %> data-id='<%= entity.id %>' class="ui-widget-content draggable">
-        Id: <%= entity.id %>
-      </div>
-    <% end %>
+  <div class="section-header">
+    Application Palette
+  </div>
+  <div class="section-content">
+    <div id='entities'>
+      <% @entities.each do |entity| %>
+        <div id=<%= "entity-#{entity.id}" %> data-id='<%= entity.id %>' class="ui-widget-content draggable entity">
+          Id: <%= entity.id %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

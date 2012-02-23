@@ -1,7 +1,13 @@
 *{margin: 0; padding: 0; position: relative;}
-body {background-color: #363d52; background-image: url(<%= asset_path 'Background-Repeat.png' %>); background-repeat: repeat-x; font-family: Arial; font-size: 12px;}
 img {border: 0;}
 a, a:link, a:active, a:visited{outline: none;}
+
+body {
+  background-color: #363d52; 
+  background-image: url(<%= asset_path 'Background-Repeat.png' %>); 
+  background-repeat: repeat-x; 
+  font-family: Arial; 
+  font-size: 12px;}
 
 #container-outer{display: block; width: 960px; margin: 0 auto;}
 #header{display: block; width: 960px; overflow: hidden;}
@@ -27,4 +33,23 @@ a, a:link, a:active, a:visited{outline: none;}
 .section-header .icon{height: 30px; line-height: 30px; display: block; float: left; padding: 0 0 0 10px;}
 .section-header .label{height: 30px; line-height: 30px; display: block; float: left;}
 
-.section-content{display: block; border: 1px solid #CCC; padding: 10px; -moz-border-radius-topleft: 0px;-moz-border-radius-topright: 0px;-moz-border-radius-bottomright: 3px;-moz-border-radius-bottomleft: 3px;-webkit-border-radius: 0px 0px 3px 3px;border-radius: 0px 0px 3px 3px; }
+.section-content{
+  display: block; 
+  border: 1px solid #CCC; 
+  padding: 10px; 
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-radius: 0px 0px 3px 3px;
+  border-radius: 0px 0px 3px 3px; 
+}
+
+.entity{
+  display: block;
+  background-color: #363d52;
+  height: 50px;
+  width: 50px;
+  color: white;
+  padding: 10px;
+}
