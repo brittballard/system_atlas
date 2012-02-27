@@ -13,11 +13,18 @@
     Related Applications
   </div>
   <div class="section-content">
-    <% @parent.entity_relationships.each do |entity_relationship| %>
-      <div id=<%= "entity-#{entity_relationship.child.id}" %> data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>' class="ui-widget-content draggable entity">
-        Id: <%= entity_relationship.child.id %>
-      </div>
-    <% end %>
+    <ul id="child-entities" class="entity-list">
+      <% @parent.entity_relationships.each do |entity_relationship| %>
+        <li class="ui-state-highlight" 
+            data-id='<%= entity_relationship.id %>'
+            data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>'>
+          <div id=<%= "entity-#{entity_relationship.child.id}" %>
+                class="ui-widget-content draggable entity">
+            Id: <%= entity_relationship.child.id %>
+          </div>
+        </li>
+      <% end %>
+    <ul>
   </div>
 </div>
 
@@ -26,12 +33,15 @@
     Application Palette
   </div>
   <div class="section-content">
-    <div id='entities'>
+    <ul id='available-entities' class="entity-list">
       <% @entities.each do |entity| %>
-        <div id=<%= "entity-#{entity.id}" %> data-id='<%= entity.id %>' class="ui-widget-content draggable entity">
-          Id: <%= entity.id %>
-        </div>
+        <li class="ui-state-highlight" data-id='<%= entity.id %>'>
+          <div id=<%= "entity-#{entity.id}" %>
+                class="ui-widget-content draggable entity">
+            Id: <%= entity.id %>
+          </div>
+        </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </div>
