@@ -3,17 +3,16 @@ SystemAtlas.views = (function($){
     relatipnshipsManage : function(parentEntityId){
       // $(".draggable").draggable();
 
-      $('#entity-' + parentEntityId).droppable({
+      $('#child-entities').droppable({
         drop: function(event, ui) {
             $.post($(this).data('create_url'),
                                 { parent_id: $(this).data('id'), child_id: ui.draggable.data('id') });
           }
       });
       
-      $('#unassigned-entities').droppable({
+      $('#available-entities').droppable({
         drop: function(event, ui) {
-          $.delete_request(ui.draggable.data("delete_url"),
-                            { id: "test" });          
+          $.delete_request(ui.draggable.data("delete_url"));          
         }
       });
       
