@@ -43,7 +43,7 @@ Feature: User creates and maintains applications
   And I am on the home page
   When I follow "Relationships"
   And I follow "Manage Relationships"
-  And I drag "dipesh's application" to "britton's application"
+  And I drag "dipesh's application" to "child-entities"
   Then I should see "Relationship created successfully!"
   And I should have a new relationship between "britton's application" and "dipesh's application"
   

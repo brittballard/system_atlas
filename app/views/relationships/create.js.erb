@@ -1,1 +1,3 @@
 $('#status').text("Relationship created successfully!");
+$('#entity-<%= @relationship.child.id %>').data('id', <%= @relationship.id %>)
+$('#entity-<%= @relationship.child.id %>').data('delete_url', '<%= entity_relationship_path(@relationship.parent, @relationship) %>')

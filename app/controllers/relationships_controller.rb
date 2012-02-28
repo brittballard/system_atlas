@@ -11,11 +11,12 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    relationship = EntityRelationship.new(:parent_id => params[:parent_id], :child_id => params[:child_id])
-    relationship.save!
+    @relationship = EntityRelationship.new(:parent_id => params[:parent_id], :child_id => params[:child_id])
+    @relationship.save!
   end
 
   def destroy
+    @child = EntityRelationship.find(params[:id]).child
     EntityRelationship.destroy(params[:id])
   end
   

@@ -11,17 +11,17 @@
   <div class='section-header'>
     Application: <%= @parent.id %>
   </div>
-  <div class="section-content">
-    <ul id="child-entities" data-id='<%= @parent.id %>' 
-        data-create_url='<%= entity_relationships_path(@parent) %>' 
-        class='droppable entity-list'>
+  <div id="create-relationship"
+      data-id='<%= @parent.id %>' 
+      data-create_url='<%= entity_relationships_path(@parent) %>' 
+      class="section-content">
+    <ul id="child-entities"  class='entity-list'>
       <% @parent.entity_relationships.each do |entity_relationship| %>
-        <li class="ui-state-highlight" 
-            data-id='<%= entity_relationship.id %>'
+        <li id="entity-<%= entity_relationship.child.id %>"
+            class="ui-state-highlight entity" 
+            data-id='<%= entity_relationship.child.id %>'
             data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>'>
-          <div class="draggable entity">
             Id: <%= entity_relationship.child.id %>
-          </div>
         </li>
       <% end %>
     </ul>
@@ -32,16 +32,15 @@
   <div class='section-header'>
     Application Palette
   </div>
-  <div class="section-content">
-    <ul id='available-entities' 
-        data-parent_id=<%= @parent.id %>  
-        class="entity-list">
-      <li>Erase Me</li>
+  <div id="destroy-relationship"
+      data-parent_id=<%= @parent.id %>  
+      class="section-content">
+    <ul id='available-entities' class="entity-list">
       <% @entities.each do |entity| %>
-        <li class="ui-state-highlight" data-id='<%= entity.id %>'>
-          <div class="draggable entity">
-            Id: <%= entity.id %>
-          </div>
+        <li id='entity-<%= entity.id %>' 
+            data-id='<%= entity.id %>'
+            class="ui-state-highlight entity">
+          Id: <%= entity.id %>
         </li>
       <% end %>
     </ul>

@@ -24,10 +24,9 @@ Given /^"([^"]*)" and "([^"]*)" are related$/ do |application_one, application_t
 end
 
 When /^I drag "([^"]*)" to "([^"]*)"$/ do |child_app, parent_app|
-  parent = Application.where("name = ?", parent_app).first
   child = Application.where("name = ?", child_app).first
   
-  parent_element = page.find("#entity-#{parent.entity.id}")
+  parent_element = page.find("#create-relationship")
   child_element = page.find("#entity-#{child.entity.id}")
   
   child_element.drag_to(parent_element)
@@ -36,7 +35,7 @@ end
 When /^I remove "([^"]*)"$/ do |child_app|
   child = Application.where("name = ?", child_app).first
 
-  unassign_element = page.find("#unassigned-entities")
+  unassign_element = page.find("#destroy-relationship")
   child_element = page.find("#entity-#{child.entity.id}")
   
   child_element.drag_to(unassign_element)

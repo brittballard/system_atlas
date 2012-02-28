@@ -3,14 +3,14 @@ SystemAtlas.views = (function($){
     relatipnshipsManage : function(parentEntityId){
       // $(".draggable").draggable();
 
-      $('#child-entities').droppable({
+      $('#create-relationship').droppable({
         drop: function(event, ui) {
             $.post($(this).data('create_url'),
                                 { parent_id: $(this).data('id'), child_id: ui.draggable.data('id') });
           }
       });
       
-      $('#available-entities').droppable({
+      $('#destroy-relationship').droppable({
         drop: function(event, ui) {
           $.delete_request(ui.draggable.data("delete_url"));          
         }
