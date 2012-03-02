@@ -7,35 +7,32 @@
 <div id="status">
 </div>
 
-<div class='container'>
+<div id='relationship-manager'>
   <div class='section-header'>
     Application: <%= @parent.id %>
   </div>
-  <div id="create-relationship"
-      data-id='<%= @parent.id %>' 
-      data-create_url='<%= entity_relationships_path(@parent) %>' 
-      class="section-content">
-    <ul id="child-entities"  class='entity-list'>
+  <div id="create-relationship" class="section-content">
+    <ul id="child-entities" data-id='<%= @parent.id %>' data-create_url='<%= entity_relationships_path(@parent) %>' class='entity-list'>
+      <% if @parent.entity_relationships.count == 0 %>
+        <li id="no-children" class="entity">This application currently has no children.</li>
+      <% end %>
       <% @parent.entity_relationships.each do |entity_relationship| %>
-        <li id="entity-<%= entity_relationship.child.id %>"
-            class="ui-state-highlight entity" 
-            data-id='<%= entity_relationship.child.id %>'
-            data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>'>
-            Id: <%= entity_relationship.child.id %>
+        <li id="entity-<%= entity_relationship.child.id %>" class="ui-state-highlight entity" data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>'> 
+          Id: <%= entity_relationship.child.id %>
         </li>
       <% end %>
     </ul>
   </div>
 </div>
-
-<div class='container'>
+<div id='relationship-manager'>
   <div class='section-header'>
     Application Palette
   </div>
-  <div id="destroy-relationship"
-      data-parent_id=<%= @parent.id %>  
-      class="section-content">
-    <ul id='available-entities' class="entity-list">
+  <div id="destroy-relationship" class="section-content">
+    <ul id='available-entities' data-parent_id=<%= @parent.id %> class="entity-list">
+      <% if @entities.count == 0 %>
+        <li id="no-apps" class="entity">This application is already related to all available applications.</li>
+      <% end %>
       <% @entities.each do |entity| %>
         <li id='entity-<%= entity.id %>' 
             data-id='<%= entity.id %>'

@@ -1,3 +1,7 @@
 $('#status').text("Relationship created successfully!");
 $('#entity-<%= @relationship.child.id %>').data('id', <%= @relationship.id %>)
 $('#entity-<%= @relationship.child.id %>').data('delete_url', '<%= entity_relationship_path(@relationship.parent, @relationship) %>')
+$('#no-children').remove();
+if($('#available-entities').children().length == 0){
+  $('#available-entities').append('<li id="no-apps" class="entity">This application is already related to all available applications.</li>');
+}

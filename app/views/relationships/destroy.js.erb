@@ -1,2 +1,7 @@
 $('#status').text("Relationship destroyed successfully.");
-$('#entity-<%= @child.id %>').data('id', <%= @child.id %>)
+$('#entity-<%= @child.id %>').data('id', <%= @child.id %>);
+$('#no-apps').remove();
+if($('#child-entities').children().length == 0){
+  $('#child-entities').append('<li id="no-children" class="entity">This application currently has no children.</li>');
+}
+

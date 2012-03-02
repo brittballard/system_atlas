@@ -35,16 +35,7 @@ class Ability
   private
   
     def define_operator(user)
-      can(:manage, Entity)
-      can(:manage, Organization)
-      can(:manage, User)
-      can(:manage, DatabaseServer)
-      can(:manage, ApplicationServer)
-      can(:manage, BusinessUnit)
-      can(:manage, Application)
-      can(:manage, Person)
-      can(:manage, Team)
-      can(:manage, Server)
+      can(:manage, :all)
     end
   
     def define_admin(user)

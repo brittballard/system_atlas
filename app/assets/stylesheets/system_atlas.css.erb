@@ -49,12 +49,29 @@ body {
   display: block;
   background-color: #363d52;
   height: 50px;
-  width: 50px;
   color: white;
   padding: 10px;
   margin: 5px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;  
 }
 
 .entity-list{
   list-style-type: none;
+}
+
+#relationship-manager{
+  display:inline-block;
+  width:468px;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {border: 1px solid grey; 50% top repeat-x; }
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a { color: #363636; }
+
+.hidden{
+  visibility:hidden;
 }
