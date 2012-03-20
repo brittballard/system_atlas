@@ -11,7 +11,7 @@
   <div class='section-header'>
     Application: <%= @parent.id %>
   </div>
-  <div id="create-relationship" class="section-content">
+  <div class="section-content">
     <ul id="child-entities" data-id='<%= @parent.id %>' data-create_url='<%= entity_relationships_path(@parent) %>' class='entity-list'>
       <% if @parent.entity_relationships.count == 0 %>
         <li id="no-children" class="entity">This application currently has no children.</li>
@@ -28,7 +28,7 @@
   <div class='section-header'>
     Application Palette
   </div>
-  <div id="destroy-relationship" class="section-content">
+  <div class="section-content">
     <ul id='available-entities' data-parent_id=<%= @parent.id %> class="entity-list">
       <% if @entities.count == 0 %>
         <li id="no-apps" class="entity">This application is already related to all available applications.</li>

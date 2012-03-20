@@ -26,7 +26,7 @@ end
 When /^I drag "([^"]*)" to "([^"]*)"$/ do |child_app, parent_app|
   child = Application.where("name = ?", child_app).first
   
-  parent_element = page.find("#create-relationship")
+  parent_element = page.find("#child-entities")
   child_element = page.find("#entity-#{child.entity.id}")
   
   child_element.drag_to(parent_element)
@@ -35,7 +35,7 @@ end
 When /^I remove "([^"]*)"$/ do |child_app|
   child = Application.where("name = ?", child_app).first
 
-  unassign_element = page.find("#destroy-relationship")
+  unassign_element = page.find("#available-entities")
   child_element = page.find("#entity-#{child.entity.id}")
   
   child_element.drag_to(unassign_element)
