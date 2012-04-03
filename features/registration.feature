@@ -3,6 +3,7 @@ Feature: User registers for the site
   As a customer
   I need to be able to register for a login
 
+  @registration
   Scenario: Successful registration
     Given I am on the registration page
     And the following organization exists:
@@ -14,7 +15,9 @@ Feature: User registers for the site
     | user_password_confirmation | britton |
     | user_organization_id       | 100     |
     And I press "Register"
-    Then I should see "Welcome! You have signed up successfully."
+    Then I should see "Home"
+    And I should see "Edit Profile"
+    And I should see "Create Application"
     And I should find a Person record with email "a@a.com" and organization_id 100
 
   Scenario Outline: Failed registration

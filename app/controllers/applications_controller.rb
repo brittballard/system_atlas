@@ -17,7 +17,7 @@ class ApplicationsController < EntityDefinitionController
   # GET /applications/new
   # GET /applications/new.xml
   def new
-
+    @application = Application.new
   end
 
   # GET /applications/1/edit
