@@ -9,7 +9,7 @@ describe RelationshipsController do
   end
 
   before do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     sign_in @user
     
     @parent = FactoryGirl.create(:application) do |app|

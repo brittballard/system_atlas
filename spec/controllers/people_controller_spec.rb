@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PeopleController do
   before do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     sign_in @user
   end
   
@@ -18,7 +18,7 @@ describe PeopleController do
       before do
         @entity_definition.stub!(:valid?).and_return(true)
         @entity.stub!(:save).and_return(true)
-        post :create, { :person => Factory.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
+        post :create, { :person => FactoryGirl.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
       end
 
       it 'should return success' do
@@ -47,7 +47,7 @@ describe PeopleController do
       end
       
       it 'should fail when person is not valid' do
-        post :create, { :person => Factory.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }        
+        post :create, { :person => FactoryGirl.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }        
         flash[:error].should == "Error: britton"
       end
       
@@ -57,7 +57,7 @@ describe PeopleController do
         @entity_definition.stub!(:valid?).and_return(true)
         @entity.stub!(:save).and_return(false)
 
-        post :create, { :person => Factory.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
+        post :create, { :person => FactoryGirl.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
         flash[:error].should == "Error: britton"
       end
       
@@ -67,12 +67,12 @@ describe PeopleController do
         @entity_definition.stub!(:errors).and_return(@entity_definition_errors)
         @entity.stub!(:errors).and_return(@entity_errors)
 
-        post :create, { :person => Factory.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
+        post :create, { :person => FactoryGirl.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
         flash[:error].should == "Error: britton entity definition<br />britton entity"
       end
       
       it 'should render new' do
-        post :create, { :person => Factory.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
+        post :create, { :person => FactoryGirl.attributes_for(:person).merge({ :entity_attributes => { :system_identifier => '' } }) }
         response.should render_template(:new)
       end
     end

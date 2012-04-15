@@ -1,5 +1,7 @@
-Factory.define(:application_server) do |as|
-  as.name('test server')
-  as.description('my favorite server')
-  as.association(:entity)
+FactoryGirl.define do
+  factory :application_server do
+    name('test server')
+    description('my favorite server')
+    association(:entity)
+  end
 end

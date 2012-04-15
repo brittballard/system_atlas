@@ -6,7 +6,7 @@ require 'spec_helper'
 
 describe ApplicationsController do
   before do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     sign_in @user
   end
   
@@ -19,7 +19,7 @@ describe ApplicationsController do
       Entity.stub!(:load_entity_for_save).with(an_instance_of(Application), @user).once.and_return(@entity)
       @entity_definition.stub!(:valid?).and_return(true)
       @entity.stub!(:save).and_return(true)
-      post :create, { :application => Factory.attributes_for(:application).merge({ :entity_attributes => { :system_identifier => '' } }) }
+      post :create, { :application => FactoryGirl.attributes_for(:application).merge({ :entity_attributes => { :system_identifier => '' } }) }
     end
 
     it 'should return success' do

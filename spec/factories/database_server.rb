@@ -1,5 +1,7 @@
-Factory.define(:database_server) do |ds|
-  ds.name('The Database Server')
-  ds.description('My db server!')
-  ds.association(:entity)
+FactoryGirl.define do
+  factory :database_server do
+    name('The Database Server')
+    description('My db server!')
+    entity
+  end
 end

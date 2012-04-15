@@ -1,7 +1,9 @@
-Factory.define(:user) do |user|
-  user.password('brittonballard')
-  user.password_confirmation('brittonballard')
-  user.sequence(:email) {|n| "davidbritton.ballard#{n}@gmail.com"}
-  user.roles_mask(3)
-  user.association :organization
+FactoryGirl.define do
+  factory :user do
+    password('brittonballard')
+    password_confirmation('brittonballard')
+    sequence(:email) {|n| "davidbritton.ballard#{n}@gmail.com"}
+    roles_mask(3)
+    organization
+  end
 end

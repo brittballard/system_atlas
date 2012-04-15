@@ -1,4 +1,6 @@
-Factory.define(:business_unit) do |bu|
-  bu.name('The Business Unit')
-  bu.description('WERD')
+FactoryGirl.define do
+  factory :business_unit do
+    name('The Business Unit')
+    description('WERD')
+  end
 end

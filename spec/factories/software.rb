@@ -1,5 +1,7 @@
-Factory.define(:software) do |software|
-  software.version("1")
-  software.licenses("1234")
-  software.name("Windows")
+FactoryGirl.define do
+  factory :software do
+    version("1")
+    licenses("1234")
+    name("Windows")
+  end
 end

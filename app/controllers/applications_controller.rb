@@ -45,6 +45,7 @@ class ApplicationsController < EntityDefinitionController
       render :index
     else
       flash[:error] = "ERROR! #{@application.errors.full_messages}"
+      render :edit
     end
   end
 

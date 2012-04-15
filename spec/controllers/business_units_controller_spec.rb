@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BusinessUnitsController do
   before do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     sign_in @user
   end
   
@@ -15,7 +15,7 @@ describe BusinessUnitsController do
       Entity.stub!(:load_entity_for_save).with(an_instance_of(BusinessUnit), @user).once.and_return(@entity)
       @entity_definition.stub!(:valid?).and_return(true)
       @entity.stub!(:save).and_return(true)
-      post :create, { :business_unit => Factory.attributes_for(:business_unit).merge({ :entity_attributes => { :system_identifier => '' } }) }
+      post :create, { :business_unit => FactoryGirl.attributes_for(:business_unit).merge({ :entity_attributes => { :system_identifier => '' } }) }
     end
 
     it 'should return success' do

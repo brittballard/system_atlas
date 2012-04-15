@@ -1,5 +1,7 @@
-Factory.define(:team) do |t|
-  t.name('The Team')
-  t.description('Top dawgs.')
-  t.association(:entity)
+FactoryGirl.define do
+  factory :team do
+    name('The Team')
+    description('Top dawgs.')
+    entity
+  end
 end

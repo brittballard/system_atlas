@@ -1,4 +1,6 @@
-Factory.define(:server) do |s|
-  s.association(:organization)
-  s.association(:entity)
+FactoryGirl.define do
+  factory :server do
+    organization
+    entity
+  end
 end

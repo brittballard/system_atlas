@@ -2,7 +2,6 @@
 
 <%= form_for @user do |f| %>
   <%= puts @user.email %>
-  <%= f.error_messages(:header_message => "") %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Update" %>
 <% end %>

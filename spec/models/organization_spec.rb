@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Organization do
   describe 'The filter method on the organizations model' do
     before do
-      @organization = Factory.create(:organization)
+      @organization = FactoryGirl.create(:organization)
     end
     
     it('should return all organizations when no params are provided') do
