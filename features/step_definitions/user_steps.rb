@@ -3,7 +3,7 @@ Given /^I am logged in as an? "([^"]*)"$/ do |role|
 end
 
 Given /^I am logged in as an? "([^"]*)" for organization_id (\d+)$/ do |role, organization_id|
-  @user = Factory.create(:user, :roles_mask => ([role.downcase] & User::ROLES).map { |r| 2**User::ROLES.index(r) }.sum, :organization => Factory.create(:organization, :id => organization_id))
+  @user = FactoryGirl.create(:user, :roles_mask => ([role.downcase] & User::ROLES).map { |r| 2**User::ROLES.index(r) }.sum, :organization => FactoryGirl.create(:organization, :id => organization_id))
   step %{I go to the login page}
   step %{I fill in "user_email" with "#{@user.email}"}
   step %{I fill in "user_password" with "#{@user.password}"}
