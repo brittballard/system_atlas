@@ -6,7 +6,7 @@ class Entity < ActiveRecord::Base
   belongs_to(:organization)
   belongs_to(:entity_definition, :polymorphic => true)
   
-  has_many :entity_relationships, :foreign_key => :parent_id
+  has_many :entity_relationships, :foreign_key => :parent_id, :dependent => :destroy
   has_many :child_entity_relationships, :class_name => 'EntityRelationship', :foreign_key => :child_id
 
   has_many :children, :through => :entity_relationships

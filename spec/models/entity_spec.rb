@@ -9,6 +9,15 @@ describe Entity do
     Entity.new.should respond_to(:system_identifier, :organization, :entity_definition)
   end
   
+  it 'should destroy all entity relationship when the entity is destroyed' do
+    entity_to_destroy = FactoryGirl.create(:entity)
+    entity_to_destroy.entity_relationships << EntityRelationship.new({ :parent_id => @entity.id })
+    EntityRelationship.count.should == 1
+
+    entity_to_destroy.destroy
+    EntityRelationship.count.should == 0
+  end
+  
   describe 'parent child relationships between entities' do    
     it 'should allow entities to have child entities' do
       @entity.save
