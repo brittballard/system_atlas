@@ -31,6 +31,7 @@ gem 'mysql2'
 # end
 
 gem "devise"
+gem "devise-encryptable"
 gem "cancan"
 gem "nokogiri"
 gem "ejs"
