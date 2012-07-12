@@ -19,6 +19,16 @@
         <%= link_to('Manage organizations', organizations_path) %>
       </li>
     <% end %>
+    <% if can?(:create, Person) %>
+      <li>
+        <%= link_to('Create Person', new_person_path) %>
+      </li>
+    <% end %>
+    <% if can?(:create, BusinessUnit) %>
+      <li>
+        <%= link_to('Create Business Unit', new_business_unit_path) %>
+      </li>
+    <% end %>
     <!-- <% if can?(:create, DatabaseServer) %>
       <li>
         <%= link_to('Create new database server', new_database_server_path) %>
@@ -27,11 +37,6 @@
     <% if can?(:create, ApplicationServer) %>
       <li>
         <%= link_to('Create new application server', new_application_server_path) %>
-      </li>
-    <% end %>
-    <% if can?(:create, BusinessUnit) %>
-      <li>
-        <%= link_to('Create new business unit', new_business_unit_path) %>
       </li>
     <% end %>
     <% if current_user.is?(:admin) %>
