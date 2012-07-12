@@ -20,6 +20,7 @@
       <% @parent.entity_relationships.each do |entity_relationship| %>
         <li id="entity-<%= entity_relationship.child.id %>" class="ui-state-highlight entity" data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>'> 
           Id: <%= entity_relationship.child.id %>
+          Type: <%= entity_relationship.child.entity_definition_type %>
         </li>
       <% end %>
     </ul>
@@ -38,7 +39,8 @@
         <li id='entity-<%= entity.id %>' 
             data-id='<%= entity.id %>'
             class="ui-state-highlight entity">
-          Id: <%= entity.id %>
+          Id: <%= entity.id %><br />
+          Type: <%= entity.entity_definition_type %>
         </li>
       <% end %>
     </ul>

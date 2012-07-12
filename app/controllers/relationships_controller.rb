@@ -23,9 +23,10 @@ class RelationshipsController < ApplicationController
   
   def manage
     @parent = Entity.accessible_by(current_ability, :read).find(params[:entity_id])
-    @entities = Entity.accessible_by(current_ability, :read).where("entity_definition_type = ? And id not in(?)", 
-                                                                    "Application", 
+    @entities = Entity.accessible_by(current_ability, :read).where("id not in(?)", 
                                                                     [params[:entity_id]].concat(@parent.children.map{ |child| child.id }))
+    # @entities = Entity.accessible_by(current_ability, :read).where("entity_definition_type = ? And id not in(?)", 
+    #                                                                 "Application", 
+    #                                                                 [params[:entity_id]].concat(@parent.children.map{ |child| child.id }))
   end
-
 end

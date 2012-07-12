@@ -36,7 +36,8 @@ describe RelationshipsController do
       @parent.save!
       
       get(:manage, { 'entity_id' => @parent.entity.id })
-      assigns(:entities).should eq([availableEntity.entity])
+      assigns(:entities).should include(availableEntity.entity)
+      assigns(:entities).should include(Person.first.entity)
     end
   end
 end
