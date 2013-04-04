@@ -6,6 +6,8 @@ gem "pg"
 gem "devise"
 gem "devise-encryptable"
 gem "cancan"
+gem "jquery-rails"
+gem "underscore-rails"
 
 group :assets do
   gem "sass-rails", '~> 3.2.3'
@@ -20,7 +22,7 @@ end
 
 group :test do
   gem "cucumber"
-  gem "cucumber-rails"
+  gem "cucumber-rails", require: false
   gem 'database_cleaner'
   gem "capybara"
   gem "factory_girl_rails"
