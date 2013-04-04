@@ -12,5 +12,6 @@ module SystemAtlas
     config.assets.version = '1.0'
     config.encoding = "utf-8"
     config.filter_parameters += [:password,:password_confirmation]
+    config.assets.initialize_on_precompile = false
   end
 end
