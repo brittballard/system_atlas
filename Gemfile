@@ -14,7 +14,11 @@ group :assets do
 end
 
 group :development, :test do
+  gem "crack"
   gem "ap"
+end
+
+group :test do
   gem "cucumber"
   gem "cucumber-rails"
   gem 'database_cleaner'
