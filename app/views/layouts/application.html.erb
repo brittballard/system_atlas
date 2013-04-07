@@ -28,9 +28,9 @@
               <%= render(:partial => 'layouts/navigation') %>
             </div>
           </div>
-          <p><%= notice %></p>
-          <p><%= alert %></p>
-          <p><%= flash[:error] %></p>
+          <% if flash[:error].present? %>
+            <div class="alert alert-error"><%= flash[:error] %></div>
+          <% end %>
           <%= yield %>
         </div>
         <div id="footer">
