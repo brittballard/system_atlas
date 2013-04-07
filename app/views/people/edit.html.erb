@@ -1,1 +1,5 @@
-<%= render(:partial => 'layouts/entity_edit_new_form', :locals => { :form_object => @person, :entity_object => @person.entity, :entity_object_attributes_string => 'person[entity_attributes]'})%>
+<h4>Person</h4>
+<%= render(partial: 'layouts/entity_edit_new_form',
+           locals: { form_object: @person,
+             entity_object: @person.entity,
+             entity_object_attributes_string: 'person[entity_attributes]'}) %>

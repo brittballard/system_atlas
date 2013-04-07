@@ -1,7 +1,10 @@
+<h4>Application</h4>
 <%= form_for(@application) do |form| %>
   <%= form.fields_for(:entity, Entity.new) do |entity_fields| %>
-    <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => 'application[entity_attributes]' }) %>
+    <%= render(partial: 'entities/form',
+               locals: { form: entity_fields,
+                 select_object: 'application[entity_attributes]' }) %>
   <% end %>
-  <%= render(:partial => form, :locals => { :form => form })%>
+  <%= render(partial: form, locals: { form: form })%>
   <%= form.submit :create, class: 'btn btn-primary' %>
 <% end %>
