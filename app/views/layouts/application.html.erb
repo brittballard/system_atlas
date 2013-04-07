@@ -23,11 +23,11 @@
           </div>
           <div id="nav">
             <%= render(:partial => 'layouts/navigation') %>
-          </div>          
+          </div>
         <div id="main-content">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-          <p class="alert"><%= flash[:error] %></p>
+          <p><%= notice %></p>
+          <p><%= alert %></p>
+          <p><%= flash[:error] %></p>
           <%= yield %>
         </div>
         <div id="footer">
