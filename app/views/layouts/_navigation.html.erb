@@ -24,12 +24,12 @@
         <%= link_to('Create Person', new_person_path) %>
       </li>
     <% end %>
-    <% if can?(:create, BusinessUnit) %>
+    <!-- <% if can?(:create, BusinessUnit) %>
       <li>
         <%= link_to('Create Business Unit', new_business_unit_path) %>
       </li>
     <% end %>
-    <!-- <% if can?(:create, DatabaseServer) %>
+    <% if can?(:create, DatabaseServer) %>
       <li>
         <%= link_to('Create new database server', new_database_server_path) %>
       </li>

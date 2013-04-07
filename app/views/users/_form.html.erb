@@ -1,26 +1,23 @@
-<%= form.label :email %><br />
-<%= form.text_field :email %><br />
+<%= form.label :email %>
+<%= form.text_field :email %>
 <br />
 <% if current_user.nil? || current_user.id == @user.id %>
-  <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
-  <%= form.password_field :password %><br />
-  <br />
-  <%= form.label :password_confirmation %><br />
-  <%= form.password_field :password_confirmation %><br />
-  <br />
+  <%= form.label :password, form.object.new_record? ? nil : "Change password" %>
+  <%= form.password_field :password %>
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation %>
 <% end %>
 <% unless !@user.new_record? && @user.organization.present? %>
-  <%= form.label :organization_code %><br />
-  <%= form.text_field :organization_id %><br />
+  <%= form.label :organization_code %>
+  <%= form.text_field :organization_id %>
 <% end %>
-<br />
 <% if current_user.present? && (current_user.is?(:admin) || current_user.is?(:operator)) %>
   <%= check_box_tag "user[roles][]", 'user', @user.roles.include?('user') %>
-  <%=h 'User' %><br />
+  <%=h 'User' %>
   <%= check_box_tag "user[roles][]", 'admin', @user.roles.include?('admin') %>
-  <%=h 'Admin' %><br />
+  <%=h 'Admin' %>
 <% end %>
 <% if current_user.present? && current_user.is?(:operator) %>
   <%= check_box_tag "user[roles][]", 'operator', @user.roles.include?('operator') %>
-  <%=h 'Operator' %><br />
+  <%=h 'Operator' %>
 <% end %>

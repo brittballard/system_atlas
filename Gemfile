@@ -7,8 +7,6 @@ gem 'pg'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'cancan'
-gem 'jquery-rails'
-gem 'underscore-rails'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'

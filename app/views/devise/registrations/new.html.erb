@@ -4,7 +4,8 @@
   <%= devise_error_messages! %>
 
   <%= render :partial => "users/form", :object => f %>
-  <%= f.submit "Register"%>
+  <br />
+  <%= f.submit "Register", class: 'btn btn-primary' %>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

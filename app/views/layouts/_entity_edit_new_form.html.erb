@@ -2,10 +2,10 @@
   <%= form.fields_for(:entity, entity_object) do |entity_fields| %>
     <%= render(:partial => 'entities/form', :locals => { :form => entity_fields, :select_object => entity_object_attributes_string }) %>
   <% end %>
-  <%= render(:partial => form, :locals => { :form => form })%>
+  <%= render(partial: form, locals: { :form => form }) %>
   <% if entity_object.new_record? %>
-    <%= form.submit :create %>
+    <%= form.submit :create, class: 'btn btn-primary' %>
   <% else %>
-    <%= form.submit :edit %>
+    <%= form.submit :edit, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
