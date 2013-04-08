@@ -1,4 +1,6 @@
 //= require vendor
+//= require_self
 //= require system_atlas
 //= require system_atlas_utility
-//= require system_atlas_views
+
+$('.entity-list').selectable();

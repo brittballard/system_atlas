@@ -1,9 +1,14 @@
 <h4>Manage relationships for application <%= @parent.id %></h4>
 <div class='relationship-manager left'>
   <% if @parent.entity_relationships.count == 0 %>
-    This application currently has no children.
+    <blockquote>
+      <p>This application currently has no children.</p>
+    </blockquote>
   <% else %>
-    <ul class="unstyled">
+    <div class="association-button">
+      <button id="disassociate-button" class="btn btn-warning">Disassociate >></button>
+    </div>
+    <ul class="unstyled entity-list">
       <% @parent.entity_relationships.each do |entity_relationship| %>
         <li class="entity">
           Name: <%= entity_relationship.child.name %>
@@ -15,15 +20,30 @@
 </div>
 <div class='relationship-manager right'>
   <% if @entities.count == 0 %>
-    This application is already related to all available applications.
+    <blockquote>
+      <p>This application is already related to all available applications.</p>
+    </blockquote>
   <% else %>
-  <ul class="unstyled">
-    <% @entities.each do |entity| %>
-      <li class="entity">
-        Name: <%= entity.entity_definition.name %><br />
-        Type: <%= entity.entity_definition_type %>
-      </li>
-    <% end %>
-  </ul>
+    <div class="association-button">
+      <button id="associate-button" class="btn btn-success"><< Associate</button>
+    </div>
+    <div class="entity-filter">
+      <ul class="nav nav-pills">
+        <li class="active">
+          <a href="#">People</a>
+        </li>
+        <li>
+          <a href="#">Applications</a>
+        </li>
+      </ul>
+    </div>
+    <ul class="unstyled entity-list">
+      <% @entities.each do |entity| %>
+        <li class="entity">
+          Name: <%= entity.entity_definition.name %><br />
+          Type: <%= entity.entity_definition_type %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </div>
