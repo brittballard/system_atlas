@@ -5,10 +5,10 @@
       <p>This application currently has no children.</p>
     </blockquote>
   <% else %>
-    <%= render 'layouts/entity_navigation' %>
     <div class="association-button">
       <button id="disassociate-button" class="btn btn-warning">Disassociate >></button>
     </div>
+    <%= render 'layouts/entity_navigation' %>
     <ul class="unstyled entity-list">
       <% @parent.entity_relationships.each do |entity_relationship| %>
         <li class="entity">
