@@ -1,48 +1,29 @@
-<% content_for :javascript_includes do %>
-  jQuery(document).ready(function() {
-    SystemAtlas.views.relatipnshipsManage(<%= @parent.id %>);
-  });
-<% end %>
-
-<div id="status">
-</div>
-
-<div id='relationship-manager'>
-  Manage Relationships
-  <div class='section-header'>
-    Application: <%= @parent.id %>
-  </div>
-  <div class="section-content">
-    <ul id="child-entities" data-id='<%= @parent.id %>' data-create_url='<%= entity_relationships_path(@parent) %>' class='entity-list'>
-      <% if @parent.entity_relationships.count == 0 %>
-        <li id="no-children" class="entity">This application currently has no children.</li>
-      <% end %>
+<h4>Manage relationships for application <%= @parent.id %></h4>
+<div class='relationship-manager left'>
+  <% if @parent.entity_relationships.count == 0 %>
+    This application currently has no children.
+  <% else %>
+    <ul class="unstyled">
       <% @parent.entity_relationships.each do |entity_relationship| %>
-        <li id="entity-<%= entity_relationship.child.id %>" class="ui-state-highlight entity" data-id='<%= entity_relationship.child.id %>' data-delete_url='<%= entity_relationship_path(@parent, entity_relationship) %>'> 
-          Id: <%= entity_relationship.child.id %>
+        <li class="entity">
+          Name: <%= entity_relationship.child.name %>
           Type: <%= entity_relationship.child.entity_definition_type %>
         </li>
       <% end %>
     </ul>
-  </div>
+  <% end %>
 </div>
-<div id='relationship-manager'>
-  <div class='section-header'>
-    Application Palette
-  </div>
-  <div class="section-content">
-    <ul id='available-entities' data-parent_id=<%= @parent.id %> class="entity-list">
-      <% if @entities.count == 0 %>
-        <li id="no-apps" class="entity">This application is already related to all available applications.</li>
-      <% end %>
-      <% @entities.each do |entity| %>
-        <li id='entity-<%= entity.id %>' 
-            data-id='<%= entity.id %>'
-            class="ui-state-highlight entity">
-          Id: <%= entity.id %><br />
-          Type: <%= entity.entity_definition_type %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<div class='relationship-manager right'>
+  <% if @entities.count == 0 %>
+    This application is already related to all available applications.
+  <% else %>
+  <ul class="unstyled">
+    <% @entities.each do |entity| %>
+      <li class="entity">
+        Name: <%= entity.entity_definition.name %><br />
+        Type: <%= entity.entity_definition_type %>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
 </div>
