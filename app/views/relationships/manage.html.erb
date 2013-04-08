@@ -5,13 +5,14 @@
       <p>This application currently has no children.</p>
     </blockquote>
   <% else %>
+    <%= render 'layouts/entity_navigation' %>
     <div class="association-button">
       <button id="disassociate-button" class="btn btn-warning">Disassociate >></button>
     </div>
     <ul class="unstyled entity-list">
       <% @parent.entity_relationships.each do |entity_relationship| %>
         <li class="entity">
-          Name: <%= entity_relationship.child.name %>
+          Name: <%= entity_relationship.child.name %><br />
           Type: <%= entity_relationship.child.entity_definition_type %>
         </li>
       <% end %>
@@ -27,19 +28,7 @@
     <div class="association-button">
       <button id="associate-button" class="btn btn-success"><< Associate</button>
     </div>
-    <div class="entity-filter">
-      <ul class="nav nav-pills">
-        <li class="active">
-          <a href="#">People</a>
-        </li>
-        <li>
-          <a href="#">Applications</a>
-        </li>
-        <li>
-          <a href="#">All</a>
-        </li>
-      </ul>
-    </div>
+    <%= render 'layouts/entity_navigation' %>
     <ul class="unstyled entity-list">
       <% @entities.each do |entity| %>
         <li class="entity">
