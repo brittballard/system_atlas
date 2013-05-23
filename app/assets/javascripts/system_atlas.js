@@ -23,7 +23,7 @@ var SystemAtlas = (function($){
         dataType: type
       });
     },
-  
+
     put_request: function( url, data, callback, type ) {
       // shift arguments if data argument was omited
       if ( jQuery.isFunction( data ) ) {
