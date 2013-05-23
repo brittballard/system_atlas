@@ -8,11 +8,8 @@
     </div>
     <%= render 'layouts/entity_navigation' %>
     <ul class="unstyled entity-list">
-      <% @parent.entity_relationships.each do |entity_relationship| %>
-        <li class='span5 well'>
-          Name: <%= entity_relationship.child.name %><br />
-          Type: <%= entity_relationship.child.entity_definition_type %>
-        </li>
+      <% @parent.entity_relationships.each do |relationship| %>
+        <%= render "#{relationship.child.entity_definition.class.table_name}/entity", entity: relationship.child %>
       <% end %>
     </ul>
   <% end %>
