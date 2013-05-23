@@ -1,9 +1,7 @@
-<h4>Manage relationships for <%= @parent.name %></h4>
-<div class='relationship-manager left'>
+<h2 class='text-center'><%= @parent.name %></h2>
+<div class='span5 well'>
   <% if @parent.entity_relationships.count == 0 %>
-    <blockquote>
-      <p>This application currently has no children.</p>
-    </blockquote>
+    <p class='lead'>This entity has no children.</p>
   <% else %>
     <div class="association-button">
       <button id="disassociate-button" class="btn btn-warning">Disassociate >></button>
@@ -11,7 +9,7 @@
     <%= render 'layouts/entity_navigation' %>
     <ul class="unstyled entity-list">
       <% @parent.entity_relationships.each do |entity_relationship| %>
-        <li class="entity">
+        <li class='span5 well'>
           Name: <%= entity_relationship.child.name %><br />
           Type: <%= entity_relationship.child.entity_definition_type %>
         </li>
@@ -19,11 +17,9 @@
     </ul>
   <% end %>
 </div>
-<div class='relationship-manager right'>
+<div class='span5 well'>
   <% if @entities.count == 0 %>
-    <blockquote>
-      <p>This application is already related to all available applications.</p>
-    </blockquote>
+    <p class='lead'>This application is already related to all available applications.</p>
   <% else %>
     <div class="association-button">
       <button id="associate-button" class="btn btn-success"><< Associate</button>
@@ -31,10 +27,7 @@
     <%= render 'layouts/entity_navigation' %>
     <ul class="unstyled entity-list">
       <% @entities.each do |entity| %>
-        <li class="entity">
-          Name: <%= entity.entity_definition.name %><br />
-          Type: <%= entity.entity_definition_type %>
-        </li>
+        <%= render "#{entity.entity_definition.class.table_name}/entity", entity: entity %>
       <% end %>
     </ul>
   <% end %>

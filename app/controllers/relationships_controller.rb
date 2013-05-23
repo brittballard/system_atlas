@@ -16,11 +16,10 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    # @child = EntityRelationship.accessible_by(current_ability, :destroy).find(params[:id]).child
     @child = EntityRelationship.find(params[:id]).child
     EntityRelationship.destroy(params[:id])
   end
-  
+
   def manage
     @parent = Entity.accessible_by(current_ability, :read).find(params[:entity_id])
     @entities = Entity.accessible_by(current_ability, :read).where("id not in(?)", 

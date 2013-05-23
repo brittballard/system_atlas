@@ -41,16 +41,4 @@ var SystemAtlas = (function($){
       });
     }
   });
-  
-  return {
-    Models: {},
-    Collections: {},
-    Views: {},
-    Routers: {},
-    init: function(servers){
-      new SystemAtlas.Routers.Servers();
-      this.servers = new SystemAtlas.Collections.Servers(servers)
-      Backbone.history.start();
-    }
-  };
 })(jQuery);
