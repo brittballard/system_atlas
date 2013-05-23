@@ -16,16 +16,18 @@ end
 
 group :development, :test do
   gem 'crack'
-  gem 'ap'
+  gem 'awesome_print'
 end
 
 group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'cucumber'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'jasmine'
+  gem 'launchy'
   gem 'rspec', '>= 2.4'
   gem 'rspec-rails', '>= 2.4'
-  gem 'jasmine'
 end

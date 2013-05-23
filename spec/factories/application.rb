@@ -1,8 +1,14 @@
-FactoryGirl.define do 
+FactoryGirl.define do
   factory :application do
-      name('test server')
-      description('my favorite server')
-      entity
-      organization_id(1000)
+    after(:build) do |application|
+      application.entity = Entity.new(
+        organization: application.organization,
+        entity_definition: application,
+        system_identifier: 'test'
+      )
+    end
+    name('test server')
+    description('my favorite server')
+    organization
   end
 end

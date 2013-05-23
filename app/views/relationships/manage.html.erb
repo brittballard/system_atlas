@@ -5,7 +5,7 @@
   <% if @parent.entity_relationships.count == 0 %>
     <p class='lead'>This entity has no children.</p>
   <% else %>
-    <button id="disassociate-button" class="btn btn-large">Disassociate <i class='icon-forward glyphb'></i></button><br /><br />
+    <button id="disassociate-button" class="btn btn-large btn-block">Disassociate <i class='icon-forward glyphb'></i></button><br /><br />
   <% end %>
   <ul class="unstyled entity-list">
     <% @parent.entity_relationships.each do |relationship| %>
@@ -17,7 +17,7 @@
   <% if @entities.count == 0 %>
     <p class='lead'>This application is already related to all available applications.</p>
   <% else %>
-    <button id="associate-button" class="btn btn-large"><i class='icon-backward glyphb'></i> Associate</button><br /><br />
+    <button id="associate-button" class="btn btn-large btn-block"><i class='icon-backward glyphb'></i> Associate</button><br /><br />
   <% end %>
   <ul class="unstyled entity-list">
     <% @entities.each do |entity| %>

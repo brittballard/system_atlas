@@ -10,12 +10,12 @@ class User < ActiveRecord::Base
   after_create :create_person
   before_create :set_role
   has_one :person
-  
+
   validates_presence_of :organization_id
   validate :valid_organization_id
-  
+
   ROLES = %w[admin user operator]
-  
+
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
@@ -25,24 +25,23 @@ class User < ActiveRecord::Base
       ((roles_mask || 0) & 2**ROLES.index(r)).zero?
     end
   end
-  
+
   def is?(role)
     roles.include?(role.to_s)
   end
-  
+
   private
-    
+
     def set_role
       self.roles = ['user'] unless self.roles.present?
     end
-  
+
     def create_person
       entity = Entity.load_entity_for_save(Person.new({ :first_name => 'pending', :last_name => 'pending', :email => self.email, :organization_id => self.organization_id, :user_id => self.id, :entity => Entity.new }), self)
       entity.save!
     end
-  
+
     def valid_organization_id
       errors.add(:organization_id, "Invalid organization.") unless Organization.where(:id => self.organization_id).count > 0
     end
-  
 end

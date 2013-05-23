@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
-  
+
   def destroy
     User.destroy(params[:id])
     redirect_to account_url
