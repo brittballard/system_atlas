@@ -12,9 +12,8 @@ feature 'User', js: true do
     click_button 'Sign in'
 
     visit manage_entity_relationships_path(application.entity)
-    click_on 'Associate'
     find(:xpath, "//*[@data-entity-id='#{child.entity.id}']").click
-    click_button 'associate-button'
+    click_on 'Associate'
 
     within(:xpath, "//*[@data-role='child-container']") do
       expect(page).to have_content(child.name)
