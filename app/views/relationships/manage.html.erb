@@ -1,4 +1,5 @@
-<div class='span11'>
+<div data-role='routes' data-create-relationship='<%= entity_relationships_path %>' />
+<div class='span11' data-role='parent' data-entity-id='<%= @parent.id %>'>
   <h2 class='text-center'><%= @parent.name %></h2>
 </div>
 <div class='span5 well well-large' data-role='child-container'>
@@ -7,7 +8,7 @@
   <% else %>
     <button id="disassociate-button" class="btn btn-large btn-block">Disassociate <i class='icon-forward glyphb'></i></button><br /><br />
   <% end %>
-  <ul class="unstyled entity-list">
+  <ul class="unstyled entity-list" data-role='child-list'>
     <% @parent.entity_relationships.each do |relationship| %>
       <%= render "#{relationship.child.entity_definition.class.table_name}/entity", entity: relationship.child %>
     <% end %>
@@ -17,7 +18,8 @@
   <% if @entities.count == 0 %>
     <p class='lead'>This application is already related to all available applications.</p>
   <% else %>
-    <button id="associate-button" class="btn btn-large btn-block"><i class='icon-backward glyphb'></i> Associate</button><br /><br />
+    <button id="associate-button" class="btn btn-large btn-block" data-role='associate-button'>
+      <i class='icon-backward glyphb'></i> Associate</button><br /><br />
   <% end %>
   <ul class="unstyled entity-list">
     <% @entities.each do |entity| %>
@@ -25,3 +27,7 @@
     <% end %>
   </ul>
 </div>
+
+<%= content_for(:javascript) do %>
+  SystemAtlas.boot();
+<% end %>
