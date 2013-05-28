@@ -1,4 +1,4 @@
+$("[data-role='entity-palette'] [data-entity-id='<%= @relationship.child.id %>']").fadeOut();
 var newEntity = $("<%= j render("#{@relationship.child.entity_definition.class.table_name}/entity", formats: [:html], entity: @relationship.child) %>").hide();
 $("[data-role='child-list']").append(newEntity);
 newEntity.fadeIn();
-$("[data-role='entity-palette'] [data-entity-id='<%= @relationship.child.id %>']").fadeOut();
