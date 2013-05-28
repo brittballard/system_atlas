@@ -6,7 +6,11 @@ SystemAtlas = {
               url: $("[data-role='routes']").data('create-relationship'),
               data: {
                 parent_id: $("[data-role='parent']").data('entity-id'),
-                child_id: $("[data-role='entity-palette'] .ui-selected").data('entity-id')
+                child_ids: _.map(
+                  $("[data-role='entity-palette'] li.ui-selected"),
+                  function(item){
+                    return $(item).data('entity-id');
+                  })
             }
           });
         });
