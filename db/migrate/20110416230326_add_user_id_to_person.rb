@@ -1,13 +1,13 @@
 class AddUserIdToPerson < ActiveRecord::Migration
   class User < ActiveRecord::Base
   end
-  
+
   class Person < ActiveRecord::Base
   end
 
   def self.up
     add_column(:people, :user_id, :integer)
-    
+
     Person.reset_column_information
     Person.all.each do |person|
       user = User.where(:email => person.email).first

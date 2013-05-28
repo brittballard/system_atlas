@@ -1,7 +1,7 @@
 <div class='span11'>
   <h2 class='text-center'><%= @parent.name %></h2>
 </div>
-<div class='span5 well well-large'>
+<div class='span5 well well-large' data-role='child-container'>
   <% if @parent.entity_relationships.count == 0 %>
     <p class='lead'>This entity has no children.</p>
   <% else %>
@@ -13,7 +13,7 @@
     <% end %>
   </ul>
 </div>
-<div class='span5 well well-large'>
+<div class='span5 well well-large' data-role='entity-palette'>
   <% if @entities.count == 0 %>
     <p class='lead'>This application is already related to all available applications.</p>
   <% else %>

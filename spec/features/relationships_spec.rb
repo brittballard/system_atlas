@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 feature 'User', js: true do
-  scenario 'associates an two entities' do
+  scenario 'associates two entities' do
     user = create(:user)
-    application = create(:application, organization: user.organization)
-    create(:application, organization: user.organization)
+    application = create(:application, organization: user.organization, name: 'app 1')
+    child = create(:application, organization: user.organization, name: 'app 2')
 
     visit new_user_session_path
     fill_in 'Email', with: user.email
@@ -12,5 +12,12 @@ feature 'User', js: true do
     click_button 'Sign in'
 
     visit manage_entity_relationships_path(application.entity)
+    click_on 'Associate'
+    find(:xpath, "//*[@data-entity-id='#{child.entity.id}']").click
+    click_button 'associate-button'
+
+    within(:xpath, "//*[@data-role='child-container']") do
+      expect(page).to have_content(child.name)
+    end
   end
 end
