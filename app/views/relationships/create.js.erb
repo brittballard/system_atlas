@@ -1,1 +1,2 @@
 $("[data-role='child-list']").append("<%= j render("#{@relationship.child.entity_definition.class.table_name}/entity", formats: [:html], entity: @relationship.child) %>");
+$("[data-role='entity-palette'] [data-entity-id='<%= @relationship.child.id %>']").hide();

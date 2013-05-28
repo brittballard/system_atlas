@@ -18,5 +18,9 @@ feature 'User', js: true do
     within(:xpath, "//*[@data-role='child-container']") do
       expect(page).to have_content(child.name)
     end
+
+    within(:xpath, "//*[@data-role='entity-list']") do
+      expect(page).not_to have_content(child.name)
+    end
   end
 end

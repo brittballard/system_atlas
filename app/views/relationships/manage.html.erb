@@ -21,7 +21,7 @@
     <button id="associate-button" class="btn btn-large btn-block" data-role='associate-button'>
       <i class='icon-backward glyphb'></i> Associate</button><br /><br />
   <% end %>
-  <ul class="unstyled entity-list">
+  <ul class="unstyled entity-list" data-role='entity-list'>
     <% @entities.each do |entity| %>
       <%= render "#{entity.entity_definition.class.table_name}/entity", entity: entity %>
     <% end %>
