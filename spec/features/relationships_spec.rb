@@ -42,12 +42,16 @@ feature 'User', js: true do
 
   scenario 'disassociate two entities' do
     setup
-    EntityRelationship.new(parent_id: @application.entity.id, child_id: @child.entity.id).save!
+    relationship = EntityRelationship.new(
+      parent_id: @application.entity.id,
+      child_id: @child.entity.id
+    )
+    relationship.save!
 
     sign_in
     visit manage_entity_relationships_path(@application.entity)
-    find(:xpath, "//*[@data-entity-id='#{@child.entity.id}']").click
-
+    find(:xpath, "//*[@data-relationship-id='#{relationship.id}']").click
+    page.save_screenshot('screenshot.png')
     click_on 'Disassociate'
 
     within(:xpath, "//*[@data-role='entity-list']") do

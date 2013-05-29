@@ -25,6 +25,7 @@ class RelationshipsController < ApplicationController
   def destroy
     @children = []
     @ids = params[:ids]
+    ap params[:ids]
     params[:ids].each do |id|
       @children << EntityRelationship.find(id).child
       EntityRelationship.destroy(id)
@@ -33,7 +34,7 @@ class RelationshipsController < ApplicationController
 
   def manage
     @parent = Entity.accessible_by(current_ability, :read).find(params[:entity_id])
-    @entities = Entity.accessible_by(current_ability, :read).where("id not in(?)", 
+    @entities = Entity.accessible_by(current_ability, :read).where("id not in(?)",
                                                                     [params[:entity_id]].concat(@parent.children.map{ |child| child.id }))
   end
 end
