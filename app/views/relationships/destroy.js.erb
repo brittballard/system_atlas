@@ -1,7 +1,10 @@
-$('#status').text("Relationship destroyed successfully.");
-$('#entity-<%= @child.id %>').data('id', <%= @child.id %>);
-$('#no-apps').remove();
-if($('#child-entities').children().length == 0){
-  $('#child-entities').append('<li id="no-children" class="entity">This application currently has no children.</li>');
-}
+<% @ids.each do |id| %>
+  $("[data-role='child-container'] [data-relationship-id*='<%= id %>']").fadeOut();
+<% end %>
+
+<% @children.each do |child| %>
+  var newEntity = $("<%= j render("relationships/item_templates/#{child.entity_definition.class.table_name}_create", formats: [:html], entity: child) %>").hide();
+  $("[data-role='entity-list']").append(newEntity);
+  newEntity.fadeIn();
+<% end %>
 

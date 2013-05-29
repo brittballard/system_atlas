@@ -1,7 +1,7 @@
 <% @relationships.each do |relationship| %>
   $("[data-role='entity-palette'] [data-entity-id='<%= relationship.child.id %>']").fadeOut();
 
-  var newEntity = $("<%= j render("#{relationship.child.entity_definition.class.table_name}/entity", formats: [:html], entity: relationship.child) %>").hide();
+  var newEntity = $("<%= j render("relationships/item_templates/#{relationship.child.entity_definition.class.table_name}_destroy", formats: [:html], relationship: relationship, parent: relationship.parent) %>").hide();
   $("[data-role='child-list']").append(newEntity);
   newEntity.fadeIn();
 <% end %>

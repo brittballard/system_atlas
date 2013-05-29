@@ -23,8 +23,12 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    @child = EntityRelationship.find(params[:id]).child
-    EntityRelationship.destroy(params[:id])
+    @children = []
+    @ids = params[:ids]
+    params[:ids].each do |id|
+      @children << EntityRelationship.find(id).child
+      EntityRelationship.destroy(id)
+    end
   end
 
   def manage

@@ -5,7 +5,6 @@ feature 'User', js: true do
     setup
 
     sign_in
-
     visit manage_entity_relationships_path(@application.entity)
     find(:xpath, "//*[@data-entity-id='#{@child.entity.id}']").click
     click_on 'Associate'
@@ -19,12 +18,11 @@ feature 'User', js: true do
     end
   end
 
-  scenario 'associates two entities' do
+  scenario 'associates multiple entities to one' do
     setup
     child_two = create(:application, organization: @user.organization, name: 'app 2')
 
     sign_in
-
     visit manage_entity_relationships_path(@application.entity)
     child_node = find(:xpath, "//*[@data-entity-id='#{@child.entity.id}']")
     child_node_two = find(:xpath, "//*[@data-entity-id='#{child_two.entity.id}']")
@@ -39,6 +37,25 @@ feature 'User', js: true do
     within(:xpath, "//*[@data-role='entity-list']") do
       expect(page).not_to have_content(@child.name)
       expect(page).not_to have_content(child_two.name)
+    end
+  end
+
+  scenario 'disassociate two entities' do
+    setup
+    EntityRelationship.new(parent_id: @application.entity.id, child_id: @child.entity.id).save!
+
+    sign_in
+    visit manage_entity_relationships_path(@application.entity)
+    find(:xpath, "//*[@data-entity-id='#{@child.entity.id}']").click
+
+    click_on 'Disassociate'
+
+    within(:xpath, "//*[@data-role='entity-list']") do
+      expect(page).to have_content(@child.name)
+    end
+
+    within(:xpath, "//*[@data-role='child-container']") do
+      expect(page).not_to have_content(@child.name)
     end
   end
 

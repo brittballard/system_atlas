@@ -1,4 +1,4 @@
-<div data-role='routes' data-create-relationship='<%= entity_relationships_path %>' />
+<div data-role='routes' data-create-relationship='<%= entity_relationships_path(@parent) %>' />
 <div class='span11' data-role='parent' data-entity-id='<%= @parent.id %>'>
   <h2 class='text-center'><%= @parent.name %></h2>
 </div>
@@ -6,11 +6,11 @@
   <% if @parent.entity_relationships.count == 0 %>
     <p class='lead'>This entity has no children.</p>
   <% else %>
-    <button id="disassociate-button" class="btn btn-large btn-block">Disassociate <i class='icon-forward glyphb'></i></button><br /><br />
+    <button id="disassociate-button" class="btn btn-large btn-block" data-role='disassociate-button'>Disassociate <i class='icon-forward glyphb'></i></button><br /><br />
   <% end %>
   <ul class="unstyled entity-list" data-role='child-list'>
     <% @parent.entity_relationships.each do |relationship| %>
-      <%= render "#{relationship.child.entity_definition.class.table_name}/entity", entity: relationship.child %>
+      <%= render "relationships/item_templates/#{relationship.child.entity_definition.class.table_name}_destroy", formats: [:html], relationship: relationship, parent: @parent %>
     <% end %>
   </ul>
 </div>
@@ -23,7 +23,7 @@
   <% end %>
   <ul class="unstyled entity-list" data-role='entity-list'>
     <% @entities.each do |entity| %>
-      <%= render "#{entity.entity_definition.class.table_name}/entity", entity: entity %>
+      <%= render "relationships/item_templates/#{entity.entity_definition.class.table_name}_create", formats: [:html], entity: entity %>
     <% end %>
   </ul>
 </div>
